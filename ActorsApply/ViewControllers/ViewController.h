@@ -1,0 +1,17 @@
+//
+//  ViewController.h
+//  ActorsApply
+//
+//  Created by Sandip Mahajan on 9/5/16.
+//  Copyright © 2016 Bhushan mahajan. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+@interface ViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIView *emailView;
+@property (weak, nonatomic) IBOutlet UIView *passwordView;
+@property (weak, nonatomic) IBOutlet UIView *signupView;
+
+@end
+
