@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SuperViewController.h"
+#import "ViewApplicant.h"
+#import "AsyncImageView.h"
 @interface ActorsListViewController : SuperViewController
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionRecomended;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionActors;
-
+@property(nonatomic,strong)  ViewApplicant *mainApplicant;
+@property(nonatomic,strong)  ViewApplicant *subApplicant;
 @end

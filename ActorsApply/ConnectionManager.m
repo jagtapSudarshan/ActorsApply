@@ -193,7 +193,7 @@
     NSString *auth = [[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"];
     NSLog(@"%@",auth);
     
-    [manager.requestSerializer setValue:auth forHTTPHeaderField:@"authorization"];
+    [manager.requestSerializer setValue:auth forHTTPHeaderField:@"Authorization"];
     [manager GET:urlstr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

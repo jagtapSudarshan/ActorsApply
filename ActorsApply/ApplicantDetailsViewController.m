@@ -8,8 +8,11 @@
 
 #import "ApplicantDetailsViewController.h"
 #import "VerticalCollectionViewCell.h"
+#import "ActorsListViewController.h"
 @interface ApplicantDetailsViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
  UICollectionView *_collectionView;
+  ViewApplicant *mainApplicant;
+  ViewApplicant *subApplicant;
 }
 @end
 
@@ -78,7 +81,35 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     return vc;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+  subApplicant = [[ViewApplicant alloc]init];
+  subApplicant.viewApplicantId = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"id"];
+  subApplicant.user_id = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.name = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"name"];
+  subApplicant.type = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"type"];
+  subApplicant.vwAppdesc = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"desc"];
+  subApplicant.location = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"location"];
+  subApplicant.roleCount = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.applicationCount = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.castingDate = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.shootingDate = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.industry = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.casting_director = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.director = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.status = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.application_count = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
+  subApplicant.created = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"created"];
+  subApplicant.modified = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"modified"];
+  [self performSegueWithIdentifier:@"AppDetailToPhotos" sender:nil];
+}
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if([segue.identifier isEqualToString:@"AppDetailToPhotos"])
+  {
+    ActorsListViewController *vc = segue.destinationViewController;
+    vc.mainApplicant = self.viewApplicant;
+    vc.subApplicant = subApplicant;
+  }
 }
 
 @end

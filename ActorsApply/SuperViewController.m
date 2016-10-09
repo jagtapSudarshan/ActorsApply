@@ -70,7 +70,7 @@
     HomeViewController *frontViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Home"];
     [self.revealViewController pushFrontViewController:frontViewController animated:YES];
   }else{
-    
+    [self.navigationController popViewControllerAnimated:YES];
   }
 }
 - (IBAction)tab3Selected:(id)sender {

@@ -62,8 +62,15 @@
     if (succeeded)
     {
       data = [responseData objectForKey:@"data"];
-      
-      for (NSMutableDictionary *dict in data) {
+      NSLog(@"\n\n\nApplication list view data %@ \n\n\n",data);
+      for (int i =0; i<data.count; i++) {
+        NSDictionary *dict = [data objectAtIndex:i];
+//      }
+//      for (NSMutableDictionary *dict in data) {
+        NSLog(@"\n\n\n%@",dict);
+        if ([[dict objectForKey:@"id"] isEqualToString:@"48"]) {
+          NSLog(@"caught");
+        }
         ViewApplicant *viewApplicant = [ViewApplicant new];
         viewApplicant.viewApplicantId = [dict objectForKey:@"id"];
         viewApplicant.user_id = [dict objectForKey:@"user_id"];
@@ -114,6 +121,10 @@
   cell.lblName.text = vo.name;
   cell.lblDate.text = vo.castingDate;
   cell.lblType.text = vo.type;
+  if ([vo.viewApplicantId isEqual:@"102"]) {
+    NSLog(@"caught");
+    NSLog(@"%@",vo.viewApplicantId);
+  }
   return cell;
 }
 

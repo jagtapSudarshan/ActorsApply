@@ -9,7 +9,7 @@
 #ifndef WebServiceConstants_h
 #define WebServiceConstants_h
 
-#define BASE_URL @"http://52.74.176.50/abson-api/v1/"
+#define BASE_URL @"http://52.220.121.164/abson-api/v1/"
 
 #define LOGIN               @"auth/login"
 #define AUDITION            @"audition/audition"

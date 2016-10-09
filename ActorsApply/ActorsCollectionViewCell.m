@@ -12,8 +12,13 @@
 
 - (void)awakeFromNib
 {
-    self.imageViewActor.layer.masksToBounds = YES;
-    self.imageViewActor.layer.cornerRadius = self.imageViewActor.frame.size.width / 2;
+//  self.imgVw.layer.backgroundColor=[[UIColor clearColor] CGColor];
+//  self.imgVw.layer.cornerRadius=20;
+//  self.imgVw.layer.borderWidth=2.0;
+//  self.imgVw.layer.masksToBounds = YES;
+
+//    self.imageViewActor.layer.masksToBounds = YES;
+//    self.imageViewActor.layer.cornerRadius = self.imageViewActor.frame.size.width / 2;
 }
 
 @end

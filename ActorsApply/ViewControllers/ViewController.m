@@ -34,11 +34,15 @@
     self.signupView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.signupView.layer.borderWidth = 1.0f;
     
-//    _emailText.text = @"ankurbhatias@gmail.com";
-//    _passwordText.text = @"ankurabir2015";
+    _emailText.text = @"ankurbhatias@gmail.com";
+    _passwordText.text = @"ankurabir2015";
 
-    _emailText.text = @"bharatjha35@gmail.com";
-    _passwordText.text = @"hello";
+//    _emailText.text = @"bharatjha35@gmail.com";
+//    _passwordText.text = @"bharat123";
+  
+  
+//  _emailText.text = @"Gaurav.gauravs@gmail.com";
+//      _passwordText.text = @"password";
   
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }

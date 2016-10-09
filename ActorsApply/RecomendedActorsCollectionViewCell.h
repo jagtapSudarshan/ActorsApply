@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AsyncImageView.h"
 @interface RecomendedActorsCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageViewActor;
+@property (weak, nonatomic) IBOutlet AsyncImageView *imageViewActor;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 
 @end

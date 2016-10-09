@@ -101,6 +101,7 @@
 		61EB64E41D8EC45E008CE9FB /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64DE1D8EC45E008CE9FB /* TPKeyboardAvoidingScrollView.m */; };
 		61EB64E51D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64E01D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m */; };
 		61EB64E61D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64E21D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		658E77B41DAAA6C700F343C6 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E77B31DAAA6C700F343C6 /* AsyncImageView.m */; };
 		6595CB491D9FF538008058BE /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6595CB481D9FF538008058BE /* SuperViewController.m */; };
 		6595CB4C1D9FF68D008058BE /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6595CB4B1D9FF68D008058BE /* CustomView.m */; };
 		6595CB4E1D9FF696008058BE /* CustomView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6595CB4D1D9FF696008058BE /* CustomView_iPhone.xib */; };
@@ -269,6 +270,8 @@
 		61EB64E01D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		61EB64E11D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		61EB64E21D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		658E77B21DAAA6C700F343C6 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		658E77B31DAAA6C700F343C6 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		6595CB471D9FF538008058BE /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
 		6595CB481D9FF538008058BE /* SuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperViewController.m; sourceTree = "<group>"; };
 		6595CB4A1D9FF68D008058BE /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				616C42741D85CE2E00468EEB /* Tutorial.m */,
 				616C42761D85CFD300468EEB /* Audition.h */,
 				616C42771D85CFD300468EEB /* Audition.m */,
+				658E77B21DAAA6C700F343C6 /* AsyncImageView.h */,
+				658E77B31DAAA6C700F343C6 /* AsyncImageView.m */,
 			);
 			name = "3rd Party";
 			sourceTree = "<group>";
@@ -761,6 +766,7 @@
 				617652B31D90871400BB2A98 /* ActorsCollectionViewCell.m in Sources */,
 				61892D941D7CD6D00095A0E1 /* HomeViewController.m in Sources */,
 				6595CB581DA13325008058BE /* VerticalCollectionViewCell.m in Sources */,
+				658E77B41DAAA6C700F343C6 /* AsyncImageView.m in Sources */,
 				616C42781D85CFD300468EEB /* Audition.m in Sources */,
 				6143D74A1D9D6CB000F15334 /* MFSideMenuShadow.m in Sources */,
 				61EB64E41D8EC45E008CE9FB /* TPKeyboardAvoidingScrollView.m in Sources */,

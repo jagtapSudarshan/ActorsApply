@@ -11,3 +11,8 @@
 @implementation ActorList
 
 @end
+
+@implementation ActorAsset
+
+
+@end
