@@ -21,6 +21,8 @@
 
 @property (strong, nonatomic) ViewApplicant *viewApplicant;
 
+@property (strong, nonatomic) NSString *typeImageName;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *cvV;
 
 @end

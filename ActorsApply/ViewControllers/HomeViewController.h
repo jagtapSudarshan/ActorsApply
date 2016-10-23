@@ -13,7 +13,6 @@
 
 @interface HomeViewController : SuperViewController
 
-- (IBAction)showMenu;
 
 //@property (nonatomic)NSMutableArray *profileMediaVideos;
 //@property (nonatomic)NSString *profileImageName;

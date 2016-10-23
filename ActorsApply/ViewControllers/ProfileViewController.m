@@ -23,6 +23,7 @@
 //    NSMutableArray *profileMediaVideos;
 //    NSString *profileImageName;
     
+    __weak IBOutlet UIView *shortListView;
     AboutViewController   *aboutVC;
     ProjectViewController *projectVC;
     PhotosViewController  *photosVC;
@@ -44,7 +45,6 @@
    // [self callGetProfileData];
     
     self.navigationController.navigationBar.hidden = YES;
-    
   
     aboutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
     [self.containerView addSubview:aboutVC.view];
@@ -74,6 +74,15 @@
     
     [self.containerView addGestureRecognizer:swipeLeftGuesture];
     [self.containerView addGestureRecognizer:swipeRightGuesture];
+    
+    NSString *roleType = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
+    if([roleType isEqualToString:@"1"])
+    {
+        [shortListView setHidden:YES];
+    }
+    else{
+        [shortListView setHidden:NO];
+    }
 }
 
 //- (void) callGetProfileData

@@ -22,5 +22,15 @@
 #define VIEW_APPLICANT      @"casting/getProjects"
 #define GET_APPLICATIONS    @"casting/getApplications"
 #define APPLY_AUDITION      @"audition/applyForAudition"
+#define REGISTRATION        @"user/register"
+
+#define IMAGE_URL           @"http://www.actorsapply.com/app/webroot/img/photos/"
+#define PRIVACY_URL         @"http://www.actorsapply.com/privacy-policy.html"
+#define TERMS_URL         @"http://www.actorsapply.com/terms-conditions.html"
+#define ABOUT_URL         @"http://www.actorsapply.com/about-us.html"
+
+#define TAB_1           1
+#define TAB_2           2
+#define TAB_3           3
 
 #endif /* WebServiceConstants_h */

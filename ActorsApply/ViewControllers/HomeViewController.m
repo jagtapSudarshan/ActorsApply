@@ -22,6 +22,7 @@
 #import "AuditionViewController.h"
 #import "CastPostHomeViewController.h"
 #import "ApplicantListViewController.h"
+
 @interface HomeViewController ()
 {
     NSMutableArray *profileMediaImages;
@@ -41,6 +42,7 @@
     __weak IBOutlet UILabel *roleLabel;
     __weak IBOutlet UIView *lineView;
     __weak IBOutlet UIImageView *profileImageView;
+    __weak IBOutlet UILabel *name;
 }
 
 @end
@@ -52,19 +54,21 @@
     // Do any additional setup after loading the view.
     NSString* role = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
     
+    name.text = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Name"] uppercaseString];
     if([role isEqualToString:@"1"])
     {
         lineView.hidden = YES;
         [viewApplicantLabel sizeToFit];
         [postCastingLabel sizeToFit];
-        NSString *urlStr = @"http://www.actorsapply.com/img/blog/";
-        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
+        NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]);
+        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"logo"]];
        // [profileImageView setImage:[UIImage imageNamed:@""]];
         [postCostingBtn setBackgroundImage:[UIImage imageNamed:@"auditions"] forState:0];
         [viewApplicantBtn setBackgroundImage:[UIImage imageNamed:@"profile"] forState:0];
         postCastingLabel.text = @"AUDITIONS";
         viewApplicantLabel.text = @"PROFILE";
         roleLabel.text = @"ACTOR";
+        
         [postCastingLabel setFont:[UIFont fontWithName:@"Helvetica-Regular" size:17]];
         [viewApplicantLabel setFont:[UIFont fontWithName:@"Helvetica-Regular" size:17]];
     }
@@ -101,25 +105,25 @@
     
     if([role isEqualToString:@"1"])
     {
-//        [self performSegueWithIdentifier:@"profile_segue" sender:self];
+        [self performSegueWithIdentifier:@"profile_segue" sender:self];
       
       
-      SWRevealViewController *revealController = self.revealViewController;
-      ProfileViewController *profilViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-      UIViewController *newFrontController = profilViewController;
-      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
-      [revealController pushFrontViewController:navigationController animated:YES];
+//      SWRevealViewController *revealController = self.revealViewController;
+//      ProfileViewController *profilViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
+//      UIViewController *newFrontController = profilViewController;
+//      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
+//      [revealController pushFrontViewController:navigationController animated:YES];
     }
     else
     {
 //        self.hidesBottomBarWhenPushed = NO;
-//        [self performSegueWithIdentifier:@"ApplicantListViewController" sender:self];
+        [self performSegueWithIdentifier:@"ApplicantListViewController" sender:self];
       
-      SWRevealViewController *revealController = self.revealViewController;
-      ApplicantListViewController *appListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplicantListViewController"];
-      UIViewController *newFrontController = appListViewController;
-      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
-      [revealController pushFrontViewController:navigationController animated:YES];
+//      SWRevealViewController *revealController = self.revealViewController;
+//      ApplicantListViewController *appListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplicantListViewController"];
+//      UIViewController *newFrontController = appListViewController;
+//      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
+//      [revealController pushFrontViewController:navigationController animated:YES];
     }
 }
 
@@ -129,38 +133,23 @@
     
     if([role isEqualToString:@"1"])
     {
-//         [self performSegueWithIdentifier:@"AuditionViewController" sender:self];
-      SWRevealViewController *revealController = self.revealViewController;
-      AuditionViewController *auditionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"audition"];
-       UIViewController *newFrontController = auditionViewController;
-      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
-      [revealController pushFrontViewController:navigationController animated:YES];
+         [self performSegueWithIdentifier:@"AuditionViewController" sender:self];
+//      SWRevealViewController *revealController = self.revealViewController;
+//      AuditionViewController *auditionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"audition"];
+//       UIViewController *newFrontController = auditionViewController;
+//      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
+//      [revealController pushFrontViewController:navigationController animated:YES];
     }
     else
     {
 //        self.hidesBottomBarWhenPushed = NO;
-//     [self performSegueWithIdentifier:@"navToCast" sender:self];      
-      SWRevealViewController *revealController = self.revealViewController;
-      CastPostHomeViewController *castPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CastPostHomeViewController"];
-      UIViewController *newFrontController = castPostViewController;
-      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
-      [revealController pushFrontViewController:navigationController animated:YES];
+     [self performSegueWithIdentifier:@"navToCast" sender:self];      
+//      SWRevealViewController *revealController = self.revealViewController;
+//      CastPostHomeViewController *castPostViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CastPostHomeViewController"];
+//      UIViewController *newFrontController = castPostViewController;
+//      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
+//      [revealController pushFrontViewController:navigationController animated:YES];
     }
-}
-
-- (IBAction)showMenu
-{
-    // Dismiss keyboard (optional)
-    //
-    [self.view endEditing:YES];
-    [self.frostedViewController.view endEditing:YES];
-    
-    // Present the view controller
-//    self.frostedViewController.contentViewController = self.view.window.rootViewController;
-//    
-//    self.frostedViewController.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootController"];
-    
-    [self.frostedViewController presentMenuViewController];
 }
 
 - (void) callGetProfileData
@@ -232,7 +221,7 @@
             
           //  videosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"videos_storyboard"];
             videosVC.profileVideos = profileMediaVideos;
-            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.actorsapply.com/img/blog/%@",profileImageName]] placeholderImage:nil];
+            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL, profileImageName]] placeholderImage:[UIImage imageNamed:@"logo"]];
         }
         else
         {

@@ -44,6 +44,7 @@
         
         [SVProgressHUD dismiss];
         
+        
         if (succeeded)
         {
             NSArray *inboxContents = [responseData valueForKey:@"data"];
@@ -105,7 +106,18 @@
     InboxTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InboxTableViewCell"];
     Inbox *inbox = [inboxArray objectAtIndex:indexPath.row];
     cell.lblName.text = inbox.from;
-    cell.lblDate.text = inbox.dateCreated;
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    
+    NSDate *date = [dateFormat dateFromString:inbox.dateCreated];
+    
+    NSDateFormatter *dateStringFormat = [[NSDateFormatter alloc] init];
+    [dateStringFormat setDateFormat:@"dd MMM"];
+    [dateStringFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+
+    cell.lblDate.text = [dateStringFormat stringFromDate:date];
     cell.lblDesc.text = inbox.desc;
     cell.lblAuditions.text = inbox.subject;
     //cell.lblName.text = inbox.from;

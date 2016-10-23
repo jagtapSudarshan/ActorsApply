@@ -40,13 +40,16 @@
 
 - (IBAction)auditionClicked:(id)sender {
     
-   
+//   [self performSegueWithIdentifier:@"signincontroller" sender:nil];
+    UIViewController *contentController = [self.storyboard instantiateViewControllerWithIdentifier:@"signin"];
+    self.view.window.rootViewController = contentController;
 }
 
 - (IBAction)castingClicked:(id)sender
 {
-     [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"role"];
-     [self performSegueWithIdentifier:@"navToTab" sender:[NSNumber numberWithBool:NO]];
+//    [self performSegueWithIdentifier:@"signincontroller" sender:nil];
+    UIViewController *contentController = [self.storyboard instantiateViewControllerWithIdentifier:@"signin"];
+    self.view.window.rootViewController = contentController;
 }
 
 #pragma mark -- MFSide menu

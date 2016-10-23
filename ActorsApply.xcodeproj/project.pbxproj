@@ -57,6 +57,7 @@
 		6143D74A1D9D6CB000F15334 /* MFSideMenuShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6143D7461D9D6CB000F15334 /* MFSideMenuShadow.m */; };
 		6143D74B1D9D6CB000F15334 /* UIViewController+MFSideMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6143D7481D9D6CB000F15334 /* UIViewController+MFSideMenuAdditions.m */; };
 		6143D74E1D9D6E1300F15334 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6143D74D1D9D6E1300F15334 /* SideMenuViewController.m */; };
+		61447F371DB970430030ACB1 /* UpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61447F361DB970430030ACB1 /* UpgradeViewController.m */; };
 		616C42721D853DA500468EEB /* AuditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616C42711D853DA500468EEB /* AuditionViewController.m */; };
 		616C42751D85CE2E00468EEB /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 616C42741D85CE2E00468EEB /* Tutorial.m */; };
 		616C42781D85CFD300468EEB /* Audition.m in Sources */ = {isa = PBXBuildFile; fileRef = 616C42771D85CFD300468EEB /* Audition.m */; };
@@ -94,6 +95,10 @@
 		61892D9B1D7CD70F0095A0E1 /* SubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61892D9A1D7CD70F0095A0E1 /* SubmissionViewController.m */; };
 		61892D9E1D7CD8970095A0E1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61892D9D1D7CD8970095A0E1 /* RootViewController.m */; };
 		61892DA11D7CD8E80095A0E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61892DA01D7CD8E80095A0E1 /* ViewController.m */; };
+		61A320071DB0F5B9007B7969 /* DirectorMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A320061DB0F5B9007B7969 /* DirectorMenuController.m */; };
+		61A320111DB10429007B7969 /* UIImage+BetterFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A3200E1DB10429007B7969 /* UIImage+BetterFace.m */; };
+		61A320121DB10429007B7969 /* UIImageView+BetterFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A320101DB10429007B7969 /* UIImageView+BetterFace.m */; };
+		61E7816E1DB95952004FCBAD /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E7816D1DB95952004FCBAD /* RegistrationViewController.m */; };
 		61EB64D31D8EA3C1008CE9FB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB64D21D8EA3C1008CE9FB /* AVFoundation.framework */; };
 		61EB64D61D8EC068008CE9FB /* CastPostHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64D51D8EC068008CE9FB /* CastPostHomeViewController.m */; };
 		61EB64D91D8EC370008CE9FB /* CastPostingInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64D81D8EC370008CE9FB /* CastPostingInfoViewController.m */; };
@@ -101,6 +106,7 @@
 		61EB64E41D8EC45E008CE9FB /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64DE1D8EC45E008CE9FB /* TPKeyboardAvoidingScrollView.m */; };
 		61EB64E51D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64E01D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m */; };
 		61EB64E61D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 61EB64E21D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		654B80971DBCA6580052D415 /* OTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 654B80961DBCA6580052D415 /* OTPViewController.m */; };
 		658E77B41DAAA6C700F343C6 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 658E77B31DAAA6C700F343C6 /* AsyncImageView.m */; };
 		6595CB491D9FF538008058BE /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6595CB481D9FF538008058BE /* SuperViewController.m */; };
 		6595CB4C1D9FF68D008058BE /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6595CB4B1D9FF68D008058BE /* CustomView.m */; };
@@ -189,6 +195,8 @@
 		6143D7481D9D6CB000F15334 /* UIViewController+MFSideMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MFSideMenuAdditions.m"; sourceTree = "<group>"; };
 		6143D74C1D9D6E1300F15334 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		6143D74D1D9D6E1300F15334 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
+		61447F351DB970430030ACB1 /* UpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeViewController.h; path = ViewControllers/UpgradeViewController.h; sourceTree = "<group>"; };
+		61447F361DB970430030ACB1 /* UpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpgradeViewController.m; path = ViewControllers/UpgradeViewController.m; sourceTree = "<group>"; };
 		616C42701D853DA500468EEB /* AuditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuditionViewController.h; sourceTree = "<group>"; };
 		616C42711D853DA500468EEB /* AuditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuditionViewController.m; sourceTree = "<group>"; };
 		616C42731D85CE2E00468EEB /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
@@ -257,6 +265,14 @@
 		61892D9D1D7CD8970095A0E1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ViewControllers/RootViewController.m; sourceTree = "<group>"; };
 		61892D9F1D7CD8E80095A0E1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ViewControllers/ViewController.h; sourceTree = "<group>"; };
 		61892DA01D7CD8E80095A0E1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ViewControllers/ViewController.m; sourceTree = "<group>"; };
+		61A320051DB0F5B9007B7969 /* DirectorMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectorMenuController.h; path = ViewControllers/DirectorMenuController.h; sourceTree = "<group>"; };
+		61A320061DB0F5B9007B7969 /* DirectorMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirectorMenuController.m; path = ViewControllers/DirectorMenuController.m; sourceTree = "<group>"; };
+		61A3200D1DB10429007B7969 /* UIImage+BetterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BetterFace.h"; path = "Better-Face/UIImage+BetterFace.h"; sourceTree = "<group>"; };
+		61A3200E1DB10429007B7969 /* UIImage+BetterFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+BetterFace.m"; path = "Better-Face/UIImage+BetterFace.m"; sourceTree = "<group>"; };
+		61A3200F1DB10429007B7969 /* UIImageView+BetterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+BetterFace.h"; path = "Better-Face/UIImageView+BetterFace.h"; sourceTree = "<group>"; };
+		61A320101DB10429007B7969 /* UIImageView+BetterFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+BetterFace.m"; path = "Better-Face/UIImageView+BetterFace.m"; sourceTree = "<group>"; };
+		61E7816C1DB95952004FCBAD /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationViewController.h; path = ViewControllers/RegistrationViewController.h; sourceTree = "<group>"; };
+		61E7816D1DB95952004FCBAD /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationViewController.m; path = ViewControllers/RegistrationViewController.m; sourceTree = "<group>"; };
 		61EB64D21D8EA3C1008CE9FB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		61EB64D41D8EC068008CE9FB /* CastPostHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CastPostHomeViewController.h; sourceTree = "<group>"; };
 		61EB64D51D8EC068008CE9FB /* CastPostHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CastPostHomeViewController.m; sourceTree = "<group>"; };
@@ -270,6 +286,8 @@
 		61EB64E01D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
 		61EB64E11D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
 		61EB64E21D8EC45E008CE9FB /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		654B80951DBCA6580052D415 /* OTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTPViewController.h; sourceTree = "<group>"; };
+		654B80961DBCA6580052D415 /* OTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTPViewController.m; sourceTree = "<group>"; };
 		658E77B21DAAA6C700F343C6 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		658E77B31DAAA6C700F343C6 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		6595CB471D9FF538008058BE /* SuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperViewController.h; sourceTree = "<group>"; };
@@ -349,6 +367,7 @@
 		61275BB41D848AE900F90053 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				61A3200C1DB103EF007B7969 /* BetterFace */,
 				6143D7411D9D6C9A00F15334 /* SideMenu */,
 				617652981D905EE600BB2A98 /* DropDown */,
 				61EB64DA1D8EC434008CE9FB /* Tpkeyboard Avoid Scrollview */,
@@ -423,6 +442,7 @@
 		61892D741D7CB4D20095A0E1 /* ActorsApply */ = {
 			isa = PBXGroup;
 			children = (
+				61A320081DB10089007B7969 /* Constant */,
 				611601171D981AA6004F33D8 /* Images */,
 				61275BB41D848AE900F90053 /* 3rd Party */,
 				61892D951D7CD6D80095A0E1 /* Controllers */,
@@ -438,7 +458,6 @@
 				61892D891D7CB4D20095A0E1 /* Info.plist */,
 				61892D811D7CB4D20095A0E1 /* ActorsApply.xcdatamodeld */,
 				61892D751D7CB4D20095A0E1 /* Supporting Files */,
-				61275BB01D845AB100F90053 /* WebServiceConstants.h */,
 			);
 			path = ActorsApply;
 			sourceTree = "<group>";
@@ -545,8 +564,35 @@
 				6595CB4D1D9FF696008058BE /* CustomView_iPhone.xib */,
 				6595CB561DA13325008058BE /* VerticalCollectionViewCell.h */,
 				6595CB571DA13325008058BE /* VerticalCollectionViewCell.m */,
+				61A320051DB0F5B9007B7969 /* DirectorMenuController.h */,
+				61A320061DB0F5B9007B7969 /* DirectorMenuController.m */,
+				61E7816C1DB95952004FCBAD /* RegistrationViewController.h */,
+				61E7816D1DB95952004FCBAD /* RegistrationViewController.m */,
+				61447F351DB970430030ACB1 /* UpgradeViewController.h */,
+				61447F361DB970430030ACB1 /* UpgradeViewController.m */,
+				654B80951DBCA6580052D415 /* OTPViewController.h */,
+				654B80961DBCA6580052D415 /* OTPViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		61A320081DB10089007B7969 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				61275BB01D845AB100F90053 /* WebServiceConstants.h */,
+			);
+			name = Constant;
+			sourceTree = "<group>";
+		};
+		61A3200C1DB103EF007B7969 /* BetterFace */ = {
+			isa = PBXGroup;
+			children = (
+				61A3200D1DB10429007B7969 /* UIImage+BetterFace.h */,
+				61A3200E1DB10429007B7969 /* UIImage+BetterFace.m */,
+				61A3200F1DB10429007B7969 /* UIImageView+BetterFace.h */,
+				61A320101DB10429007B7969 /* UIImageView+BetterFace.m */,
+			);
+			name = BetterFace;
 			sourceTree = "<group>";
 		};
 		61EB64DA1D8EC434008CE9FB /* Tpkeyboard Avoid Scrollview */ = {
@@ -725,6 +771,7 @@
 				617652B91D908AAD00BB2A98 /* InboxViewController.m in Sources */,
 				610398971D91D98B007721FB /* RolePostCast.m in Sources */,
 				61892D7A1D7CB4D20095A0E1 /* AppDelegate.m in Sources */,
+				61A320121DB10429007B7969 /* UIImageView+BetterFace.m in Sources */,
 				617946261D7CF3FC003F66A8 /* PhotosViewController.m in Sources */,
 				61892D831D7CB4D20095A0E1 /* ActorsApply.xcdatamodeld in Sources */,
 				616C42751D85CE2E00468EEB /* Tutorial.m in Sources */,
@@ -740,12 +787,15 @@
 				617652BF1D908BC300BB2A98 /* InboxTableViewCell.m in Sources */,
 				61892D9E1D7CD8970095A0E1 /* RootViewController.m in Sources */,
 				611CF8081D9978E200887D2E /* SubmissionTableViewCell.m in Sources */,
+				61447F371DB970430030ACB1 /* UpgradeViewController.m in Sources */,
 				617946331D7D12DC003F66A8 /* WebViewController.m in Sources */,
 				611BA4F01D95A8690028E448 /* TutorialsViewController.m in Sources */,
 				61275BAF1D84222900F90053 /* ConnectionManager.m in Sources */,
+				61E7816E1DB95952004FCBAD /* RegistrationViewController.m in Sources */,
 				61892D771D7CB4D20095A0E1 /* main.m in Sources */,
 				61275BC61D84C47200F90053 /* ProfileVideosTableViewCell.m in Sources */,
 				61EB64D61D8EC068008CE9FB /* CastPostHomeViewController.m in Sources */,
+				654B80971DBCA6580052D415 /* OTPViewController.m in Sources */,
 				617946291D7CF408003F66A8 /* VideosViewController.m in Sources */,
 				617652B61D90893100BB2A98 /* RecomendedActorsCollectionViewCell.m in Sources */,
 				61EB64E31D8EC45E008CE9FB /* TPKeyboardAvoidingCollectionView.m in Sources */,
@@ -753,6 +803,7 @@
 				61EB64E51D8EC45E008CE9FB /* TPKeyboardAvoidingTableView.m in Sources */,
 				61892D981D7CD7020095A0E1 /* MailViewController.m in Sources */,
 				616C42721D853DA500468EEB /* AuditionViewController.m in Sources */,
+				61A320111DB10429007B7969 /* UIImage+BetterFace.m in Sources */,
 				617652A41D905EF900BB2A98 /* DropDownViewCell.m in Sources */,
 				6103988B1D91B3E6007721FB /* InboxDetailsViewController.m in Sources */,
 				6179461D1D7CE98B003F66A8 /* ProfileViewController.m in Sources */,
@@ -765,6 +816,7 @@
 				616C427D1D85DC0600468EEB /* AuditionDetailsViewController.m in Sources */,
 				617652B31D90871400BB2A98 /* ActorsCollectionViewCell.m in Sources */,
 				61892D941D7CD6D00095A0E1 /* HomeViewController.m in Sources */,
+				61A320071DB0F5B9007B7969 /* DirectorMenuController.m in Sources */,
 				6595CB581DA13325008058BE /* VerticalCollectionViewCell.m in Sources */,
 				658E77B41DAAA6C700F343C6 /* AsyncImageView.m in Sources */,
 				616C42781D85CFD300468EEB /* Audition.m in Sources */,

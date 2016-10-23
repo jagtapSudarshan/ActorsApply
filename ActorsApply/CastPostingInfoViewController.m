@@ -47,8 +47,9 @@ typedef enum
 @property (weak, nonatomic) IBOutlet UIView *parentView;
 @property (weak, nonatomic) IBOutlet UIImageView *iamgeView;
 @property (weak, nonatomic) IBOutlet UILabel *castLbl;
-//@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *auditionDateLbl;
+@property (weak, nonatomic) IBOutlet UIView *datePickerParentView;
 
 @end
 
@@ -103,7 +104,7 @@ typedef enum
     
     [_iamgeView setImage:[UIImage imageNamed:[_selectedCast objectForKey:@"imageView"]]];
     [_castLbl setText:[_selectedCast objectForKey:@"name"]];
-//    _datePicker.hidden = YES;
+    _datePickerParentView.hidden = YES;
   
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dateClicked:)];
     dateImageView.userInteractionEnabled = YES;
@@ -129,13 +130,15 @@ typedef enum
 
 - (void)pickerChanged:(id)sender
 {
-  NSLog(@"value: %@",[sender date]);
-  
-  NSString *audStr = [NSString stringWithFormat:@"%@",[sender date]];
-  self.auditionDateLbl.text =[audStr substringToIndex:10];
-  self.auditionDateLbl.hidden = NO;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *convertedDateString = [dateFormatter stringFromDate:[_datePicker date]];
+    NSLog(@"formatted date is %@",convertedDateString);
+    self.auditionDateLbl.text = convertedDateString;
+    self.auditionDateLbl.hidden = NO;
+    _datePickerParentView.hidden = YES;
+    dateImageView.hidden = NO;
 }
-
 
 - (UIColor *)colorAtPixel:(CGPoint)point inImage:(UIImage *)image {
     
@@ -176,13 +179,13 @@ typedef enum
     [super viewWillAppear:animated];
      dateImageView.hidden = NO;
     
-//    UIToolbar *toolbar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,44)];
-//    toolbar.barStyle = UIBarStyleDefault;
-//    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismiss)];
-//    [toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceLeft, doneButton, nil]];
-//    [_datePicker addSubview:toolbar];
-//    _datePicker.minimumDate = [NSDate date];
+    UIToolbar *toolbar= [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,44)];
+    toolbar.barStyle = UIBarStyleDefault;
+    UIBarButtonItem *flexibleSpaceLeft = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(pickerChanged:)];
+    [toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceLeft, doneButton, nil]];
+    [_datePickerParentView addSubview:toolbar];
+    _datePicker.minimumDate = [NSDate date];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -222,24 +225,25 @@ typedef enum
     }
     
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"id"];
-  NSString *AudtionDateStr = [self.auditionDateLbl.text substringToIndex:10];
+    NSString *AudtionDateStr = [self.auditionDateLbl.text substringToIndex:10];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithObjectsAndKeys:projectNameTxt.text,@"name",
-                          directorTxt.text,@"casting_director",
+                                 directorTxt.text,@"casting_director",
                                  directorTxt.text,@"director",
-                          selectedIndustry.industryId,@"industry",
-                          selectedCountry.countryId,@"country",
-                          locationTxt.text,@"location",
-                          [NSNumber numberWithInteger:type],@"type",
-                          userId,@"user_id",
-                         [self getCurrentDate],@"castingDate",
-                          @"1",@"status",
-                          [_selectedCast objectForKey:@"imageView"],@"image",
-                          [_selectedCast objectForKey:@"name"],@"selectedTypeName",
+                                 selectedIndustry.industryId,@"industry",
+                                 selectedCountry.countryId,@"country",
+                                 locationTxt.text,@"location",
+                                 [NSNumber numberWithInteger:type],@"type",
+                                 userId,@"user_id",
+                                 [self getCurrentDate],@"castingDate",
+                                 @"1",@"status",
+                                 [_selectedCast objectForKey:@"imageView"],@"image",
+                                 [_selectedCast objectForKey:@"name"],@"selectedTypeName",
                                  detailsTextView.text,@"desc",AudtionDateStr,@"shootDate",@" ",@"id",@" ",@"modified",@" ",@"created",
-                          nil];
-
+                                 nil];
+    
     [self performSegueWithIdentifier:@"AddRolePostCastingViewController" sender:data];
 }
+
 -(NSString*)getCurrentDate{
   NSDate *todayDate = [NSDate date];
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -254,33 +258,33 @@ typedef enum
 }
 
 - (IBAction)dateClicked:(id)sender {
-//    _datePicker.hidden = NO;
-//    dateImageView.hidden = YES;
+    _datePickerParentView.hidden = NO;
+    dateImageView.hidden = YES;
   
 //  CGRect pickerFrame = CGRectMake(0,250,0,0);
 //  UIDatePicker *myPicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 //  [myPicker addTarget:self action:@selector(pickerChanged:)               forControlEvents:UIControlEventValueChanged];
-  UIView* darkView = [[UIView alloc]init];
-  darkView.frame = CGRectMake(0, 210, 320, 216);
-  darkView.backgroundColor = [UIColor blueColor];
-  UIDatePicker *myPicker   = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-  [myPicker setDatePickerMode:UIDatePickerModeDate];
-  myPicker.backgroundColor = [UIColor orangeColor];
-  [myPicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
-  [darkView addSubview:myPicker];
-  [opaqueView addSubview:darkView];
-  [opaqueView bringSubviewToFront:darkView];
-  opaqueView.hidden = NO;
-  [self.view addSubview:opaqueView];
-  [self.view bringSubviewToFront:opaqueView];
+//  UIView* darkView = [[UIView alloc]init];
+//  //darkView.frame = CGRectMake(0, 210, 320, 216);
+//  darkView.backgroundColor = [UIColor blueColor];
+//  UIDatePicker *myPicker   = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width - 40, self.view.frame.size.width, 200)];
+//  [myPicker setDatePickerMode:UIDatePickerModeDate];
+//  myPicker.backgroundColor = [UIColor whiteColor];
+//  [myPicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
+//  [darkView addSubview:myPicker];
+//  [opaqueView addSubview:darkView];
+//  [opaqueView bringSubviewToFront:darkView];
+//  opaqueView.hidden = NO;
+//  [self.view addSubview:opaqueView];
+//  [self.view bringSubviewToFront:opaqueView];
 }
 
 -(void)dismissOpqueView
 {
-//    NSLog(@"%@",_datePicker.date);
-//    [_datePicker setHidden:YES];
-  opaqueView.hidden = YES;
-  [opaqueView removeFromSuperview];
+    NSLog(@"%@",_datePicker.date);
+    [_datePickerParentView setHidden:YES];
+    opaqueView.hidden = YES;
+    [opaqueView removeFromSuperview];
 }
 
 - (IBAction)backClciked:(id)sender {

@@ -31,6 +31,7 @@
   // Do any additional setup after loading the view.
   [self.tabBarController.tabBar setHidden:NO];
   [self getApplicantsList];
+  [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,7 +104,6 @@
   }];
 }
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
   return 1;
@@ -116,16 +116,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  ApplicantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicantTableViewCell"];
-  ViewApplicant *vo = [dataArray objectAtIndex:indexPath.row];
-  cell.lblName.text = vo.name;
-  cell.lblDate.text = vo.castingDate;
-  cell.lblType.text = vo.type;
-  if ([vo.viewApplicantId isEqual:@"102"]) {
-    NSLog(@"caught");
-    NSLog(@"%@",vo.viewApplicantId);
-  }
-  return cell;
+    ApplicantTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicantTableViewCell"];
+    ViewApplicant *vo = [dataArray objectAtIndex:indexPath.row];
+    cell.lblName.text = vo.name;
+    cell.lblDate.text = vo.castingDate;
+    cell.lblType.text = [self castingType:[vo.type integerValue]];
+    NSString *imageName = [self getImageFromType : [vo.type integerValue]];
+    [cell.imageViewType setImage:[UIImage imageNamed:imageName]];
+    if ([vo.viewApplicantId isEqual:@"102"]) {
+        NSLog(@"caught");
+        NSLog(@"%@",vo.viewApplicantId);
+    }
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,7 +144,7 @@
   {
     ApplicantDetailsViewController *vc = segue.destinationViewController;
     vc.viewApplicant = selectedApplicant;
-    
+    vc.typeImageName = [self getImageFromType:[selectedApplicant.type integerValue]];
   }
 }
 

@@ -8,6 +8,7 @@
 
 #import "TutorialTableViewCell.h"
 #import <UIImageView+AFNetworking.h>
+#import "WebServiceConstants.h"
 
 @implementation TutorialTableViewCell
 
@@ -24,9 +25,7 @@
 
 - (void) setTutorial:(Tutorial *)tutorial
 {
-     NSString *urlStr = @"http://www.actorsapply.com/app/webroot/img/photos/";
-    
-    [self.tutorialImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,tutorial.image]] placeholderImage:nil];
+    [self.tutorialImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, tutorial.image]] placeholderImage:nil];
     self.lblTitle.text = tutorial.title;
 }
 

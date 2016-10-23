@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "REFrostedViewController.h"
 #import "SuperViewController.h"
+
 @interface ProfileViewController : SuperViewController<UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *about;

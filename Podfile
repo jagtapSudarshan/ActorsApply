@@ -8,5 +8,4 @@ target 'ActorsApply' do
 pod 'REFrostedViewController', '~> 2.4'
 pod 'RKDropdownAlert'
 pod 'AFNetworking', '~> 3.0'
-
 end

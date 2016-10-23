@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuperViewController"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuperViewController">
+            <connections>
+                <outlet property="homeImage" destination="0cA-gb-zyU" id="v8d-M8-FrV"/>
+                <outlet property="imbox_image" destination="yvP-2I-Mnr" id="dam-0d-7NT"/>
+                <outlet property="submission_image" destination="cX2-If-crP" id="6Bx-9O-Hed"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="3vg-lP-vj1" customClass="Footer">
             <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vze-dS-X18">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vze-dS-X18" userLabel="Home">
                     <rect key="frame" x="200" y="0.0" width="200" height="40"/>
                     <color key="backgroundColor" red="0.85373263889999995" green="0.85373263889999995" blue="0.85373263889999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="tab2Selected:" destination="-1" eventType="touchUpInside" id="hGL-2q-f7n"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUi-cA-Zr0">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUi-cA-Zr0" userLabel="Submission">
                     <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
                     <color key="backgroundColor" red="0.85373263889999995" green="0.85373263889999995" blue="0.85373263889999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="tab1Selected:" destination="-1" eventType="touchUpInside" id="W42-Za-yfU"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5X-Ut-kOd">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5X-Ut-kOd" userLabel="Inbox">
                     <rect key="frame" x="400" y="0.0" width="200" height="40"/>
                     <color key="backgroundColor" red="0.85373263889999995" green="0.85373263889999995" blue="0.85373263889999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="tab3Selected:" destination="-1" eventType="touchUpInside" id="XfS-x2-Cxc"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_2" translatesAutoresizingMaskIntoConstraints="NO" id="0cA-gb-zyU">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_2_selected" translatesAutoresizingMaskIntoConstraints="NO" id="0cA-gb-zyU" userLabel="Home_image">
                     <rect key="frame" x="281" y="1" width="38" height="38"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="6wA-Gh-rZj"/>
                         <constraint firstAttribute="height" constant="38" id="z8O-aL-kan"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_3" translatesAutoresizingMaskIntoConstraints="NO" id="yvP-2I-Mnr">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_3" translatesAutoresizingMaskIntoConstraints="NO" id="yvP-2I-Mnr" userLabel="Inbox_image">
                     <rect key="frame" x="481" y="1" width="38" height="38"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="6UF-bV-7dt"/>
                         <constraint firstAttribute="height" constant="38" id="x4W-Gc-qnJ"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_1" translatesAutoresizingMaskIntoConstraints="NO" id="cX2-If-crP">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_1" translatesAutoresizingMaskIntoConstraints="NO" id="cX2-If-crP" userLabel="Submission_image">
                     <rect key="frame" x="81" y="1" width="38" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="hEj-G6-rNw"/>
@@ -123,9 +129,9 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_1" width="26" height="26"/>
-        <image name="icon_2" width="27" height="30"/>
-        <image name="icon_3" width="48" height="32"/>
+        <image name="icon_1" width="36" height="36"/>
+        <image name="icon_2_selected" width="36" height="36"/>
+        <image name="icon_3" width="36" height="36"/>
         <image name="menu" width="22" height="13"/>
     </resources>
 </document>

@@ -8,8 +8,12 @@
 
 #import "AuditionDetailsViewController.h"
 #import "RKDropdownAlert.h"
+#import "WebServiceConstants.h"
+#import "SVProgressHUD.h"
+#import "ConnectionManager.h"
 
 @interface AuditionDetailsViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -19,7 +23,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if(![_audition.type isEqual:(id)[NSNull null]])
+    {
+        self.lblFilm.text = [self castingType:[_audition.type integerValue]];//audition.name;
+    }
     
+    if(![_audition.type isEqual:(id)[NSNull null]])
+    {
+        [_imageView setImage:[UIImage imageNamed:[self getImageFromType:[_audition.type integerValue]]]];
+    }
     
     [self setAuditionData];
 }
@@ -37,11 +49,15 @@
   if (self->_audition.gender == nil || self->_audition.gender == (id)[NSNull null]) {
   
   }else{
-  self->_lblGender.text = self->_audition.gender;
+      if([self->_audition.gender isEqualToString:@"1"])
+      {
+          self->_lblGender.text = @"Male";
+      }
+      else{
+          self->_lblGender.text = @"Female";
+      }
   }
-  
-  self->_lblFilm.text = @"Film";//self->_audition.name;
-  
+    
   if (self->_audition.desc == nil || self->_audition.desc == (id)[NSNull null]) {
   
   }else{
@@ -49,21 +65,26 @@
   }
   
   NSString *minAge,*maxAge;
-  if (self->_audition.minAge == nil || self->_audition.minAge == (id)[NSNull null]) {
-    minAge = @" ";
-  }else{
-    minAge =self->_audition.minAge;
-  }
-  if (self->_audition.maxAge == nil || self->_audition.maxAge == (id)[NSNull null]) {
-    maxAge = @" ";
-  }else{
-    maxAge =self->_audition.maxAge;
-  }
-  
+    
+  NSMutableArray* roleArray =  _audition.role;
+    
+    if([roleArray count] > 0)
+    {
+        NSMutableDictionary *data = [roleArray objectAtIndex:0];
+        if (data == nil) {
+            minAge = @" ";
+        }else{
+            minAge = [data objectForKey:@"minAge"];
+        }
+        if (data == nil) {
+            maxAge = @" ";
+        }else{
+            maxAge = [data objectForKey:@"maxAge"];
+        }
+    }
   self->_lblAge.text = [NSString stringWithFormat:@"%@ - %@",minAge,maxAge];
  
     [self->_lblDesc sizeToFit];
-    
 }
 
 - (IBAction)didSelectBack
@@ -73,7 +94,41 @@
 
 - (IBAction)didSelectRole
 {
-    [RKDropdownAlert title:@"INFORMATION" message:@"Not Implemented"];
+   // [RKDropdownAlert title:@"INFORMATION" message:@"Not Implemented"];
+    [SVProgressHUD show];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,APPLY_AUDITION];
+    
+    NSLog(@"%@",url);
+    NSDictionary *requestData;
+    
+    if([_audition.role count] > 0)
+    {
+        requestData = [[NSDictionary alloc] initWithObjectsAndKeys:[[_audition.role objectAtIndex:0] valueForKey:@"id"] ,@"role_id",
+                                     [[_audition.role objectAtIndex:0] valueForKey:@"project_id"],@"project_id",
+                                     _audition.userId,@"user_id",
+                                     @"",@"asset_id",
+                                     @"",@"asset_id2",
+                                     @"0",@"shortlisted",
+                                     nil];
+    }
+    else{
+        [RKDropdownAlert title:@"SUCCESS" message:@"NO role for apply"];
+    }
+    
+    [ConnectionManager callPostMethod:url Data:requestData completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
+        
+        [SVProgressHUD dismiss];
+        
+        if (succeeded)
+        {
+             [RKDropdownAlert title:@"SUCCESS" message:[responseData valueForKey:@"message"]];
+        }
+        else
+        {
+            [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

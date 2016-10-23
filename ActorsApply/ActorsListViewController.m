@@ -35,16 +35,32 @@
   NSMutableArray *profileProjects;
   
 }
+@property (weak, nonatomic) IBOutlet UILabel *noDataLbl;
+@property (weak, nonatomic) IBOutlet UILabel *applicantName;
+@property (weak, nonatomic) IBOutlet UILabel *type;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end
 
 @implementation ActorsListViewController
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.collectionActors.delegate = self;
-  self.collectionActors.dataSource = self;
-  [self getActorsList];
-  
+    [super viewDidLoad];
+    self.collectionActors.delegate = self;
+    self.collectionActors.dataSource = self;
+    _noDataLbl.hidden = YES;
+    _applicantName.text = _subApplicant.name;
+    
+    if(![_mainApplicant.type isEqual:(id)[NSNull null]])
+    {
+        _type.text = [self castingType:[_mainApplicant.type integerValue]];
+    }
+    
+    profileMediaImages= [[NSMutableArray alloc] init];
+    profileMediaVideos= [[NSMutableArray alloc] init];
+    profileProjects= [[NSMutableArray alloc] init];
+    
+    _imageView.image = [UIImage imageNamed:_typeImageName];
+    [self getActorsList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,8 +91,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  //  return responseArray.count;
-  return 5;
+    return responseArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -92,24 +107,23 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     ActorList *al = [responseArray objectAtIndex:indexPath.row];
     NSString *img = al.asset.asset;
     imageUrl =[NSString stringWithFormat:@"%@%@",imageUrl,img ];
-    cell.imgVw.layer.cornerRadius=40;
-    //        cell.imgVw.layer.cornerRadius = cell.imgVw.frame.size.width / 2;
+   // cell.imgVw.layer.cornerRadius=40;
+    //cell.imgVw.layer.cornerRadius = cell.imgVw.frame.size.width / 2;
     cell.imgVw.clipsToBounds = true;
     cell.imgVw.showActivityIndicator = YES;
     cell.imgVw.imageURL = [NSURL URLWithString:imageUrl];
-    cell.imgVw.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imgVw.contentMode = UIViewContentModeScaleAspectFill;
     return cell;
   }else{
-    
   }
   return nil;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
   
   ActorList *al = [responseArray objectAtIndex:indexPath.row];
   [self callGetProfileData:al.user_id];
 }
-
 
 -(void)getActorsList
 {
@@ -119,60 +133,67 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
   [ConnectionManager callGetMethod:url completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
     
     [SVProgressHUD dismiss];
-    
-    if (succeeded)
-    {
-      responseArray = [[NSMutableArray alloc]init];
-      data = [responseData objectForKey:@"data"];
-      NSLog(@"\n\n\nDATA = %@",data);
-      for (int i =0; i<data.count; i++) {
-        NSDictionary *dict = [data objectAtIndex:i];
-        
-        ActorList *ao = [[ActorList alloc]init];
-        ao.actorid = [dict valueForKey:@"id"];
-        ao.role_id =[dict valueForKey:@"role_id"];
-        ao.project_id=[dict valueForKey:@"project_id"];
-        ao.user_id=[dict valueForKey:@"user_id"];
-        ao.shortlisted=[dict valueForKey:@"shortlisted"];
-        ao.status=[dict valueForKey:@"status"];
-        ao.created=[dict valueForKey:@"created"];
-        ao.modified=[dict valueForKey:@"modified"];
-        
-        ActorAsset *assetObj = [[ActorAsset alloc]init];
-        assetObj.actorAsset_id=[[dict valueForKey:@"asset"]valueForKey:@"id"];
-        assetObj.actorAsset_user_id=[[dict valueForKey:@"asset"]valueForKey:@"user_id"];
-        assetObj.asset=[[dict valueForKey:@"asset"]valueForKey:@"asset"];
-        assetObj.actorAsset_thumb=[[dict valueForKey:@"asset"]valueForKey:@"thumb"];
-        assetObj.actorAsset_actual_name=[[dict valueForKey:@"asset"]valueForKey:@"actual_name"];
-        assetObj.actorAsset_type=[[dict valueForKey:@"asset"]valueForKey:@"type"];
-        assetObj.actorAsset_profile=[[dict valueForKey:@"asset"]valueForKey:@"profile"];
-        assetObj.actorAsset_status=[[dict valueForKey:@"asset"]valueForKey:@"status"];
-        assetObj.actorAsset_created=[[dict valueForKey:@"asset"]valueForKey:@"created"];
-        assetObj.actorAsset_modified=[[dict valueForKey:@"asset"]valueForKey:@"modified"];
-        
-        ActorAsset *assetObj2 = [[ActorAsset alloc]init];
-        assetObj2.actorAsset_id=[[dict valueForKey:@"asset"]valueForKey:@"id"];
-        assetObj2.actorAsset_user_id=[[dict valueForKey:@"asset"]valueForKey:@"user_id"];
-        assetObj2.asset=[[dict valueForKey:@"asset"]valueForKey:@"asset"];
-        assetObj2.actorAsset_thumb=[[dict valueForKey:@"asset"]valueForKey:@"thumb"];
-        assetObj2.actorAsset_actual_name=[[dict valueForKey:@"asset"]valueForKey:@"actual_name"];
-        assetObj2.actorAsset_type=[[dict valueForKey:@"asset"]valueForKey:@"type"];
-        assetObj2.actorAsset_profile=[[dict valueForKey:@"asset"]valueForKey:@"profile"];
-        assetObj2.actorAsset_status=[[dict valueForKey:@"asset"]valueForKey:@"status"];
-        assetObj2.actorAsset_created=[[dict valueForKey:@"asset"]valueForKey:@"created"];
-        assetObj2.actorAsset_modified=[[dict valueForKey:@"asset"]valueForKey:@"modified"];
-        
-        ao.asset=assetObj;
-        ao.asset2=assetObj2;
-        [responseArray addObject:ao];
-        [self.collectionActors reloadData];
-        
+      if(responseData != nil)
+      {
+          if (succeeded)
+          {
+              _noDataLbl.hidden = YES;
+              responseArray = [[NSMutableArray alloc]init];
+              data = [responseData objectForKey:@"data"];
+              NSLog(@"\n\n\nDATA = %@",data);
+              for (int i =0; i<data.count; i++) {
+                  NSDictionary *dict = [data objectAtIndex:i];
+                  
+                  ActorList *ao = [[ActorList alloc]init];
+                  ao.actorid = [dict valueForKey:@"id"];
+                  ao.role_id =[dict valueForKey:@"role_id"];
+                  ao.project_id=[dict valueForKey:@"project_id"];
+                  ao.user_id=[dict valueForKey:@"user_id"];
+                  ao.shortlisted=[dict valueForKey:@"shortlisted"];
+                  ao.status=[dict valueForKey:@"status"];
+                  ao.created=[dict valueForKey:@"created"];
+                  ao.modified=[dict valueForKey:@"modified"];
+                  
+                  ActorAsset *assetObj = [[ActorAsset alloc]init];
+                  assetObj.actorAsset_id=[[dict valueForKey:@"asset"]valueForKey:@"id"];
+                  assetObj.actorAsset_user_id=[[dict valueForKey:@"asset"]valueForKey:@"user_id"];
+                  assetObj.asset=[[dict valueForKey:@"asset"]valueForKey:@"asset"];
+                  assetObj.actorAsset_thumb=[[dict valueForKey:@"asset"]valueForKey:@"thumb"];
+                  assetObj.actorAsset_actual_name=[[dict valueForKey:@"asset"]valueForKey:@"actual_name"];
+                  assetObj.actorAsset_type=[[dict valueForKey:@"asset"]valueForKey:@"type"];
+                  assetObj.actorAsset_profile=[[dict valueForKey:@"asset"]valueForKey:@"profile"];
+                  assetObj.actorAsset_status=[[dict valueForKey:@"asset"]valueForKey:@"status"];
+                  assetObj.actorAsset_created=[[dict valueForKey:@"asset"]valueForKey:@"created"];
+                  assetObj.actorAsset_modified=[[dict valueForKey:@"asset"]valueForKey:@"modified"];
+                  
+                  ActorAsset *assetObj2 = [[ActorAsset alloc]init];
+                  assetObj2.actorAsset_id=[[dict valueForKey:@"asset"]valueForKey:@"id"];
+                  assetObj2.actorAsset_user_id=[[dict valueForKey:@"asset"]valueForKey:@"user_id"];
+                  assetObj2.asset=[[dict valueForKey:@"asset"]valueForKey:@"asset"];
+                  assetObj2.actorAsset_thumb=[[dict valueForKey:@"asset"]valueForKey:@"thumb"];
+                  assetObj2.actorAsset_actual_name=[[dict valueForKey:@"asset"]valueForKey:@"actual_name"];
+                  assetObj2.actorAsset_type=[[dict valueForKey:@"asset"]valueForKey:@"type"];
+                  assetObj2.actorAsset_profile=[[dict valueForKey:@"asset"]valueForKey:@"profile"];
+                  assetObj2.actorAsset_status=[[dict valueForKey:@"asset"]valueForKey:@"status"];
+                  assetObj2.actorAsset_created=[[dict valueForKey:@"asset"]valueForKey:@"created"];
+                  assetObj2.actorAsset_modified=[[dict valueForKey:@"asset"]valueForKey:@"modified"];
+                  
+                  ao.asset=assetObj;
+                  ao.asset2=assetObj2;
+                  [responseArray addObject:ao];
+                  [self.collectionActors reloadData];
+                  
+              }
+          }
+          else
+          {
+              [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+          }
       }
-    }
-    else
-    {
-      [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
-    }
+      else{
+          _noDataLbl.hidden = NO;
+          [self.collectionActors setHidden:YES];
+      }
   }];
 }
 
@@ -188,7 +209,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     
     if (succeeded)
     {
-      
       NSArray *projects = [[responseData objectForKey:@"data"] objectForKey:@"projects"];
       
       for (NSDictionary *project in projects)
@@ -202,33 +222,42 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
           [profileProjects addObject:projectDict];
       }
       
-      
       NSArray *mediaFiles = [[responseData objectForKey:@"data"] objectForKey:@"media"];
       for (NSDictionary *media in mediaFiles)
       {
-        if ([[media valueForKey:@"type"] isEqualToString:@"1"])
-        {
-          if(![profileMediaImages containsObject:[media valueForKey:@"asset"]])
-            [profileMediaImages addObject:[media valueForKey:@"asset"]];
-          
-          if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
+          if ([[media valueForKey:@"type"] isEqualToString:@"1"])
           {
-            profileImageName = [media valueForKey:@"asset"];
-            [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImage"];
+              if(![profileMediaImages containsObject:[media valueForKey:@"asset"]])
+                  [profileMediaImages addObject:[media valueForKey:@"asset"]];
+              
+              if(![[media valueForKey:@"profile"] isEqual:(id)[NSNull null]])
+              {
+                  if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
+                  {
+                      profileImageName = [media valueForKey:@"asset"];
+                      [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImage"];
+                  }
+              }
           }
-        }
-        else
-        {
-          if(![profileMediaVideos containsObject:[media valueForKey:@"asset"]])
-            
-            [profileMediaVideos addObject:[media valueForKey:@"asset"]];
-        }
+          else
+          {
+              if(![profileMediaVideos containsObject:[media valueForKey:@"asset"]])
+                  [profileMediaVideos addObject:[media valueForKey:@"asset"]];
+          }
       }
-      SWRevealViewController *revealController = self.revealViewController;
-      ProfileViewController *profilViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-      UIViewController *newFrontController = profilViewController;
-      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
-      [revealController pushFrontViewController:navigationController animated:YES];
+        
+        projectVC.profileProjects = profileProjects;
+        
+        // photosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"photos_storyboard"];
+        photosVC.profileImages = profileMediaImages;
+        
+        [self performSegueWithIdentifier:@"directorProfile" sender:nil];
+        
+      //SWRevealViewController *revealController = self.revealViewController;
+     // ProfileViewController *profilViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
+      //UIViewController *newFrontController = profilViewController;
+      //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newFrontController];
+     // [self.navigationController pushViewController:profilViewController animated:YES];
     }
     else
     {
@@ -244,7 +273,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
   // Get the new view controller using [segue destinationViewController].
   // Pass the selected object to the new view controller.
   
-  if ([segue.identifier isEqualToString:@"profile_segue"])
+  if ([segue.identifier isEqualToString:@"directorProfile"])
   {
     ProfileViewController *profileVC = segue.destinationViewController;
     

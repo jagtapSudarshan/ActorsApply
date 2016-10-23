@@ -29,10 +29,10 @@
      auditionsList = [NSMutableArray new];
     
     [self.navigationController.navigationBar setHidden:YES];
-    [self callGetTutorialList];
+    [self callGetAUDITION];
 }
 
-- (void) callGetTutorialList
+- (void) callGetAUDITION
 {
     [SVProgressHUD show];
     
@@ -54,7 +54,7 @@
                 
                 audition.dateCreated = [auditionDict valueForKey:@"created"];
                 audition.desc = [auditionDict valueForKey:@"desc"];
-                audition.gender = [auditionDict valueForKey:@"gender"];
+               
                 audition.auditionID = [auditionDict valueForKey:@"id"];
                 audition.location = [auditionDict valueForKey:@"location"];
                 audition.maxAge = [auditionDict valueForKey:@"maxAge"];
@@ -64,11 +64,19 @@
                 audition.project_id = [auditionDict valueForKey:@"project_id"];
                 audition.status = [auditionDict valueForKey:@"status"];
                 audition.type = [auditionDict valueForKey:@"type"];
+                audition.role = [auditionDict valueForKey:@"roles"];
+                audition.userId = [auditionDict valueForKey:@"user_id"];
+                
+                if([audition.role count] > 0)
+                {
+                   audition.gender = [[audition.role objectAtIndex:0] valueForKey:@"gender"];
+                }
                 
                 [auditionsList addObject:audition];
                 
             }
             
+            [self.tableView reloadData];
         }
         else
         {
@@ -105,10 +113,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-
     Audition *audition = [auditionsList objectAtIndex:indexPath.row];
-    
-    
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [format setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
@@ -116,19 +121,27 @@
     NSDate *date = [format dateFromString:audition.dateModified];
     [format setDateFormat:@"dd EEE yyyy"];
     
-    
     UILabel *nameLabel = [cell viewWithTag:1];
-    nameLabel.text = audition.name;
+    nameLabel.text = [[NSString stringWithFormat:@"%@ (%lu ROLE)",audition.name,(unsigned long)audition.role.count] uppercaseString];
     
     UILabel *dateLabel = [cell viewWithTag:2];
     dateLabel.text = [format stringFromDate:date];
     
     UILabel *filmLabel = [cell viewWithTag:3];
-    filmLabel.text = @"film";//audition.name;
     
-    UIImageView *verified = [cell viewWithTag:5];
-    [verified setImage:[UIImage imageNamed:@"verified.png"]];
+    if(![audition.type isEqual:(id)[NSNull null]])
+    {
+        filmLabel.text = [self castingType:[audition.type integerValue]];//audition.name;
+    }
     
+    UIImageView *catingTypeImage = [cell viewWithTag:4];
+    if(![audition.type isEqual:(id)[NSNull null]])
+    {
+        [catingTypeImage setImage:[UIImage imageNamed:[self getImageFromType:[audition.type integerValue]]]];
+    }
+    
+//    UIImageView *verified = [cell viewWithTag:5];
+//    [verified setImage:[UIImage imageNamed:@"verified.png"]];
     
     //cell.videoThumbView.image = [UIImage imageNamed:@"video_1"];
     
@@ -155,11 +168,9 @@
     if ([segue.identifier isEqualToString:@"AuditionDetailsViewController"])
     {
         AuditionDetailsViewController *audtionDetailsVC = segue.destinationViewController;
-        
         audtionDetailsVC.audition = (Audition *)sender;
         
     }
-    
     
 }
 

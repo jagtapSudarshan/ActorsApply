@@ -39,7 +39,7 @@
   roles = [NSMutableArray new];
   roleArray = [NSMutableArray new];
   
-  projectName.text = [_data objectForKey:@"project"];
+  projectName.text = [_data objectForKey:@"name"];
   selecteTypeImage.image = [UIImage imageNamed:[_data objectForKey:@"image"]];
   type.text = [_data objectForKey:@"selectedTypeName"];
   
@@ -92,7 +92,6 @@
   cell.minAge.tag = 1;
   cell.maxAge.tag = 2;
   cell.desc.tag = 3;
-  
   return cell;
 }
 

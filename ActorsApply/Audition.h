@@ -22,5 +22,7 @@
 @property (nonatomic) NSString *project_id;
 @property (nonatomic) NSString *status;
 @property (nonatomic) NSString *type;
+@property (nonatomic) NSString *userId;
+@property (nonatomic) NSMutableArray *role;
 
 @end

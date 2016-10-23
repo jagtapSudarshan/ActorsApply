@@ -14,7 +14,8 @@
 #import "MenuViewController.h"
 #import "MFSideMenu.h"
 #import "MFSideMenuContainerViewController.h"
-#import "SideMenuViewController.h"
+#import "HomeViewController.h"
+#import "NavigationController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
@@ -40,9 +41,8 @@
 //    _emailText.text = @"bharatjha35@gmail.com";
 //    _passwordText.text = @"bharat123";
   
-  
-//  _emailText.text = @"Gaurav.gauravs@gmail.com";
-//      _passwordText.text = @"password";
+//  _emailText.text = @"gaurav.gauravs@gmail.com";
+//  _passwordText.text = @"password";
   
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
@@ -92,15 +92,8 @@
                [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"role"];
             }
             
-//            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"role"];
-//            UITabBarController *tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"tab"];
-//            SideMenuViewController *leftSideMenuController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftSideMenuViewController"];
-//            MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController
-//                                                            containerWithCenterViewController:tabBarController
-//                                                            leftMenuViewController:leftSideMenuController
-//                                                            rightMenuViewController:nil];
-//            self.view.window.rootViewController = container;
-            [self performSegueWithIdentifier:@"navToLanding" sender:nil];
+            NavigationController *contentController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootController"];
+            self.view.window.rootViewController = contentController;
         }
         else{
             

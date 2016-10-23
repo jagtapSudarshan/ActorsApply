@@ -10,10 +10,14 @@
 #import "SuperViewController.h"
 #import "ViewApplicant.h"
 #import "AsyncImageView.h"
+
 @interface ActorsListViewController : SuperViewController
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionRecomended;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionActors;
+
+@property (strong, nonatomic) NSString *projectId;
+@property (strong, nonatomic) NSString *typeImageName;
 @property(nonatomic,strong)  ViewApplicant *mainApplicant;
 @property(nonatomic,strong)  ViewApplicant *subApplicant;
 @end

@@ -17,7 +17,16 @@
 - (void) awakeFromNib
 {
     self.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
-    self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"menuController"];
+    NSString* role = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
+    
+    if([role isEqualToString:@"1"])
+    {
+        self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"menuController"];
+    }
+    else
+    {
+        self.menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"directorMenuController"];
+    }
 }
 
 @end

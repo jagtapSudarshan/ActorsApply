@@ -34,7 +34,7 @@
     static NSString *identifier = @"ProfilePhotosCollectionViewCell";
     ProfilePhotosCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",@"http://www.actorsapply.com/img/blog/",[self->_profileImages objectAtIndex:indexPath.row]];
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@",@"http://www.actorsapply.com/app/webroot/img/photos/",[self->_profileImages objectAtIndex:indexPath.row]];
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"video_1"]];
     

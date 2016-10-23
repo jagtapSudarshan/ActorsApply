@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Audition.h"
 #import "SuperViewController.h"
+
 @interface AuditionDetailsViewController : SuperViewController
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

@@ -25,5 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *tab1;
 @property (weak, nonatomic) IBOutlet UIButton *tab2;
 @property (weak, nonatomic) IBOutlet UIButton *tab3;
+
+
 @end
 

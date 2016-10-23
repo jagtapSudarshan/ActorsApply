@@ -20,8 +20,14 @@
 #import "ProfileViewController.h"
 #import "InboxViewController.h"
 #import "SubmissionViewController.h"
+#import "WebServiceConstants.h"
+#import "UIImageView+BetterFace.h"
+#import "UpgradeViewController.h"
 
 @interface MenuViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 @end
 
@@ -29,59 +35,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _name.text = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Name"] uppercaseString];
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]);
+    
+    _profileImage.needsBetterFace = YES;
+    _profileImage.fast = YES;
+    
+    [_profileImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0)
-    {
-        UITableViewCell *cell  = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-        
-        UILabel *lblName12 = [cell.contentView viewWithTag:1];
-        UILabel *lblEmail = [cell viewWithTag:2];
-        UIImageView *imageView = [cell viewWithTag:3];
-        
-        imageView.layer.cornerRadius = imageView.frame.size.width/2;
-        
-        NSString *urlStr = @"http://www.actorsapply.com/img/blog/";
-        
-        [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
-        
-        lblName12.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"Name"];
-        
-        lblEmail.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"emailId"];
-        
-        return cell;
-    }
-    else
-    {
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    }
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    _profileImage.layer.cornerRadius = _profileImage.frame.size.width / 2;
+    _profileImage.clipsToBounds = YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [self.frostedViewController hideMenuViewController];
-//    index = indexPath.row;
-//    if(indexPath.row == 11) {
-//        // Handle logout
-//        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"rootController"];
-//        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//        delegate.window.rootViewController = vc;
-//    }
-//    else if(indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 10) {
-//        [self performSegueWithIdentifier:@"web_segue" sender:self];
-//    }
-//    else
-//    {
-//        [RKDropdownAlert title:@"INFORMATION" message:@"Not Implemented"];
-//       // self.frostedViewController.contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
-//    }
-    
-//    UITableViewCell *cell  = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-//    [cell.contentView setBackgroundColor:[UIColor colorWithRed:215/255 green:80/255 blue:43/255 alpha:1.0]];
     
     NavigationController *tabBarCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
 
@@ -105,6 +76,30 @@
         TutorialsViewController *tutorialsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialsViewController"];
         tabBarCtrl.viewControllers = @[tutorialsViewController];
     }
+    else if (indexPath.row == 7) {
+        UpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeViewController"];
+        tabBarCtrl.viewControllers = @[upgradeViewController];
+    }
+    else if(indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 10) {
+        WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+        
+        NSString *url;
+        if(indexPath.row == 8) {
+            url = PRIVACY_URL;
+        }
+        else if(indexPath.row == 9) {
+            url = TERMS_URL;
+        }
+        else if(indexPath.row == 10) {
+            url = ABOUT_URL;
+        }
+        webViewController.url = url;
+        tabBarCtrl.viewControllers = @[webViewController];
+    }
+    else if(indexPath.row == 11) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out" message:@"Are you sure,you want to Logout?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+      [alert show];
+    }
     else {
         [RKDropdownAlert title:@"INFORMATION" message:@"Not Implemented"];
     }
@@ -113,19 +108,10 @@
     [self.frostedViewController hideMenuViewController];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSString *url;
-    if(index == 8) {
-        url = @"http://shraddhakapoor.blogspot.in/";
-    }
-    else if(index == 9) {
-        url = @"http://shraddhakapoor.blogspot.in/p/filmography.html";
-    }
-    else if(index == 10) {
-        url = @"http://shraddhakapoor.blogspot.in/p/about.html";
-    }
-    WebViewController *vc = segue.destinationViewController;
-    vc.url = url;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  [self.view.window setRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"signincontroller"]];
 }
+
 
 @end

@@ -14,6 +14,8 @@
   ViewApplicant *mainApplicant;
   ViewApplicant *subApplicant;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
 
 @implementation ApplicantDetailsViewController
@@ -23,7 +25,7 @@
     // Do any additional setup after loading the view.
     
     self.lblName.text = self.viewApplicant.name;
-    self.lblIndustry.text = self.viewApplicant.industry;
+    self.lblIndustry.text = [self getIndustryNameFromId:[self.viewApplicant.industry integerValue]];
     self.lblDirector.text = self.viewApplicant.casting_director;
   if ( self.viewApplicant.location == nil ||  self.viewApplicant.location == (id)[NSNull null]) {
      self.locationDetailsLbl.text = @"Location not given";
@@ -39,6 +41,9 @@
     flow.minimumInteritemSpacing = 0;
     flow.minimumLineSpacing = 0;
   self.cvV.collectionViewLayout = flow;
+
+  _lblType.text = [self castingType:[self.viewApplicant.type integerValue]];
+  _imageView.image = [UIImage imageNamed:_typeImageName];
 }
 
 - (IBAction)backClcicked:(id)sender {
@@ -48,6 +53,48 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSString*)getIndustryNameFromId : (NSInteger)industryId
+{
+    switch (industryId) {
+        case 0:
+            return @"Hindi";
+            break;
+        case 1:
+            return @"English";
+            break;
+        case 2:
+            return @"Telugu";
+            break;
+        case 3:
+            return @"Malyalam";
+            break;
+        case 4:
+            return @"Tamil";
+            break;
+        case 5:
+            return @"Punjabi";
+            break;
+        case 6:
+            return @"Gujrati";
+            break;
+        case 7:
+            return @"Bengali";
+            break;
+        case 8:
+            return @"Marathi";
+            break;
+        case 9:
+            return @"Bhojpuri";
+            break;
+        case 10:
+            return @"Other";
+            break;
+        default:
+            break;
+    }
+    return nil;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *) collectionView
@@ -74,12 +121,16 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  VerticalCollectionViewCell *vc = nil;
+    VerticalCollectionViewCell *vc = nil;
     vc = (VerticalCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"test1" forIndexPath:indexPath];
-   vc.Txtlbl.text =[[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"name"];
-      vc.Txtlbl.backgroundColor = [UIColor orangeColor];
+    vc.Txtlbl.text =[[self.viewApplicant.roles objectAtIndex:indexPath.row] valueForKey:@"name"];
+    vc.Txtlbl.backgroundColor = [UIColor clearColor];
+    vc.Txtlbl.textColor = [UIColor blackColor];
+    vc.Txtlbl.layer.borderColor = [UIColor orangeColor].CGColor;
+    vc.Txtlbl.layer.borderWidth = 1.5f;
     return vc;
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
   subApplicant = [[ViewApplicant alloc]init];
   subApplicant.viewApplicantId = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"id"];
@@ -99,6 +150,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
   subApplicant.application_count = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@""];
   subApplicant.created = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"created"];
   subApplicant.modified = [[self.viewApplicant.roles objectAtIndex:indexPath.row]valueForKey:@"modified"];
+    
+//NSString *projectId = projectId;
+    
   [self performSegueWithIdentifier:@"AppDetailToPhotos" sender:nil];
 }
 
@@ -109,6 +163,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     ActorsListViewController *vc = segue.destinationViewController;
     vc.mainApplicant = self.viewApplicant;
     vc.subApplicant = subApplicant;
+    vc.typeImageName = [self getImageFromType:[vc.mainApplicant.type integerValue]];
   }
 }
 

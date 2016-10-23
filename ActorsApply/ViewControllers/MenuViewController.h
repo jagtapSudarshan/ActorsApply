@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "REFrostedViewController.h"
 
-@interface MenuViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
-{
-    NSInteger index;
-}
+@interface MenuViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+
 @end

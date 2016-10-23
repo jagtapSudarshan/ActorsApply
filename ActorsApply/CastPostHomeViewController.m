@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setHidden:YES];
     // Do any additional setup after loading the view.
     
     NSArray *array = [[NSArray alloc] initWithObjects:_filmImageView,_printImageView,_tvcImageView,_tvShowImageView,_filmSeriesImageView,_musicVideoImageView,_theatreImageView,_shortImageView, nil];

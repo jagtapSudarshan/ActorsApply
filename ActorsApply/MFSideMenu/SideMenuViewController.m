@@ -40,10 +40,20 @@
     [super viewDidLoad];
     tableView.delegate = self;
     tableView.dataSource = self;
-    textArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile",@"Inbox",@"Tutorial", nil];
-    imgNameArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile",@"Inbox",@"Tutorial", nil];
-    identifierNameArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile",@"Inbox",@"Tutorial", nil];
     
+    NSString *roleType = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
+    if([roleType isEqualToString:@"1"])
+    {
+         textArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile",@"Inbox",@"Tutorial",@"Logout", nil];
+        imgNameArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile",@"Inbox",@"Tutorial", nil];
+        identifierNameArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile",@"Inbox",@"Tutorial",@"Logout", nil];
+    }
+    else{
+         textArr=[[NSMutableArray alloc]initWithObjects:@"Post Casting",@"View Applicant",@"Shortlisted",@"Privacy Policy",@"Terms of Use",@"Logout", nil];
+        imgNameArr=[[NSMutableArray alloc]initWithObjects:@"Audition",@"Submission",@"Profile", nil];
+        identifierNameArr=[[NSMutableArray alloc]initWithObjects:@"Post Casting",@"View Applicant",@"Shortlisted",@"Privacy Policy",@"Terms of Use",@"Logout", nil];
+    }
+   
     NSString *urlStr = @"http://www.actorsapply.com/img/blog/";
     [imgPic setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
 }
