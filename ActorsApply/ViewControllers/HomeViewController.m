@@ -61,7 +61,7 @@
         [viewApplicantLabel sizeToFit];
         [postCastingLabel sizeToFit];
         NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]);
-        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"logo"]];
+        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:nil];
        // [profileImageView setImage:[UIImage imageNamed:@""]];
         [postCostingBtn setBackgroundImage:[UIImage imageNamed:@"auditions"] forState:0];
         [viewApplicantBtn setBackgroundImage:[UIImage imageNamed:@"profile"] forState:0];
@@ -77,6 +77,7 @@
         [viewApplicantLabel sizeToFit];
         [postCastingLabel sizeToFit];
         [profileImageView setImage:[UIImage imageNamed:@"logo"]];
+        profileImageView.contentMode = UIViewContentModeScaleAspectFit;
         profileImageView.contentMode = UIViewContentModeCenter;
         [postCostingBtn setBackgroundImage:[UIImage imageNamed:@"Asset 3"] forState:0];
         [viewApplicantBtn setBackgroundImage:[UIImage imageNamed:@"Asset 4"] forState:0];
@@ -91,7 +92,10 @@
     profileMediaImages =[[NSMutableArray alloc] init];
     profileMediaVideos =[[NSMutableArray alloc] init];
     
-    [self callGetProfileData];
+    if([role isEqualToString:@"1"])
+    {
+        [self callGetProfileData];
+    }
 }
 
 -(void)viewDidLayoutSubviews
@@ -106,7 +110,6 @@
     if([role isEqualToString:@"1"])
     {
         [self performSegueWithIdentifier:@"profile_segue" sender:self];
-      
       
 //      SWRevealViewController *revealController = self.revealViewController;
 //      ProfileViewController *profilViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
@@ -164,7 +167,6 @@
         
         if (succeeded)
         {
-            
             NSArray *projects = [[responseData objectForKey:@"data"] objectForKey:@"projects"];
             
             for (NSDictionary *project in projects)
@@ -178,7 +180,6 @@
                     [profileProjects addObject:projectDict];
             }
             
-            
             NSArray *mediaFiles = [[responseData objectForKey:@"data"] objectForKey:@"media"];
             
             //profileMediaImages = [NSMutableArray arrayWithArray:@[@"1444476090.jpg",@"1444476149.jpg",@"1444476530.jpg",@"1444476607.jpg",@"1444477328.jpg",@"1444497136.jpg",@"1444497336.jpg"]];
@@ -191,11 +192,13 @@
                 {
                     if(![profileMediaImages containsObject:[media valueForKey:@"asset"]])
                         [profileMediaImages addObject:[media valueForKey:@"asset"]];
-                    
                     if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
                     {
                         profileImageName = [media valueForKey:@"asset"];
                         [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImage"];
+                        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
+                         [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImageDirector"];
+                         profileImageView.contentMode = UIViewContentModeScaleToFill;
                     }
                 }
                 else
@@ -205,7 +208,6 @@
                         [profileMediaVideos addObject:[media valueForKey:@"asset"]];
                 }
             }
-            
             
             //[self performSegueWithIdentifier:@"profile_segue" sender:self];
             

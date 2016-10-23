@@ -38,17 +38,19 @@
     [super viewDidLoad];
     self.scrollView.delegate = self;
     
-//    profileProjects =[[NSMutableArray alloc] init];
-//    profileMediaImages =[[NSMutableArray alloc] init];
-//    profileMediaVideos =[[NSMutableArray alloc] init];
-    
-   // [self callGetProfileData];
+    NSString *roleType = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
+    if([roleType isEqualToString:@"1"])
+    {
+        [_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
+    }
+    else
+    {
+        [_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImageDirector"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
+    }
     
     self.navigationController.navigationBar.hidden = YES;
-  
     aboutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
     [self.containerView addSubview:aboutVC.view];
-    
     projectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"project_storyboard"];
     projectVC.profileProjects = _profileProjects;
     
@@ -57,7 +59,6 @@
     
     videosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"videos_storyboard"];
     videosVC.profileVideos = _profileMediaVideos;
-    
     
     [self->_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.actorsapply.com/img/blog/%@",_profileImageName]] placeholderImage:nil];
     
@@ -75,7 +76,6 @@
     [self.containerView addGestureRecognizer:swipeLeftGuesture];
     [self.containerView addGestureRecognizer:swipeRightGuesture];
     
-    NSString *roleType = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
     if([roleType isEqualToString:@"1"])
     {
         [shortListView setHidden:YES];

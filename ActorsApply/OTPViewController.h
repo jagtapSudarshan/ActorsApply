@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface OTPViewController : NSObject
+@interface OTPViewController : UIViewController
+
+@property(nonatomic,strong)NSMutableDictionary *dict;
 
 @end

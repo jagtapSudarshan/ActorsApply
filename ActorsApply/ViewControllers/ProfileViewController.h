@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *project;
 @property (weak, nonatomic) IBOutlet UIButton *photos;
 @property (weak, nonatomic) IBOutlet UIButton *videos;
+@property (assign) BOOL isDirectorProfile;
 
 @property (nonatomic) NSMutableArray *profileImages;
 //@property (nonatomic)NSMutableArray *profileMediaImages;

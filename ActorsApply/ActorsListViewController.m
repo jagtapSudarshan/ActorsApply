@@ -107,9 +107,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     ActorList *al = [responseArray objectAtIndex:indexPath.row];
     NSString *img = al.asset.asset;
     imageUrl =[NSString stringWithFormat:@"%@%@",imageUrl,img ];
-   // cell.imgVw.layer.cornerRadius=40;
+    cell.imgVw.layer.cornerRadius=40;
     //cell.imgVw.layer.cornerRadius = cell.imgVw.frame.size.width / 2;
-    cell.imgVw.clipsToBounds = true;
+    cell.imgVw.layer.masksToBounds = YES;
     cell.imgVw.showActivityIndicator = YES;
     cell.imgVw.imageURL = [NSURL URLWithString:imageUrl];
     cell.imgVw.contentMode = UIViewContentModeScaleAspectFill;
@@ -236,6 +236,14 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
                   {
                       profileImageName = [media valueForKey:@"asset"];
                       [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImage"];
+                      NSString* role = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
+                      
+                      if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
+                      {
+                          profileImageName = [media valueForKey:@"asset"];
+                          [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImageDirector"];
+                          //[[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImageDirector"];
+                      }
                   }
               }
           }
@@ -281,6 +289,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     profileVC.profileMediaVideos = profileMediaVideos;
     profileVC.profileProjects = profileProjects;
     profileVC.profileImageName = profileImageName;
+    profileVC.isDirectorProfile = YES;
     //profileVC.profileImageName = profileImageName;
   }
 }

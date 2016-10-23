@@ -23,6 +23,10 @@
 #define GET_APPLICATIONS    @"casting/getApplications"
 #define APPLY_AUDITION      @"audition/applyForAudition"
 #define REGISTRATION        @"user/register"
+#define GET_OTP             @"user/getOtp"
+#define VERIFY_OTP          @"user/verifyOtp"
+#define GET_SUBMISSSION     @"audition/submissions"
+
 
 #define IMAGE_URL           @"http://www.actorsapply.com/app/webroot/img/photos/"
 #define PRIVACY_URL         @"http://www.actorsapply.com/privacy-policy.html"

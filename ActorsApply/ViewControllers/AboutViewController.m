@@ -10,6 +10,9 @@
 
 @interface AboutViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *noVideoLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *videoImageView;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @end
 
@@ -19,6 +22,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 250);
+    
+    _noVideoLbl.hidden = NO;
+    _videoImageView.hidden = YES;
+    _playButton.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {

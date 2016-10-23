@@ -76,27 +76,27 @@
         TutorialsViewController *tutorialsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialsViewController"];
         tabBarCtrl.viewControllers = @[tutorialsViewController];
     }
-    else if (indexPath.row == 7) {
+    else if (indexPath.row == 6) {
         UpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeViewController"];
         tabBarCtrl.viewControllers = @[upgradeViewController];
     }
-    else if(indexPath.row == 8 || indexPath.row == 9 || indexPath.row == 10) {
+    else if(indexPath.row == 7 || indexPath.row == 8 || indexPath.row == 9) {
         WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
         
         NSString *url;
-        if(indexPath.row == 8) {
+        if(indexPath.row == 7) {
             url = PRIVACY_URL;
         }
-        else if(indexPath.row == 9) {
+        else if(indexPath.row == 8) {
             url = TERMS_URL;
         }
-        else if(indexPath.row == 10) {
+        else if(indexPath.row == 9) {
             url = ABOUT_URL;
         }
         webViewController.url = url;
         tabBarCtrl.viewControllers = @[webViewController];
     }
-    else if(indexPath.row == 11) {
+    else if(indexPath.row == 10) {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out" message:@"Are you sure,you want to Logout?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
       [alert show];
     }

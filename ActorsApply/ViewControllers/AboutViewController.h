@@ -10,4 +10,6 @@
 #import "SuperViewController.h"
 @interface AboutViewController : UIViewController
 
+@property (assign) BOOL isDirectorProfile;
+
 @end

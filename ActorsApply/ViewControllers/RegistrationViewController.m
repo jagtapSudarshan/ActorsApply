@@ -10,11 +10,12 @@
 #import "ConnectionManager.h"
 #import "RKDropdownAlert.h"
 #import "WebServiceConstants.h"
-
+#import "OTPViewController.h"
 
 @interface RegistrationViewController ()
 {
-  NSString *userType;
+    NSString *userType;
+    NSDictionary *requestData;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *pickeParentView;
@@ -35,6 +36,7 @@
     [self setBorder:_contactNumberView];
     [self setBorder:_referenceByView];
     _role_male.selected = YES;
+    userType = @"1";
   
   _pickeParentView.hidden = YES;
   
@@ -129,7 +131,7 @@
   }
   
   
-  NSDictionary *requestData = [[NSDictionary alloc] initWithObjectsAndKeys:_firstName.text,@"firstName",
+  requestData = [[NSDictionary alloc] initWithObjectsAndKeys:_firstName.text,@"firstName",
                                _lastName.text,@"lastName",
                                _emailId.text,@"emailId",
                                _password.text,@"password2",
@@ -144,17 +146,7 @@
   
   if(message.length == 0)
   {
-    [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,REGISTRATION] Data:requestData completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg)
-    {
-      if(succeeded)
-      {
-      
-      }
-      else{
-      
-       
-      }
-    }];
+      [self performSegueWithIdentifier:@"otp" sender:nil];
   }
 }
 
@@ -181,6 +173,10 @@
   {
     return @"Please enter password";
   }
+  else if(password.length < 4)
+  {
+      return @"Password must contain at least 4 characters";
+  }
   else if(![confirmPassword isEqualToString:password])
   {
     return @"Confirm password should be same as password";
@@ -193,6 +189,10 @@
   {
     return @"Please enter contact number";
   }
+  else if(_dateofBirth.text.length == 0)
+  {
+      return @"Please enter birth date";
+  }
   return nil;
 }
 
@@ -202,5 +202,15 @@
   NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
   return [emailTest evaluateWithObject:email];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"otp"])
+    {
+        OTPViewController *vc = segue.destinationViewController;
+        vc.dict = [requestData mutableCopy];
+    }
+}
+
 
 @end

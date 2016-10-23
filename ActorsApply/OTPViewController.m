@@ -7,7 +7,86 @@
 //
 
 #import "OTPViewController.h"
+#import "ConnectionManager.h"
+#import "WebServiceConstants.h"
+#import "RKDropdownAlert.h"
+
+@interface OTPViewController ()
+{
+    NSString *idStr;
+}
+@property (weak, nonatomic) IBOutlet UITextField *otpTextField;
+
+@end
 
 @implementation OTPViewController
+
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    [self getOTP];
+}
+
+-(void)getOTP
+{
+    [ConnectionManager callGetMethod:[NSString stringWithFormat:@"%@%@/%@",BASE_URL,GET_OTP,[_dict valueForKey:@"phone"]] completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg)
+     {
+         if(succeeded)
+         {
+             idStr = [[responseData valueForKey:@"data"] valueForKey:@"id"];
+             
+             //[_dict setValue:[[responseData objectForKey:@"data"] valueForKey:@"otp"] forKey:@"otp"];
+             [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+         }
+         else{
+             [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+         }
+     }];
+}
+
+- (IBAction)verfy:(id)sender {
+    
+    if(_otpTextField.text.length == 0)
+    {
+        [RKDropdownAlert title:@"INFORMATION" message:@"Please enter OTP"];
+        return;
+    }
+    
+    [_dict setValue:_otpTextField.text forKey:@"otp"];
+    
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:
+                   idStr,@"id",
+                   _otpTextField.text,@"otp",
+                   nil];
+    
+    [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,VERIFY_OTP] Data:data completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg)
+     {
+         if(succeeded)
+         {
+              [self performSegueWithIdentifier:@"login" sender:nil];
+         }
+         else{
+             // login screen.
+             [self performSegueWithIdentifier:@"login" sender:nil];
+         }
+     }];
+    
+//    [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,REGISTRATION] Data:_dict completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg)
+//     {
+//         if(succeeded)
+//         {
+//             [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+//         }
+//         else{
+//             // login screen.
+//
+//         }
+//     }];
+}
+
+- (IBAction)resendOTP:(id)sender {
+}
+
 
 @end
