@@ -250,7 +250,7 @@
                   moduleName = "ActorsApply"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kalpeshmahajan/Desktop/Bhushan/ActorsApply/ActorsApply/AddRolePostCastingViewController.m"
-                  timestampString = "498951611.365793"
+                  timestampString = "499019898.776175"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
@@ -265,7 +265,7 @@
                   moduleName = "ActorsApply"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kalpeshmahajan/Desktop/Bhushan/ActorsApply/ActorsApply/AddRolePostCastingViewController.m"
-                  timestampString = "498951611.366009"
+                  timestampString = "499019898.776376"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
@@ -282,93 +282,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ActorsApply/CastPostingInfoViewController.m"
-            timestampString = "498950740.964286"
+            timestampString = "499019024.762882"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-didSelectNext"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ActorsApply/ApplicantListViewController.m"
-            timestampString = "498950856.749887"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ActorsApply/CastPostingInfoViewController.m"
-            timestampString = "498951611.27527"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "458"
-            endingLineNumber = "458"
-            landmarkName = "-callCastingInit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ActorsApply/CastPostingInfoViewController.m"
-            timestampString = "498951620.608792"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "-callCastingInit"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CastPostingInfoViewController callCastingInit]"
-                  moduleName = "ActorsApply"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kalpeshmahajan/Desktop/Bhushan/ActorsApply/ActorsApply/CastPostingInfoViewController.m"
-                  timestampString = "498951620.612775"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "449"
-                  endingLineNumber = "449"
-                  offsetFromSymbolStart = "171">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[CastPostingInfoViewController callCastingInit]_block_invoke"
-                  moduleName = "ActorsApply"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kalpeshmahajan/Desktop/Bhushan/ActorsApply/ActorsApply/CastPostingInfoViewController.m"
-                  timestampString = "498951620.613125"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "449"
-                  endingLineNumber = "449"
-                  offsetFromSymbolStart = "122">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -182,7 +182,7 @@ static int tab_value = TAB_2;
             return  @"Theatre";
             break;
         case 7:
-            return  @"Film Series";
+            return  @"Video Series";
             break;
         case 8:
             return @"Music Video";

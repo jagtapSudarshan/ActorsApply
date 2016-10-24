@@ -33,63 +33,63 @@
     [self.navigationController.navigationBar setHidden:YES];
     // Do any additional setup after loading the view.
     
-    NSArray *array = [[NSArray alloc] initWithObjects:_filmImageView,_printImageView,_tvcImageView,_tvShowImageView,_filmSeriesImageView,_musicVideoImageView,_theatreImageView,_shortImageView, nil];
-    
+    NSArray *array = [[NSArray alloc] initWithObjects:_filmImageView,_shortImageView,_tvcImageView,_tvShowImageView,_printImageView,_theatreImageView,_filmSeriesImageView,_musicVideoImageView,nil];
+   
     //for (int i = 0; i < [array count]; i++) {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap.view.tag = 0;
+    tap.view.tag = 1;
     UIImageView* imageView = [array objectAtIndex:0];
     imageView.userInteractionEnabled = YES;
-    imageView.tag = 0;
+    imageView.tag = 1;
     [[array objectAtIndex:0] addGestureRecognizer:tap];
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap1.view.tag = 1;
+    tap1.view.tag = 2;
     UIImageView* imageView1 = [array objectAtIndex:1];
     imageView1.userInteractionEnabled = YES;
-    imageView1.tag = 1;
+    imageView1.tag = 2;
     [[array objectAtIndex:1] addGestureRecognizer:tap1];
     
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap2.view.tag = 2;
+    tap2.view.tag = 3;
     UIImageView* imageView2 = [array objectAtIndex:2];
     imageView2.userInteractionEnabled = YES;
-    imageView2.tag = 2;
+    imageView2.tag = 3;
     [[array objectAtIndex:2] addGestureRecognizer:tap2];
     
     UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap3.view.tag = 3;
+    tap3.view.tag = 4;
     UIImageView* imageView3 = [array objectAtIndex:3];
     imageView3.userInteractionEnabled = YES;
-    imageView3.tag = 3;
+    imageView3.tag = 4;
     [[array objectAtIndex:3] addGestureRecognizer:tap3];
     
     UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap4.view.tag = 4;
+    tap4.view.tag = 5;
     UIImageView* imageView4 = [array objectAtIndex:4];
     imageView4.userInteractionEnabled = YES;
-    imageView4.tag = 4;
+    imageView4.tag = 5;
     [[array objectAtIndex:4] addGestureRecognizer:tap4];
     
     UITapGestureRecognizer *tap5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap5.view.tag = 5;
+    tap5.view.tag = 6;
     UIImageView* imageView5 = [array objectAtIndex:5];
     imageView5.userInteractionEnabled = YES;
-    imageView5.tag = 5;
+    imageView5.tag = 6;
     [[array objectAtIndex:5] addGestureRecognizer:tap5];
     
     UITapGestureRecognizer *tap6 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap6.view.tag = 6;
+    tap6.view.tag = 7;
     UIImageView* imageView6 = [array objectAtIndex:6];
     imageView6.userInteractionEnabled = YES;
-    imageView6.tag = 6;
+    imageView6.tag = 7;
     [[array objectAtIndex:6] addGestureRecognizer:tap6];
     
     UITapGestureRecognizer *tap7 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClicked:)];
-    tap7.view.tag = 7;
+    tap7.view.tag = 8;
     UIImageView* imageView7 = [array objectAtIndex:7];
     imageView7.userInteractionEnabled = YES;
-    imageView7.tag = 7;
+    imageView7.tag = 8;
     [[array objectAtIndex:7] addGestureRecognizer:tap7];
    // }
 }
@@ -102,44 +102,44 @@
     NSString *castName;
     NSInteger number;
     switch (gesture.view.tag) {
-        case 0:
+        case 1:
             imageView = @"PNG";
             castName = @"Film";
             number = 1;
             break;
-        case 1:
-            imageView = @"PNG-5";
-            castName = @"Print";
+        case 2:
+            imageView = @"PNG-29";
+            castName = @"Short Films";
             number = 2;
             break;
-        case 2:
+        case 3:
             imageView = @"PNG-9";
             castName = @"TVC";
             number = 3;
             break;
-        case 3:
+        case 4:
             imageView = @"PNG-13";
             castName = @"TV Show";
             number = 4;
             break;
-        case 4:
-            imageView = @"PNG-17";
-            castName = @"Film Series";
-            number = 5;
-            break;
         case 5:
-            imageView = @"PNG-21";
-            castName = @"Music Video";
-            number = 6;
+            imageView = @"PNG-5";
+            castName = @"Print";
+            number = 5;
             break;
         case 6:
             imageView = @"PNG-25";
             castName = @"Theatre";
-            number = 7;
+            number = 6;
             break;
         case 7:
-            imageView = @"PNG-29";
-            castName = @"Short Films";
+            imageView = @"PNG-17";
+            castName = @"Video Series";
+            number = 7;
+            break;
+        case 8:
+            imageView = @"PNG-21";
+            castName = @"Music Video";
             number = 8;
             break;
         default:

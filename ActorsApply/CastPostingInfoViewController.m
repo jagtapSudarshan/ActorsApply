@@ -67,32 +67,32 @@ typedef enum
             type = 1;
             break;
         case 2:
-            [_parentView setBackgroundColor:[[UIColor alloc]initWithRed:0.52 green:0.55 blue:0.78 alpha:1.0f]];
-            type = 5;
+            [_parentView setBackgroundColor:[UIColor colorWithRed:0.52 green:0.37 blue:0.4 alpha:1.0f]];
+            type = 2;
             break;
         case 3:
             [_parentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.60 blue:0.18 alpha:1.0f]];
-            type = 4;
+            type = 3;
             break;
         case 4:
             [_parentView setBackgroundColor:[UIColor colorWithRed:0 green:0.48 blue:0.79 alpha:1.0f]];
-            type = 3;
+            type = 4;
             break;
         case 5:
-            [_parentView setBackgroundColor:[UIColor colorWithRed:0.74 green:0.13 blue:0.17 alpha:1.0f]];
-            type = 7;
+            [_parentView setBackgroundColor:[[UIColor alloc]initWithRed:0.52 green:0.55 blue:0.78 alpha:1.0f]];
+            type = 5;
             break;
         case 6:
-            [_parentView setBackgroundColor:[UIColor colorWithRed:0.91 green:0.5 blue:0.36 alpha:1.0f]];
-            type = 8;
-            break;
-        case 7:
             [_parentView setBackgroundColor:[UIColor colorWithRed:0.46 green:0.43 blue:0.17 alpha:1.0f]];
             type = 6;
             break;
+        case 7:
+            [_parentView setBackgroundColor:[UIColor colorWithRed:0.74 green:0.13 blue:0.17 alpha:1.0f]];
+            type = 7;
+            break;
         case 8:
-            [_parentView setBackgroundColor:[UIColor colorWithRed:0.52 green:0.37 blue:0.4 alpha:1.0f]];
-            type = 2;
+            [_parentView setBackgroundColor:[UIColor colorWithRed:0.91 green:0.5 blue:0.36 alpha:1.0f]];
+            type = 8;
             break;
         default:
             break;
@@ -114,7 +114,6 @@ typedef enum
     
     detailsTextView.layer.borderColor = [[UIColor blackColor] CGColor];
     detailsTextView.layer.borderWidth = 1.0f;
-  
   
 
   opaqueView = [[UIView alloc]init];
