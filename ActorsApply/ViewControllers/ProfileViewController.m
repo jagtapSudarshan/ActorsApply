@@ -15,6 +15,7 @@
 #import "WebServiceConstants.h"
 #import "SVProgressHUD.h"
 #import <UIImageView+AFNetworking.h>
+#import "RKDropdownAlert.h"
 
 @interface ProfileViewController ()
 {
@@ -23,6 +24,7 @@
 //    NSMutableArray *profileMediaVideos;
 //    NSString *profileImageName;
     
+    __weak IBOutlet UILabel *actorLbl;
     __weak IBOutlet UIView *shortListView;
     AboutViewController   *aboutVC;
     ProjectViewController *projectVC;
@@ -37,15 +39,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.delegate = self;
-    
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height/2)];
     NSString *roleType = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
     if([roleType isEqualToString:@"1"])
     {
+        [_profileImageView setBackgroundColor:[UIColor blackColor]];
         [_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
+        actorLbl.text = @"ACTOR";
     }
     else
     {
+        [_profileImageView setBackgroundColor:[UIColor blackColor]];
         [_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", IMAGE_URL, [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImageDirector"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
+        actorLbl.text = _profileName;
     }
     
     self.navigationController.navigationBar.hidden = YES;
@@ -60,7 +66,7 @@
     videosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"videos_storyboard"];
     videosVC.profileVideos = _profileMediaVideos;
     
-    [self->_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.actorsapply.com/img/blog/%@",_profileImageName]] placeholderImage:nil];
+//    [self->_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.actorsapply.com/img/blog/%@",_profileImageName]] placeholderImage:nil];
     
 //    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
 //    [self.containerView addSubview:vc.view];
@@ -82,87 +88,9 @@
     }
     else{
         [shortListView setHidden:NO];
+        shortListView.layer.borderColor = [UIColor orangeColor].CGColor;
     }
 }
-
-//- (void) callGetProfileData
-//{
-//    NSString *profileUrl = [NSString stringWithFormat:@"%@%@%@",BASE_URL,PROFILE,[[NSUserDefaults standardUserDefaults] objectForKey:@"id"]];
-//    
-//    [ConnectionManager callGetMethod:profileUrl completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
-//        
-//        [SVProgressHUD dismiss];
-//        
-//        if (succeeded)
-//        {
-//            
-//            NSArray *projects = [[responseData objectForKey:@"data"] objectForKey:@"projects"];
-//            
-//            for (NSDictionary *project in projects)
-//            {
-//                NSMutableDictionary *projectDict = [NSMutableDictionary new];
-//                
-//                [projectDict setValue:[project valueForKey:@"name"] forKey:@"name"];
-//                [projectDict setValue:[project valueForKey:@"modified"] forKey:@"modified"];
-//                [projectDict setValue:[project valueForKey:@"director"] forKey:@"director"];
-//                
-//                [_profileProjects addObject:projectDict];
-//            }
-//            
-//            
-//            NSArray *mediaFiles = [[responseData objectForKey:@"data"] objectForKey:@"media"];
-//            
-//            //profileMediaImages = [NSMutableArray arrayWithArray:@[@"1444476090.jpg",@"1444476149.jpg",@"1444476530.jpg",@"1444476607.jpg",@"1444477328.jpg",@"1444497136.jpg",@"1444497336.jpg"]];
-//            
-//            //profileImageName = @"1444627377.png";
-//            
-//            for (NSDictionary *media in mediaFiles)
-//            {
-//                if ([[media valueForKey:@"type"] isEqualToString:@"1"])
-//                {
-//                    
-//                    
-//                     [_profileMediaImages addObject:[media valueForKey:@"asset"]];
-//                     
-//                     if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
-//                     {
-//                     _profileImageName = [media valueForKey:@"asset"];
-//                     }
-//                }
-//                else
-//                {
-//                    [_profileMediaVideos addObject:[media valueForKey:@"asset"]];
-//                }
-//            }
-//            
-//            
-//            //[self performSegueWithIdentifier:@"profile_segue" sender:self];
-//            
-//            aboutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
-//            
-//            
-//            [self.containerView addSubview:aboutVC.view];
-//            
-//            projectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"project_storyboard"];
-//            projectVC.profileProjects = _profileProjects;
-//            
-//            photosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"photos_storyboard"];
-//            photosVC.profileImages = _profileMediaImages;
-//            
-//            videosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"videos_storyboard"];
-//            videosVC.profileVideos = _profileMediaVideos;
-//            
-//            
-//            [self->_profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.actorsapply.com/img/blog/%@",profileImageName]] placeholderImage:nil];
-//            
-//        }
-//        else
-//        {
-//            
-//        }
-//        
-//    }];
-//}
 
 - (void) handleSwipe:(UISwipeGestureRecognizer *)swipeGesture
 {
@@ -217,7 +145,6 @@
     [self.frostedViewController presentMenuViewController];
 }
 
-
 - (IBAction)aboutClicked:(id)sender {
     self.scrollView.delegate = self;
     UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
@@ -266,4 +193,24 @@
         [v removeFromSuperview];
     }
 }
+
+- (IBAction)shortListedCliked:(id)sender {
+    [SVProgressHUD show];
+    [ConnectionManager callPutMethod:[NSString stringWithFormat:@"%@%@%@",BASE_URL,SHORTLISTED,_profileId] Data:nil completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg)
+    {
+        [SVProgressHUD dismiss];
+       if(succeeded)
+       {
+           [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+       }
+       else{
+           [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+       }
+    }];
+}
+
+- (IBAction)selectClicked:(id)sender {
+
+}
+
 @end

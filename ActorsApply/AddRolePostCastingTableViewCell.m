@@ -43,6 +43,9 @@
         [self.delegate updateTextFields:textField.tag : _maxAge.text];
     if(textField.tag == 3)
         [self.delegate updateTextFields:textField.tag : _desc.text];
+    if(textField.tag == 4)
+        [self.delegate updateTextFields:textField.tag : _RoelTextField.text];
+
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField

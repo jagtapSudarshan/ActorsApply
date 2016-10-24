@@ -92,6 +92,7 @@
   cell.minAge.tag = 1;
   cell.maxAge.tag = 2;
   cell.desc.tag = 3;
+  cell.roleName.tag = 4;
   return cell;
 }
 
@@ -115,80 +116,87 @@
     rolePost.maxAge = text;
   if(tag == 3)
     rolePost.desc = text;
+   if(tag == 4)
+    rolePost.name = text;
 }
 
 - (IBAction)postCastingClicked:(id)sender {
-  
-  NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
-  [params setValue:@"0" forKey:@"applicationCount"];
-  [params setValue:[self.data valueForKey:@"castingDate"] forKey:@"castingDate"];
-  [params setValue:[self.data valueForKey:@"casting_director"] forKey:@"casting_director"];
-  [params setValue:@" " forKey:@"created"];
-  NSString *desc = [self.data valueForKey:@"desc"];
-  if (desc.length==0) {
-    desc = @" ";
-  }
-  [params setValue:desc forKey:@"desc"];
-  [params setValue:[self.data valueForKey:@"director"] forKey:@"director"];
-  NSString *iddesc = [self.data valueForKey:@"id"];
-  if (iddesc.length==0) {
-    iddesc = @" ";
-  }
-  [params setValue:iddesc forKey:@"id"];
-  [params setValue:@"0" forKey:@"industry"];
-  [params setValue:[self.data valueForKey:@"location"] forKey:@"location"];
-  NSString *modifieddesc = [self.data valueForKey:@"modified"];
-  if (modifieddesc.length==0) {
-    modifieddesc = @" ";
-  }
-  [params setValue:modifieddesc forKey:@"modified"];
-  [params setValue:[self.data valueForKey:@"name"] forKey:@"name"];
-  [params setValue:[self.data valueForKey:@"shootDate"] forKey:@"shootDate"];
-  [params setValue:[self.data valueForKey:@"status"] forKey:@"status"];
-  [params setValue:[self.data valueForKey:@"type"] forKey:@"type"];
-  [params setValue:[self.data valueForKey:@"user_id"] forKey:@"user_id"];
-  NSString *cont = [NSString stringWithFormat:@"%lu",(unsigned long)roles.count];
-  [params setValue:cont forKey:@"roleCount"];
-
-  NSMutableArray *paramsRolesArray = [[NSMutableArray alloc]init];
-  for (int i =0; i<roles.count; i++) {
-    RolePostCast *rp = (RolePostCast*)[roles objectAtIndex:i];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setValue:@" " forKey:@"created"];
-    [dict setValue:rp.desc forKey:@"desc"];
-    if (rp.gender) {
-      [dict setValue:@"1" forKey:@"gender"];
-    }else{
-    [dict setValue:@"0" forKey:@"gender"];
-    }
-    [dict setValue:[self.data valueForKey:@"location"] forKey:@"location"];
-    [dict setValue:rp.maxAge forKey:@"maxAge"];
-    [dict setValue:rp.minAge forKey:@"minAge"];
-    [dict setValue:modifieddesc forKey:@"modified"];
-    [dict setValue:[self.data valueForKey:@"name"] forKey:@"name"];
-    [dict setValue:[self.data valueForKey:@"status"] forKey:@"status"];
-    [dict setValue:[self.data valueForKey:@"type"] forKey:@"type"];
-    [paramsRolesArray addObject:dict];
-  }
-  [params setValue:paramsRolesArray forKey:@"roles"];
-
-  [SVProgressHUD show];
-  
-  [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,CASTING_POST] Data:params completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
     
-    [SVProgressHUD dismiss];
-    
-    if(succeeded)
+    if(rolePost.name.length == 0)
     {
-      [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
-      [self tab2Selected:nil];
-      
+        [RKDropdownAlert title:@"INFORMATION" message:@"Please enter role name"];
+        return;
     }
-    else{
-      
-      [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
+    [params setValue:@"0" forKey:@"applicationCount"];
+    [params setValue:[self.data valueForKey:@"castingDate"] forKey:@"castingDate"];
+    [params setValue:[self.data valueForKey:@"casting_director"] forKey:@"casting_director"];
+    [params setValue:@" " forKey:@"created"];
+    NSString *desc = [self.data valueForKey:@"desc"];
+    if (desc.length==0) {
+        desc = @" ";
     }
-  }];
+    [params setValue:desc forKey:@"desc"];
+    [params setValue:[self.data valueForKey:@"director"] forKey:@"director"];
+    NSString *iddesc = [self.data valueForKey:@"id"];
+    if (iddesc.length==0) {
+        iddesc = @" ";
+    }
+    [params setValue:iddesc forKey:@"id"];
+    [params setValue:@"0" forKey:@"industry"];
+    [params setValue:[self.data valueForKey:@"location"] forKey:@"location"];
+    NSString *modifieddesc = [self.data valueForKey:@"modified"];
+    if (modifieddesc.length==0) {
+        modifieddesc = @" ";
+    }
+    [params setValue:modifieddesc forKey:@"modified"];
+    [params setValue:[self.data valueForKey:@"name"] forKey:@"name"];
+    [params setValue:[self.data valueForKey:@"shootDate"] forKey:@"shootDate"];
+    [params setValue:[self.data valueForKey:@"status"] forKey:@"status"];
+    [params setValue:[self.data valueForKey:@"type"] forKey:@"type"];
+    [params setValue:[self.data valueForKey:@"user_id"] forKey:@"user_id"];
+    NSString *cont = [NSString stringWithFormat:@"%lu",(unsigned long)roles.count];
+    [params setValue:cont forKey:@"roleCount"];
+    
+    NSMutableArray *paramsRolesArray = [[NSMutableArray alloc]init];
+    for (int i =0; i<roles.count; i++) {
+        RolePostCast *rp = (RolePostCast*)[roles objectAtIndex:i];
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+        [dict setValue:@" " forKey:@"created"];
+        [dict setValue:rp.desc forKey:@"desc"];
+        if (rp.gender) {
+            [dict setValue:@"1" forKey:@"gender"];
+        }else{
+            [dict setValue:@"0" forKey:@"gender"];
+        }
+        [dict setValue:[self.data valueForKey:@"location"] forKey:@"location"];
+        [dict setValue:rp.maxAge forKey:@"maxAge"];
+        [dict setValue:rp.minAge forKey:@"minAge"];
+        [dict setValue:modifieddesc forKey:@"modified"];
+        [dict setValue:rolePost.name forKey:@"name"];
+        [dict setValue:[self.data valueForKey:@"status"] forKey:@"status"];
+        [dict setValue:[self.data valueForKey:@"type"] forKey:@"type"];
+        [paramsRolesArray addObject:dict];
+    }
+    [params setValue:paramsRolesArray forKey:@"roles"];
+    
+    [SVProgressHUD show];
+    
+    [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,CASTING_POST] Data:params completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
+        
+        [SVProgressHUD dismiss];
+        
+        if(succeeded)
+        {
+            [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+            [self tab2Selected:nil];
+        }
+        else{
+            
+            [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+        }
+    }];
 }
 
 @end

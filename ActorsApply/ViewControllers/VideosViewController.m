@@ -12,6 +12,8 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface VideosViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *errorLbl;
 
 @end
 
@@ -20,6 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if([self->_profileVideos count] == 0)
+    {
+        _tableView.hidden = YES;
+        _errorLbl.hidden = NO;
+    }else{
+        _errorLbl.hidden = YES;
+        _tableView.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

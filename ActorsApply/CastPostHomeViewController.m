@@ -105,42 +105,42 @@
         case 0:
             imageView = @"PNG";
             castName = @"Film";
-            number = 0;
+            number = 1;
             break;
         case 1:
             imageView = @"PNG-5";
             castName = @"Print";
-            number = 1;
+            number = 2;
             break;
         case 2:
             imageView = @"PNG-9";
             castName = @"TVC";
-            number = 2;
+            number = 3;
             break;
         case 3:
             imageView = @"PNG-13";
             castName = @"TV Show";
-            number = 3;
+            number = 4;
             break;
         case 4:
             imageView = @"PNG-17";
             castName = @"Film Series";
-            number = 4;
+            number = 5;
             break;
         case 5:
             imageView = @"PNG-21";
             castName = @"Music Video";
-            number = 5;
+            number = 6;
             break;
         case 6:
             imageView = @"PNG-25";
             castName = @"Theatre";
-            number = 6;
+            number = 7;
             break;
         case 7:
             imageView = @"PNG-29";
             castName = @"Short Films";
-            number = 7;
+            number = 8;
             break;
         default:
             break;

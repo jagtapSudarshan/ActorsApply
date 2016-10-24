@@ -19,7 +19,6 @@
     UIImage* inboxSelected;
 }
 
-
 @property (nonatomic, strong) Header *header;
 @property (nonatomic, strong) Footer *footer;
 

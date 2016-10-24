@@ -26,10 +26,12 @@
 #define GET_OTP             @"user/getOtp"
 #define VERIFY_OTP          @"user/verifyOtp"
 #define GET_SUBMISSSION     @"audition/submissions"
+#define SHORTLISTED         @"casting/shortlist/"
 
 
-#define IMAGE_URL           @"http://www.actorsapply.com/app/webroot/img/photos/"
-#define PRIVACY_URL         @"http://www.actorsapply.com/privacy-policy.html"
+#define IMAGE_URL         @"http://www.actorsapply.com/app/webroot/img/photos/"
+#define BLOG_IMAGE_URL    @"http://www.actorsapply.com/img/blog/"
+#define PRIVACY_URL       @"http://www.actorsapply.com/privacy-policy.html"
 #define TERMS_URL         @"http://www.actorsapply.com/terms-conditions.html"
 #define ABOUT_URL         @"http://www.actorsapply.com/about-us.html"
 

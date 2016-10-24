@@ -130,29 +130,29 @@ static int tab_value = TAB_2;
 -(NSString*)getImageFromType : (NSInteger) value
 {
     switch (value) {
-        case 0:
+        case 1:
             return @"PNG";
             break;
-        case 1:
-            return @"PNG-5";
-            break;
         case 2:
-            return @"PNG-9";
+             return @"PNG-29";
             break;
         case 3:
-            return @"PNG-13";
+            return @"PNG-9";
             break;
         case 4:
-            return @"PNG-17";
+            return @"PNG-13";
             break;
         case 5:
-            return @"PNG-21";
+            return @"PNG-5";
             break;
         case 6:
             return @"PNG-25";
             break;
         case 7:
-            return @"PNG-29";
+            return @"PNG-17";
+            break;
+        case 8:
+            return @"PNG-21";
             break;
         default:
             break;
@@ -163,29 +163,29 @@ static int tab_value = TAB_2;
 -(NSString*)castingType : (NSInteger) value
 {
     switch (value) {
-        case 0:
+        case 1:
             return @"Film";
             break;
-        case 1:
-            return @"Print";
-            break;
         case 2:
-            return  @"TVC";
+            return @"Short Films";
             break;
         case 3:
-            return @"TV Show";
+            return @"TVC";
             break;
         case 4:
-            return  @"Film Series";
+            return @"TV Show";
             break;
         case 5:
-            return  @"Music Video";
+            return @"Print";
             break;
         case 6:
             return  @"Theatre";
             break;
         case 7:
-            return  @"Short Films";
+            return  @"Film Series";
+            break;
+        case 8:
+            return @"Music Video";
             break;
         default:
             break;

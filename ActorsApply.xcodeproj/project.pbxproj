@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1ADD6A9D1DBCFB2000717901 /* SubmissionRole.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD6A9C1DBCFB2000717901 /* SubmissionRole.m */; };
+		1AEBF75C1DBD3750002D06B9 /* ShortListedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */; };
+		1AEBF75F1DBD4BED002D06B9 /* select.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AEBF75D1DBD4BED002D06B9 /* select.jpg */; };
+		1AEBF7601DBD4BED002D06B9 /* star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AEBF75E1DBD4BED002D06B9 /* star.jpg */; };
 		6103988B1D91B3E6007721FB /* InboxDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103988A1D91B3E6007721FB /* InboxDetailsViewController.m */; };
 		6103988E1D91C2AA007721FB /* Inbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103988D1D91C2AA007721FB /* Inbox.m */; };
 		610398911D91CBBD007721FB /* AddRolePostCastingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610398901D91CBBD007721FB /* AddRolePostCastingViewController.m */; };
@@ -120,6 +123,10 @@
 /* Begin PBXFileReference section */
 		1ADD6A9B1DBCFB2000717901 /* SubmissionRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmissionRole.h; sourceTree = "<group>"; };
 		1ADD6A9C1DBCFB2000717901 /* SubmissionRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionRole.m; sourceTree = "<group>"; };
+		1AEBF75A1DBD3750002D06B9 /* ShortListedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortListedViewController.h; sourceTree = "<group>"; };
+		1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortListedViewController.m; sourceTree = "<group>"; };
+		1AEBF75D1DBD4BED002D06B9 /* select.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = select.jpg; sourceTree = "<group>"; };
+		1AEBF75E1DBD4BED002D06B9 /* star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star.jpg; sourceTree = "<group>"; };
 		5C603116A82A41FB2D799083 /* Pods-ActorsApply.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.debug.xcconfig"; sourceTree = "<group>"; };
 		610398891D91B3E6007721FB /* InboxDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxDetailsViewController.h; sourceTree = "<group>"; };
 		6103988A1D91B3E6007721FB /* InboxDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxDetailsViewController.m; sourceTree = "<group>"; };
@@ -342,6 +349,8 @@
 		611601171D981AA6004F33D8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1AEBF75D1DBD4BED002D06B9 /* select.jpg */,
+				1AEBF75E1DBD4BED002D06B9 /* star.jpg */,
 				611BBA611D9B139100D9BF96 /* Asset 20.png */,
 				611BBA621D9B139100D9BF96 /* Asset 21.png */,
 				611BBA631D9B139100D9BF96 /* Asset 22.png */,
@@ -577,6 +586,8 @@
 				61447F361DB970430030ACB1 /* UpgradeViewController.m */,
 				654B80951DBCA6580052D415 /* OTPViewController.h */,
 				654B80961DBCA6580052D415 /* OTPViewController.m */,
+				1AEBF75A1DBD3750002D06B9 /* ShortListedViewController.h */,
+				1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -682,6 +693,7 @@
 				611CF81E1D99A8A100887D2E /* Asset 16.png in Resources */,
 				617652A11D905EF900BB2A98 /* done@2x.png in Resources */,
 				611601231D981ACE004F33D8 /* submission.png in Resources */,
+				1AEBF7601DBD4BED002D06B9 /* star.jpg in Resources */,
 				611601221D981ACE004F33D8 /* Setting.png in Resources */,
 				611BBA681D9B139100D9BF96 /* Asset 23.png in Resources */,
 				611CF8201D99A8A100887D2E /* Asset 18.png in Resources */,
@@ -696,6 +708,7 @@
 				61892D881D7CB4D20095A0E1 /* LaunchScreen.storyboard in Resources */,
 				611BA4F51D95C0E50028E448 /* verified.png in Resources */,
 				61892D851D7CB4D20095A0E1 /* Assets.xcassets in Resources */,
+				1AEBF75F1DBD4BED002D06B9 /* select.jpg in Resources */,
 				611CF81D1D99A8A100887D2E /* Asset 15.png in Resources */,
 				611CF81C1D99A8A100887D2E /* Asset 14.png in Resources */,
 				611601241D981ACE004F33D8 /* tutorial.png in Resources */,
@@ -856,6 +869,7 @@
 				6143D74E1D9D6E1300F15334 /* SideMenuViewController.m in Sources */,
 				6143D74B1D9D6CB000F15334 /* UIViewController+MFSideMenuAdditions.m in Sources */,
 				610398911D91CBBD007721FB /* AddRolePostCastingViewController.m in Sources */,
+				1AEBF75C1DBD3750002D06B9 /* ShortListedViewController.m in Sources */,
 				61275BC01D848B7E00F90053 /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

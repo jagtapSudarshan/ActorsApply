@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SuperViewController.h"
+
 @interface VideosViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic) NSMutableArray *profileVideos;

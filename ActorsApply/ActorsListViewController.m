@@ -21,20 +21,23 @@
 #import "VideosViewController.h"
 #import "ProfileViewController.h"
 #import "SWRevealViewController.h"
+
 @interface ActorsListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 {
-  NSMutableArray *data;
-  NSMutableArray *responseArray;
-  AboutViewController   *aboutVC;
-  ProjectViewController *projectVC;
-  PhotosViewController  *photosVC;
-  VideosViewController  *videosVC;
-  NSMutableArray *profileMediaImages;
-  NSMutableArray *profileMediaVideos;
-  NSString *profileImageName;
-  NSMutableArray *profileProjects;
-  
+    NSMutableArray *data;
+    NSMutableArray *responseArray;
+    AboutViewController   *aboutVC;
+    ProjectViewController *projectVC;
+    PhotosViewController  *photosVC;
+    VideosViewController  *videosVC;
+    NSMutableArray *profileMediaImages;
+    NSMutableArray *profileMediaVideos;
+    NSString *profileImageName;
+    NSMutableArray *profileProjects;
+    NSString *name;
+    NSString *profileId;
 }
+
 @property (weak, nonatomic) IBOutlet UILabel *noDataLbl;
 @property (weak, nonatomic) IBOutlet UILabel *applicantName;
 @property (weak, nonatomic) IBOutlet UILabel *type;
@@ -181,7 +184,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
                   ao.asset=assetObj;
                   ao.asset2=assetObj2;
                   [responseArray addObject:ao];
-                  [self.collectionActors reloadData];
+                  [_collectionActors reloadData];
                   
               }
           }
@@ -210,7 +213,10 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
     if (succeeded)
     {
       NSArray *projects = [[responseData objectForKey:@"data"] objectForKey:@"projects"];
-      
+      NSDictionary *dict = [[responseData objectForKey:@"data"] objectForKey:@"user"];
+      name = [NSString stringWithFormat:@"%@%@",[dict valueForKey:@"firstName"],[dict valueForKey:@"lastName"]];
+      profileId = [dict valueForKey:@"id"];
+        
       for (NSDictionary *project in projects)
       {
         NSMutableDictionary *projectDict = [NSMutableDictionary new];
@@ -235,15 +241,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
                   if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
                   {
                       profileImageName = [media valueForKey:@"asset"];
-                      [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImage"];
-                      NSString* role = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
-                      
-                      if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
-                      {
-                          profileImageName = [media valueForKey:@"asset"];
-                          [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImageDirector"];
-                          //[[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImageDirector"];
-                      }
+                      [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImageDirector"];
                   }
               }
           }
@@ -283,14 +281,16 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger) section {
   
   if ([segue.identifier isEqualToString:@"directorProfile"])
   {
-    ProfileViewController *profileVC = segue.destinationViewController;
-    
-    profileVC.profileImages = profileMediaImages;
-    profileVC.profileMediaVideos = profileMediaVideos;
-    profileVC.profileProjects = profileProjects;
-    profileVC.profileImageName = profileImageName;
-    profileVC.isDirectorProfile = YES;
-    //profileVC.profileImageName = profileImageName;
+      ProfileViewController *profileVC = segue.destinationViewController;
+      
+      profileVC.profileImages = profileMediaImages;
+      profileVC.profileMediaVideos = profileMediaVideos;
+      profileVC.profileProjects = profileProjects;
+      profileVC.profileImageName = profileImageName;
+      profileVC.isDirectorProfile = YES;
+      profileVC.profileName = name;
+      profileVC.profileId = profileId;
+      //profileVC.profileImageName = profileImageName;
   }
 }
 
