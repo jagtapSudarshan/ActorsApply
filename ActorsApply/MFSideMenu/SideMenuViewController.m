@@ -14,7 +14,7 @@
 #import "HomeViewController.h"
 #import "InboxViewController.h"
 #import <UIImageView+AFNetworking.h>
-
+#import "SubmissionListViewController.h"
 #import "SWRevealViewController.h"
 #import "HomeViewController.h"
 
@@ -169,7 +169,7 @@
   }
   else if (row == 1)
   {
-    SubmissionViewController *submissionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SubmissionViewController"];
+    SubmissionListViewController *submissionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SubmissionListViewController"];
     newFrontController = submissionViewController;
   }
   else if (row == 2)

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NavigationController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:216.0/255.0 green:79.0/255.0 blue:42.0/255.0 alpha:1.0]];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] != nil)
+    {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        NavigationController *contentController = [storyBoard instantiateViewControllerWithIdentifier:@"rootController"];
+        self.window.rootViewController = contentController;
+        return YES;
+    }
+    
     return YES;
 }
 

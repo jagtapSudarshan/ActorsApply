@@ -36,7 +36,7 @@
     
     NSString *imageUrl = [NSString stringWithFormat:@"%@%@",@"http://www.actorsapply.com/app/webroot/img/photos/",[self->_profileImages objectAtIndex:indexPath.row]];
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"video_1"]];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:nil];
     
     return cell;
 }

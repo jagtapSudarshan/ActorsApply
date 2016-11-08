@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.scrollView.delegate = self;
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height/2)];
+    
     NSString *roleType = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
     if([roleType isEqualToString:@"1"])
     {
@@ -129,10 +129,12 @@
 -(void)viewDidLayoutSubviews
 {
     // The scrollview needs to know the content size for it to work correctly
-    self.scrollView.contentSize = CGSizeMake(
-                                             self.view.frame.size.width,
-                                             1500.0
-                                             );
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1100)];
+}
+
+- (CGSize)intrinsicContentSize {
+    // [self layoutIfNeeded]; // force my contentSize to be updated immediately
+    return CGSizeMake(UIViewNoIntrinsicMetric, self.scrollView.contentSize.height);
 }
 
 - (IBAction)showMenu:(id)sender {

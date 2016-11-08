@@ -37,12 +37,15 @@
     
 //    _emailText.text = @"ankurbhatias@gmail.com";
 //    _passwordText.text = @"ankurabir2015";
+    
+//    _emailText.text = @"paritosh@biz4solutions.com";
+//    _passwordText.text = @"registration";
 
 //    _emailText.text = @"bharatjha35@gmail.com";
 //    _passwordText.text = @"bharat123";
   
-  _emailText.text = @"gaurav.gauravs@gmail.com";
-  _passwordText.text = @"password";
+//  _emailText.text = @"gaurav.gauravs@gmail.com";
+//  _passwordText.text = @"password";
   
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
@@ -84,12 +87,46 @@
             [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"],[userData objectForKey:@"lastName"]]  forKey:@"Name"];
             [[NSUserDefaults standardUserDefaults] setObject:[userData objectForKey:@"id"] forKey:@"id"];
             
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *path = [documentsDirectory stringByAppendingPathComponent:@"loginUserData.plist"];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            
+            NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+            
+            if ([fileManager fileExistsAtPath: path]) {
+                data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
+            } else {
+                // If the file doesn’t exist, create an empty dictionary
+                data = [[NSMutableDictionary alloc] init];
+            }
+            
+            //To insert the data into the plist
+            [data setObject:[userData objectForKey:@"firstName"] forKey:@"firstName"];
+            [data setObject:[userData objectForKey:@"lastName"] forKey:@"lastName"];
+            [data setObject:[userData objectForKey:@"phone"] forKey:@"phone"];
+            [data setObject:[userData objectForKey:@"emailId"] forKey:@"emailId"];
+            [data setObject:[userData objectForKey:@"country"] forKey:@"country"];
+            
+            NSArray *array = [[responseData valueForKey:@"data"] valueForKey:@"projects"];
+            [data setObject:array forKey:@"projects"];
+            [data writeToFile: path atomically:YES];
+            
             if([[userData objectForKey:@"usertype"] integerValue] == 1)
             {
                 [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"role"];
             }
             else{
                [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"role"];
+            }
+            
+            NSArray *mediaFiles = [[responseData objectForKey:@"data"] objectForKey:@"media"];
+            for (NSDictionary *media in mediaFiles)
+            {
+                if ([[media valueForKey:@"profile"] isEqualToString:@"1"])
+                {
+                    [[NSUserDefaults standardUserDefaults] setObject:[media valueForKey:@"asset"] forKey:@"profileImage"];
+                }
             }
             
             NavigationController *contentController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootController"];

@@ -14,6 +14,7 @@
 @property (nonatomic) NSString *ageRange;
 @property (nonatomic) NSString* paid;
 @property (nonatomic) NSString *desc;
+@property (nonatomic) NSString *projectId;
 @property (assign) BOOL gender;
 
 @end

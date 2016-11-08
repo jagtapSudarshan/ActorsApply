@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "REFrostedViewController.h"
 
-@interface DirectorMenuController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
+@interface DirectorMenuController : UITableViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @end

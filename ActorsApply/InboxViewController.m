@@ -44,7 +44,6 @@
         
         [SVProgressHUD dismiss];
         
-        
         if (succeeded)
         {
             NSArray *inboxContents = [responseData valueForKey:@"data"];

@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0024EB939125A12D36B73131 /* libPods-ActorsApply.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD04FC8C21FB1043ADF0B53 /* libPods-ActorsApply.a */; };
 		1ADD6A9D1DBCFB2000717901 /* SubmissionRole.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD6A9C1DBCFB2000717901 /* SubmissionRole.m */; };
 		1AEBF75C1DBD3750002D06B9 /* ShortListedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */; };
 		1AEBF75F1DBD4BED002D06B9 /* select.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AEBF75D1DBD4BED002D06B9 /* select.jpg */; };
 		1AEBF7601DBD4BED002D06B9 /* star.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AEBF75E1DBD4BED002D06B9 /* star.jpg */; };
+		61010A691DCB8FDD00E43534 /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61010A681DCB8FDD00E43534 /* UpdateProfileViewController.m */; };
+		61010A6C1DCBB05E00E43534 /* UpdateAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61010A6B1DCBB05E00E43534 /* UpdateAboutViewController.m */; };
+		61010A6F1DCBBD1400E43534 /* UpdateProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61010A6E1DCBBD1400E43534 /* UpdateProjectsViewController.m */; };
+		61010A721DCBDEB200E43534 /* UpdateImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61010A711DCBDEB200E43534 /* UpdateImageViewController.m */; };
 		6103988B1D91B3E6007721FB /* InboxDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103988A1D91B3E6007721FB /* InboxDetailsViewController.m */; };
 		6103988E1D91C2AA007721FB /* Inbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6103988D1D91C2AA007721FB /* Inbox.m */; };
 		610398911D91CBBD007721FB /* AddRolePostCastingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610398901D91CBBD007721FB /* AddRolePostCastingViewController.m */; };
@@ -99,6 +104,8 @@
 		61892D9B1D7CD70F0095A0E1 /* SubmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61892D9A1D7CD70F0095A0E1 /* SubmissionViewController.m */; };
 		61892D9E1D7CD8970095A0E1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61892D9D1D7CD8970095A0E1 /* RootViewController.m */; };
 		61892DA11D7CD8E80095A0E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61892DA01D7CD8E80095A0E1 /* ViewController.m */; };
+		6194B3041DCE6DBC00C462BF /* SubmissionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6194B3031DCE6DBC00C462BF /* SubmissionVO.m */; };
+		6194B3071DCE714A00C462BF /* SubmissionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6194B3061DCE714A00C462BF /* SubmissionListViewController.m */; };
 		61A320071DB0F5B9007B7969 /* DirectorMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A320061DB0F5B9007B7969 /* DirectorMenuController.m */; };
 		61A320111DB10429007B7969 /* UIImage+BetterFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A3200E1DB10429007B7969 /* UIImage+BetterFace.m */; };
 		61A320121DB10429007B7969 /* UIImageView+BetterFace.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A320101DB10429007B7969 /* UIImageView+BetterFace.m */; };
@@ -117,17 +124,24 @@
 		6595CB4E1D9FF696008058BE /* CustomView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6595CB4D1D9FF696008058BE /* CustomView_iPhone.xib */; };
 		6595CB511DA0193E008058BE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6595CB501DA0193E008058BE /* SWRevealViewController.m */; };
 		6595CB581DA13325008058BE /* VerticalCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6595CB571DA13325008058BE /* VerticalCollectionViewCell.m */; };
-		F04CD9500E147441063BE8BE /* libPods-ActorsApply.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 924074C136EBDB06E2729FF7 /* libPods-ActorsApply.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CD04FC8C21FB1043ADF0B53 /* libPods-ActorsApply.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ActorsApply.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ADD6A9B1DBCFB2000717901 /* SubmissionRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmissionRole.h; sourceTree = "<group>"; };
 		1ADD6A9C1DBCFB2000717901 /* SubmissionRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionRole.m; sourceTree = "<group>"; };
 		1AEBF75A1DBD3750002D06B9 /* ShortListedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortListedViewController.h; sourceTree = "<group>"; };
 		1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortListedViewController.m; sourceTree = "<group>"; };
 		1AEBF75D1DBD4BED002D06B9 /* select.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = select.jpg; sourceTree = "<group>"; };
 		1AEBF75E1DBD4BED002D06B9 /* star.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star.jpg; sourceTree = "<group>"; };
-		5C603116A82A41FB2D799083 /* Pods-ActorsApply.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.debug.xcconfig"; sourceTree = "<group>"; };
+		61010A671DCB8FDD00E43534 /* UpdateProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateProfileViewController.h; sourceTree = "<group>"; };
+		61010A681DCB8FDD00E43534 /* UpdateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateProfileViewController.m; sourceTree = "<group>"; };
+		61010A6A1DCBB05E00E43534 /* UpdateAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateAboutViewController.h; sourceTree = "<group>"; };
+		61010A6B1DCBB05E00E43534 /* UpdateAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateAboutViewController.m; sourceTree = "<group>"; };
+		61010A6D1DCBBD1400E43534 /* UpdateProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateProjectsViewController.h; sourceTree = "<group>"; };
+		61010A6E1DCBBD1400E43534 /* UpdateProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateProjectsViewController.m; sourceTree = "<group>"; };
+		61010A701DCBDEB200E43534 /* UpdateImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateImageViewController.h; sourceTree = "<group>"; };
+		61010A711DCBDEB200E43534 /* UpdateImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateImageViewController.m; sourceTree = "<group>"; };
 		610398891D91B3E6007721FB /* InboxDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxDetailsViewController.h; sourceTree = "<group>"; };
 		6103988A1D91B3E6007721FB /* InboxDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxDetailsViewController.m; sourceTree = "<group>"; };
 		6103988C1D91C2AA007721FB /* Inbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inbox.h; sourceTree = "<group>"; };
@@ -275,6 +289,10 @@
 		61892D9D1D7CD8970095A0E1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ViewControllers/RootViewController.m; sourceTree = "<group>"; };
 		61892D9F1D7CD8E80095A0E1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ViewControllers/ViewController.h; sourceTree = "<group>"; };
 		61892DA01D7CD8E80095A0E1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ViewControllers/ViewController.m; sourceTree = "<group>"; };
+		6194B3021DCE6DBC00C462BF /* SubmissionVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmissionVO.h; sourceTree = "<group>"; };
+		6194B3031DCE6DBC00C462BF /* SubmissionVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionVO.m; sourceTree = "<group>"; };
+		6194B3051DCE714A00C462BF /* SubmissionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmissionListViewController.h; sourceTree = "<group>"; };
+		6194B3061DCE714A00C462BF /* SubmissionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionListViewController.m; sourceTree = "<group>"; };
 		61A320051DB0F5B9007B7969 /* DirectorMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectorMenuController.h; path = ViewControllers/DirectorMenuController.h; sourceTree = "<group>"; };
 		61A320061DB0F5B9007B7969 /* DirectorMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirectorMenuController.m; path = ViewControllers/DirectorMenuController.m; sourceTree = "<group>"; };
 		61A3200D1DB10429007B7969 /* UIImage+BetterFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+BetterFace.h"; path = "Better-Face/UIImage+BetterFace.h"; sourceTree = "<group>"; };
@@ -309,8 +327,8 @@
 		6595CB501DA0193E008058BE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6595CB561DA13325008058BE /* VerticalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalCollectionViewCell.h; sourceTree = "<group>"; };
 		6595CB571DA13325008058BE /* VerticalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalCollectionViewCell.m; sourceTree = "<group>"; };
-		924074C136EBDB06E2729FF7 /* libPods-ActorsApply.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ActorsApply.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB9BBDCEF6051A0F5CFAC091 /* Pods-ActorsApply.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.release.xcconfig"; sourceTree = "<group>"; };
+		D0FE06F1A84013ADBE83FCE4 /* Pods-ActorsApply.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.release.xcconfig"; sourceTree = "<group>"; };
+		E5FB93F1947FA5893DA3C132 /* Pods-ActorsApply.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,7 +338,7 @@
 			files = (
 				61EB64D31D8EA3C1008CE9FB /* AVFoundation.framework in Frameworks */,
 				61275BC81D84CA3300F90053 /* MediaPlayer.framework in Frameworks */,
-				F04CD9500E147441063BE8BE /* libPods-ActorsApply.a in Frameworks */,
+				0024EB939125A12D36B73131 /* libPods-ActorsApply.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,16 +350,16 @@
 			children = (
 				61EB64D21D8EA3C1008CE9FB /* AVFoundation.framework */,
 				61275BC71D84CA3300F90053 /* MediaPlayer.framework */,
-				924074C136EBDB06E2729FF7 /* libPods-ActorsApply.a */,
+				0CD04FC8C21FB1043ADF0B53 /* libPods-ActorsApply.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		587E0049D0BC62CF68FF6BB0 /* Pods */ = {
+		1EA5B099B8AD32A6B76205B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5C603116A82A41FB2D799083 /* Pods-ActorsApply.debug.xcconfig */,
-				BB9BBDCEF6051A0F5CFAC091 /* Pods-ActorsApply.release.xcconfig */,
+				E5FB93F1947FA5893DA3C132 /* Pods-ActorsApply.debug.xcconfig */,
+				D0FE06F1A84013ADBE83FCE4 /* Pods-ActorsApply.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -438,8 +456,8 @@
 			children = (
 				61892D741D7CB4D20095A0E1 /* ActorsApply */,
 				61892D731D7CB4D20095A0E1 /* Products */,
-				587E0049D0BC62CF68FF6BB0 /* Pods */,
 				1D05088C7E5613CA7E44378B /* Frameworks */,
+				1EA5B099B8AD32A6B76205B7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -588,6 +606,18 @@
 				654B80961DBCA6580052D415 /* OTPViewController.m */,
 				1AEBF75A1DBD3750002D06B9 /* ShortListedViewController.h */,
 				1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */,
+				61010A671DCB8FDD00E43534 /* UpdateProfileViewController.h */,
+				61010A681DCB8FDD00E43534 /* UpdateProfileViewController.m */,
+				61010A6A1DCBB05E00E43534 /* UpdateAboutViewController.h */,
+				61010A6B1DCBB05E00E43534 /* UpdateAboutViewController.m */,
+				61010A6D1DCBBD1400E43534 /* UpdateProjectsViewController.h */,
+				61010A6E1DCBBD1400E43534 /* UpdateProjectsViewController.m */,
+				61010A701DCBDEB200E43534 /* UpdateImageViewController.h */,
+				61010A711DCBDEB200E43534 /* UpdateImageViewController.m */,
+				6194B3021DCE6DBC00C462BF /* SubmissionVO.h */,
+				6194B3031DCE6DBC00C462BF /* SubmissionVO.m */,
+				6194B3051DCE714A00C462BF /* SubmissionListViewController.h */,
+				6194B3061DCE714A00C462BF /* SubmissionListViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -641,7 +671,6 @@
 				61892D701D7CB4D20095A0E1 /* Resources */,
 				9F74212C158C179809046CE8 /* [CP] Embed Pods Frameworks */,
 				220711C0280D889F05DD9D78 /* [CP] Copy Pods Resources */,
-				F8BDF2A611891995DE2559E3 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -775,21 +804,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F8BDF2A611891995DE2559E3 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -807,22 +821,26 @@
 				61892D7A1D7CB4D20095A0E1 /* AppDelegate.m in Sources */,
 				61A320121DB10429007B7969 /* UIImageView+BetterFace.m in Sources */,
 				617946261D7CF3FC003F66A8 /* PhotosViewController.m in Sources */,
+				6194B3041DCE6DBC00C462BF /* SubmissionVO.m in Sources */,
 				61892D831D7CB4D20095A0E1 /* ActorsApply.xcdatamodeld in Sources */,
 				616C42751D85CE2E00468EEB /* Tutorial.m in Sources */,
 				617946201D7CF3DF003F66A8 /* ProjectViewController.m in Sources */,
 				617652AD1D90765D00BB2A98 /* ApplicantDetailsViewController.m in Sources */,
 				61892D911D7CC6B10095A0E1 /* LaunchViewController.m in Sources */,
+				6194B3071DCE714A00C462BF /* SubmissionListViewController.m in Sources */,
 				611BBA6B1D9B3F3C00D9BF96 /* Industry.m in Sources */,
 				1ADD6A9D1DBCFB2000717901 /* SubmissionRole.m in Sources */,
 				61275BCB1D84D56400F90053 /* ProfileProjectsTableViewCell.m in Sources */,
 				617652B01D9086AB00BB2A98 /* ActorsListViewController.m in Sources */,
 				6103988E1D91C2AA007721FB /* Inbox.m in Sources */,
+				61010A691DCB8FDD00E43534 /* UpdateProfileViewController.m in Sources */,
 				611BBA601D9AF54500D9BF96 /* Country.m in Sources */,
 				61275BC31D84A59500F90053 /* ProfilePhotosCollectionViewCell.m in Sources */,
 				617652BF1D908BC300BB2A98 /* InboxTableViewCell.m in Sources */,
 				61892D9E1D7CD8970095A0E1 /* RootViewController.m in Sources */,
 				611CF8081D9978E200887D2E /* SubmissionTableViewCell.m in Sources */,
 				61447F371DB970430030ACB1 /* UpgradeViewController.m in Sources */,
+				61010A6C1DCBB05E00E43534 /* UpdateAboutViewController.m in Sources */,
 				617946331D7D12DC003F66A8 /* WebViewController.m in Sources */,
 				611BA4F01D95A8690028E448 /* TutorialsViewController.m in Sources */,
 				61275BAF1D84222900F90053 /* ConnectionManager.m in Sources */,
@@ -831,6 +849,7 @@
 				61275BC61D84C47200F90053 /* ProfileVideosTableViewCell.m in Sources */,
 				61EB64D61D8EC068008CE9FB /* CastPostHomeViewController.m in Sources */,
 				654B80971DBCA6580052D415 /* OTPViewController.m in Sources */,
+				61010A6F1DCBBD1400E43534 /* UpdateProjectsViewController.m in Sources */,
 				617946291D7CF408003F66A8 /* VideosViewController.m in Sources */,
 				617652B61D90893100BB2A98 /* RecomendedActorsCollectionViewCell.m in Sources */,
 				61EB64E31D8EC45E008CE9FB /* TPKeyboardAvoidingCollectionView.m in Sources */,
@@ -865,6 +884,7 @@
 				6179461A1D7CE196003F66A8 /* MenuViewController.m in Sources */,
 				617652AA1D906C2100BB2A98 /* ApplicantTableViewCell.m in Sources */,
 				6143D7491D9D6CB000F15334 /* MFSideMenuContainerViewController.m in Sources */,
+				61010A721DCBDEB200E43534 /* UpdateImageViewController.m in Sources */,
 				6595CB511DA0193E008058BE /* SWRevealViewController.m in Sources */,
 				6143D74E1D9D6E1300F15334 /* SideMenuViewController.m in Sources */,
 				6143D74B1D9D6CB000F15334 /* UIViewController+MFSideMenuAdditions.m in Sources */,
@@ -982,7 +1002,7 @@
 		};
 		61892D8D1D7CB4D20095A0E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C603116A82A41FB2D799083 /* Pods-ActorsApply.debug.xcconfig */;
+			baseConfigurationReference = E5FB93F1947FA5893DA3C132 /* Pods-ActorsApply.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Parmeet Singh Bhatia (X9ER5A3D8X)";
@@ -993,12 +1013,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.actorsapply;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3c55c14-2600-481f-b65c-d6164dfc6842";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		61892D8E1D7CB4D20095A0E1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB9BBDCEF6051A0F5CFAC091 /* Pods-ActorsApply.release.xcconfig */;
+			baseConfigurationReference = D0FE06F1A84013ADBE83FCE4 /* Pods-ActorsApply.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Parmeet Singh Bhatia (X9ER5A3D8X)";
@@ -1009,6 +1030,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.actorsapply;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c3c55c14-2600-481f-b65c-d6164dfc6842";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

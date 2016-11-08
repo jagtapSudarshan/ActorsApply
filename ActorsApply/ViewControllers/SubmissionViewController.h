@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "REFrostedViewController.h"
 #import "SuperViewController.h"
+#import "SubmissionVO.h"
 
 @interface SubmissionViewController : SuperViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property(nonatomic)SubmissionVO *submissionVO;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

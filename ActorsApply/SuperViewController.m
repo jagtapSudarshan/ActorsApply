@@ -13,6 +13,7 @@
 #import "HomeViewController.h"
 #import "NavigationController.h"
 #import "WebServiceConstants.h"
+#import "SubmissionListViewController.h"
 
 @interface SuperViewController ()
 
@@ -93,7 +94,7 @@ static int tab_value = TAB_2;
         tab_value = TAB_1;
         
         NavigationController *tabBarCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"contentController"];
-        SubmissionViewController *submissionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SubmissionViewController"];
+        SubmissionListViewController *submissionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SubmissionListViewController"];
         tabBarCtrl.viewControllers = @[submissionViewController];
         self.frostedViewController.contentViewController = tabBarCtrl;
     }

@@ -9,7 +9,7 @@
 #ifndef WebServiceConstants_h
 #define WebServiceConstants_h
 
-#define BASE_URL @"http://52.220.121.164/abson-api/v1/"
+#define BASE_URL            @"http://app.actorsapply.com/index.php/v1/"
 
 #define LOGIN               @"auth/login"
 #define AUDITION            @"audition/audition"
@@ -28,6 +28,17 @@
 #define GET_SUBMISSSION     @"audition/submissions"
 #define SHORTLISTED         @"casting/shortlist/"
 
+#define UPDATE_PROJECTS     @"user/actorProjects"     // Method : put
+#define DELETE_PROJECTS     @"user/actorProjects"    // Method : delete
+#define GET_PROJECTS        @"user/actorProjects"    // Get
+
+#define UPDATE_USER_PROFILE  @"user/updateUser"
+
+#define INBOX_COMPOSE       @"inbox/compose"     // POST
+#define GETINBOX_SENT       @"inbox/getInbox/sent"
+#define UPLOAD_PHOTO        @"user/addPhoto"
+#define UPLOAD_VIDEO        @"user/addVideo"
+#define SET_PROFILE_PIC     @"user/setProfilePic"   // PUT
 
 #define IMAGE_URL         @"http://www.actorsapply.com/app/webroot/img/photos/"
 #define BLOG_IMAGE_URL    @"http://www.actorsapply.com/img/blog/"

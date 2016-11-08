@@ -86,7 +86,7 @@
 }
 
 - (IBAction)resendOTP:(id)sender {
+    [self getOTP];
 }
-
 
 @end

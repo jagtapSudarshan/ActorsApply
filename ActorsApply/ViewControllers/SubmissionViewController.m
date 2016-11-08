@@ -42,140 +42,59 @@
     
     [self.navigationController.navigationBar setHidden:YES];
     submissionRoles = [NSMutableArray new];
-    //[self.tableView reloadData];
-    submissionName.hidden = YES;
-    type.hidden = YES;
-    typeImageView.hidden = YES;
-    location.hidden = YES;
-    desc.hidden = YES;
-    castingDate.hidden = YES;
-    castingDirector.hidden = YES;
-    castIngDateName.hidden = YES;
-    castIngDirectorName.hidden = YES;
-    locationName.hidden = YES;
-    sescName.hidden = YES;
-    hMidLine.hidden = YES;
-    vMideLine.hidden = YES;
-    vTwoMideLine.hidden = YES;
-    _tableView.hidden = YES;
+    submissionName.text = [[NSString stringWithFormat:@"%@ (%@ ROLE)",_submissionVO.name,_submissionVO.roleCount] uppercaseString];
+    submissionName.numberOfLines = 0;
+    submissionName.lineBreakMode = UILineBreakModeWordWrap;
+    NSInteger typeCat = [_submissionVO.type integerValue] + 1;
+    type.text = [self castingType:typeCat];
+    [typeImageView setImage:[UIImage imageNamed:[self getImageFromType:typeCat]]];
     
-    [self getSubmission];
+    location.text = _submissionVO.location;
+    desc.text = _submissionVO.desc;
+    castingDate.text = _submissionVO.date;
+    castingDirector.text = _submissionVO.director;
+    //castIngDateName.text = _submissionVO.date;
+    //castIngDirectorName.text = _submissionVO.director;
+    //locationName.text = _submissionVO.location;
+    //sescName.text = _submissionVO.desc;
+    desc.numberOfLines = 0;
+    desc.lineBreakMode = UILineBreakModeWordWrap;
 }
 
 - (IBAction)showMenu
 {
     // Dismiss keyboard (optional)
-    //
-    [self.view endEditing:YES];
-    [self.frostedViewController.view endEditing:YES];
-    
-    // Present the view controller
-    //
-    [self.frostedViewController presentMenuViewController];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [submissionRoles count];
+    return [_submissionVO.roles count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"SubmissionTableViewCell";
-    
     SubmissionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.lblCharName.text = [[_submissionVO.roles objectAtIndex:indexPath.row] valueForKey:@"name"];
     
-    return cell;
-}
+    UILabel *roleName = (UILabel*)[cell viewWithTag:1];
+    roleName.text = [[_submissionVO.roles objectAtIndex:indexPath.row] valueForKey:@"name"];
+    
+    if([[[_submissionVO.roles objectAtIndex:indexPath.row] valueForKey:@"gender"] integerValue] == 1)
+    {
+        cell.lblGender.text = @"Male";
+    }
+    else{
+        cell.lblGender.text = @"Female";
+    }
+    
+    cell.lblAgeRange.text = [NSString stringWithFormat:@"%@-%@",[[_submissionVO.roles objectAtIndex:indexPath.row] valueForKey:@"minAge"],[[_submissionVO.roles objectAtIndex:indexPath.row] valueForKey:@"maxAge"]];
+    cell.lblDesc.text = [[_submissionVO.roles objectAtIndex:indexPath.row] valueForKey:@"desc"];
+    cell.lblDesc.numberOfLines = 0;
+    cell.lblDesc.lineBreakMode = UILineBreakModeWordWrap;
 
--(void)getSubmission
-{
-    [SVProgressHUD show];
-    [ConnectionManager callGetMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,GET_SUBMISSSION] completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
-        
-        [SVProgressHUD dismiss];
-        
-        if(succeeded)
-        {
-            NSMutableArray *response = [responseData valueForKey:@"data"];
-            if([response count] > 0)
-            {
-                submissionName.hidden = NO;
-                type.hidden = NO;
-                typeImageView.hidden = NO;
-                location.hidden = NO;
-                desc.hidden = NO;
-                castingDate.hidden = NO;
-                castingDirector.hidden = NO;
-                castIngDateName.hidden = NO;
-                castIngDirectorName.hidden = NO;
-                locationName.hidden = NO;
-                sescName.hidden = NO;
-                hMidLine.hidden = NO;
-                vMideLine.hidden = NO;
-                vTwoMideLine.hidden = NO;
-                _tableView.hidden = NO;
-                submissionName.text = [response valueForKey:@"name"];
-                NSInteger typeValue = [[response valueForKey:@"type"] integerValue];
-                type.text = [self castingType:typeValue];
-                [typeImageView setImage:[UIImage imageNamed:[self getImageFromType:typeValue]]];
-                location.text = [response valueForKey:@"location"];
-                desc.text = [response valueForKey:@"desc"];
-                castingDate.text = [response valueForKey:@"castingDate"];
-                castingDirector.text = [response valueForKey:@"shootDate"];
-                
-                NSMutableArray *roles = [response valueForKey:@"roles"];
-                
-                for (NSDictionary *data in roles) {
-                    SubmissionRole *subRole = [[SubmissionRole alloc] init];
-                    subRole.characterName = [data valueForKey:@"name"];
-                    subRole.gender = [data valueForKey:@"gender"];
-                    subRole.ageRange = [NSString stringWithFormat:@"%@ - %@",[data valueForKey:@"minAge"],[data valueForKey:@"maxAge"]];
-                    subRole.desc = [data valueForKey:@"desc"];
-                    [submissionRoles addObject:subRole];
-                }
-                
-                [_tableView reloadData];
-            }
-            else{
-                submissionName.hidden = YES;
-                type.hidden = YES;
-                typeImageView.hidden = YES;
-                location.hidden = YES;
-                desc.hidden = YES;
-                castingDate.hidden = YES;
-                castingDirector.hidden = YES;
-                castIngDateName.hidden = YES;
-                castIngDirectorName.hidden = YES;
-                locationName.hidden = YES;
-                sescName.hidden = YES;
-                hMidLine.hidden = YES;
-                vMideLine.hidden = YES;
-                vTwoMideLine.hidden = YES;
-                 _tableView.hidden = YES;
-                [RKDropdownAlert title:@"INFORMATION" message:@"No submissions available."];
-            }
-        }
-        else
-        {
-            submissionName.hidden = YES;
-            type.hidden = YES;
-            typeImageView.hidden = YES;
-            location.hidden = YES;
-            desc.hidden = YES;
-            castingDate.hidden = YES;
-            castingDirector.hidden = YES;
-            castIngDateName.hidden = YES;
-            castIngDirectorName.hidden = YES;
-            locationName.hidden = YES;
-            sescName.hidden = YES;
-            hMidLine.hidden = YES;
-            vMideLine.hidden = YES;
-            vTwoMideLine.hidden = YES;
-            _tableView.hidden = YES;
-            [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
-        }
-    }];
+    return cell;
 }
 
 @end

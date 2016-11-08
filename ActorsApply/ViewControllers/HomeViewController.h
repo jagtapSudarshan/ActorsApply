@@ -13,6 +13,7 @@
 
 @interface HomeViewController : SuperViewController
 
+@property(assign) BOOL isFromMenu;
 
 //@property (nonatomic)NSMutableArray *profileMediaVideos;
 //@property (nonatomic)NSString *profileImageName;

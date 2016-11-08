@@ -23,6 +23,9 @@
 #import "WebServiceConstants.h"
 #import "UIImageView+BetterFace.h"
 #import "UpgradeViewController.h"
+#import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "SubmissionListViewController.h"
 
 @interface MenuViewController ()
 
@@ -61,12 +64,13 @@
         tabBarCtrl.viewControllers = @[homeViewController];
       }
     else if (indexPath.row == 2) {
-        SubmissionViewController *submissionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SubmissionViewController"];
+        SubmissionListViewController *submissionViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SubmissionListViewController"];
          tabBarCtrl.viewControllers = @[submissionViewController];
     }
     else if (indexPath.row == 3) {
-        ProfileViewController *profileViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-        tabBarCtrl.viewControllers = @[profileViewController];
+        HomeViewController *homeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Home"];
+        homeViewController.isFromMenu = YES;
+        tabBarCtrl.viewControllers = @[homeViewController];
     }
     else if (indexPath.row == 4) {
         InboxViewController *inboxViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"InboxViewController"];
@@ -76,28 +80,28 @@
         TutorialsViewController *tutorialsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TutorialsViewController"];
         tabBarCtrl.viewControllers = @[tutorialsViewController];
     }
-    else if (indexPath.row == 6) {
-        UpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeViewController"];
-        tabBarCtrl.viewControllers = @[upgradeViewController];
-    }
-    else if(indexPath.row == 7 || indexPath.row == 8 || indexPath.row == 9) {
+//    else if (indexPath.row == 6) {
+//        UpgradeViewController *upgradeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UpgradeViewController"];
+//        tabBarCtrl.viewControllers = @[upgradeViewController];
+//    }
+    else if(indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8) {
         WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
         
         NSString *url;
-        if(indexPath.row == 7) {
+        if(indexPath.row == 6) {
             url = PRIVACY_URL;
         }
-        else if(indexPath.row == 8) {
+        else if(indexPath.row == 7) {
             url = TERMS_URL;
         }
-        else if(indexPath.row == 9) {
+        else if(indexPath.row == 8) {
             url = ABOUT_URL;
         }
         webViewController.url = url;
         tabBarCtrl.viewControllers = @[webViewController];
     }
-    else if(indexPath.row == 10) {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out" message:@"Are you sure,you want to Logout?" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    else if(indexPath.row == 9) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out" message:@"Are you sure,you want to Logout?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
       [alert show];
     }
     else {
@@ -110,8 +114,14 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-  [self.view.window setRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"signincontroller"]];
+    if(buttonIndex == 1){
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"authorization"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"profileImage"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"profileImageDirector"];
+        
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.window setRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"signincontroller"]];
+    }
 }
-
 
 @end

@@ -22,6 +22,7 @@
 #import "AuditionViewController.h"
 #import "CastPostHomeViewController.h"
 #import "ApplicantListViewController.h"
+#import "UpdateProfileViewController.h"
 
 @interface HomeViewController ()
 {
@@ -52,17 +53,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     NSString* role = [[NSUserDefaults standardUserDefaults] valueForKey:@"role"];
     
     name.text = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Name"] uppercaseString];
     if([role isEqualToString:@"1"])
     {
         lineView.hidden = YES;
-        [viewApplicantLabel sizeToFit];
-        [postCastingLabel sizeToFit];
+        //[viewApplicantLabel sizeToFit];
+        //[postCastingLabel sizeToFit];
         NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]);
         [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:nil];
-       // [profileImageView setImage:[UIImage imageNamed:@""]];
+        // [profileImageView setImage:[UIImage imageNamed:@""]];
         [postCostingBtn setBackgroundImage:[UIImage imageNamed:@"auditions"] forState:0];
         [viewApplicantBtn setBackgroundImage:[UIImage imageNamed:@"profile"] forState:0];
         postCastingLabel.text = @"AUDITIONS";
@@ -176,6 +182,9 @@
                 [projectDict setValue:[project valueForKey:@"name"] forKey:@"name"];
                 [projectDict setValue:[project valueForKey:@"modified"] forKey:@"modified"];
                 [projectDict setValue:[project valueForKey:@"director"] forKey:@"director"];
+                [projectDict setValue:[project valueForKey:@"roll"] forKey:@"roll"];
+                [projectDict setValue:[project valueForKey:@"id"] forKey:@"id"];
+                
                 if(![profileProjects containsObject:projectDict])
                     [profileProjects addObject:projectDict];
             }
@@ -224,6 +233,11 @@
           //  videosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"videos_storyboard"];
             videosVC.profileVideos = profileMediaVideos;
             [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL, profileImageName]] placeholderImage:[UIImage imageNamed:@"logo"]];
+            
+            if(_isFromMenu)
+            {
+              [self performSegueWithIdentifier:@"profile_segue" sender:self];
+            }
         }
         else
         {
@@ -231,6 +245,11 @@
         }
     }];
 }
+
+- (IBAction)navToEditProfile:(id)sender {
+    [self performSegueWithIdentifier:@"navToEditProfile" sender:nil];
+}
+
 
 #pragma mark - Navigation
 
@@ -248,6 +267,13 @@
         profileVC.profileProjects = profileProjects;
         profileVC.profileImageName = profileImageName;
         //profileVC.profileImageName = profileImageName;
+    }
+    else if ([segue.identifier isEqualToString:@"navToEditProfile"])
+    {
+        UpdateProfileViewController *profileVC = segue.destinationViewController;
+        profileVC.profileImages = profileMediaImages;
+        profileVC.profileMediaVideos = profileMediaVideos;
+        profileVC.profileProjects = profileProjects;
     }
 }
 
