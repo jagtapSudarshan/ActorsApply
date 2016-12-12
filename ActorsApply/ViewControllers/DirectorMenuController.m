@@ -7,7 +7,7 @@
 //
 
 #import "DirectorMenuController.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "WebServiceConstants.h"
 #import "UIImageView+BetterFace.h"
 #import "NavigationController.h"

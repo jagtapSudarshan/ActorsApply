@@ -13,7 +13,7 @@
 #import "RKDropdownAlert.h"
 #import "HomeViewController.h"
 #import "InboxViewController.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "SubmissionListViewController.h"
 #import "SWRevealViewController.h"
 #import "HomeViewController.h"

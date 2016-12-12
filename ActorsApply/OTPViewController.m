@@ -71,18 +71,6 @@
              [self performSegueWithIdentifier:@"login" sender:nil];
          }
      }];
-    
-//    [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,REGISTRATION] Data:_dict completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg)
-//     {
-//         if(succeeded)
-//         {
-//             [RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
-//         }
-//         else{
-//             // login screen.
-//
-//         }
-//     }];
 }
 
 - (IBAction)resendOTP:(id)sender {

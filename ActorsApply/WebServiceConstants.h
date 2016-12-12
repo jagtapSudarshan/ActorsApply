@@ -9,7 +9,8 @@
 #ifndef WebServiceConstants_h
 #define WebServiceConstants_h
 
-#define BASE_URL            @"http://app.actorsapply.com/index.php/v1/"
+#define BASE_URL            @"http://app.actorsapply.com/index.php/v1/"  // production server
+//#define BASE_URL            @"http://52.74.176.50/abson-api/v1/"  // dev server
 
 #define LOGIN               @"auth/login"
 #define AUDITION            @"audition/audition"

@@ -11,12 +11,14 @@
 #import "WebServiceConstants.h"
 #import "SVProgressHUD.h"
 #import "RKDropdownAlert.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 
 @interface UpdateImageViewController ()
 {
     NSMutableArray *imagesArray;
     __weak IBOutlet UICollectionView *collectionView;
+    NSString *filePath;
+    UIImage *uploadImage;
 }
 
 @end
@@ -50,7 +52,13 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     UIImageView *imageView = (UIImageView*)[cell viewWithTag:1];
-    [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[imagesArray objectAtIndex:indexPath.row]]]];
+    if([[imagesArray objectAtIndex:indexPath.row] isKindOfClass:[NSString class]])
+    {
+        [imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[imagesArray objectAtIndex:indexPath.row]]]];
+    }else if([[imagesArray objectAtIndex:indexPath.row] isKindOfClass:[UIImage class]])
+    {
+        [imageView setImage:[imagesArray objectAtIndex:indexPath.row]];
+    }
     return cell;
 }
 
@@ -59,7 +67,7 @@
 }
 
 - (IBAction)saveClicked:(id)sender {
-
+   [self uploadImage : uploadImage : filePath];
 }
 
 - (IBAction)addImageClicked:(id)sender {
@@ -103,22 +111,22 @@
  //   UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
 //    NSString *str = [info valueForKey:UIImagePickerControllerReferenceURL];
     
-    UIImage *image = (UIImage *)info[UIImagePickerControllerOriginalImage];
+    uploadImage = (UIImage *)info[UIImagePickerControllerOriginalImage];
     
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *imageSubdirectory = [documentsDirectory stringByAppendingPathComponent:@"photos"];
     
-    NSString *filePath = [imageSubdirectory stringByAppendingPathComponent:@"photo.png"];
+    filePath = [imageSubdirectory stringByAppendingPathComponent:@"photo.jpeg"];
     
     // Convert UIImage object into NSData (a wrapper for a stream of bytes) formatted according to PNG spec
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(uploadImage,0.2);
     [imageData writeToFile:filePath atomically:YES];
     
+    [imagesArray addObject:uploadImage];
+    [collectionView reloadData];
     
     [picker dismissViewControllerAnimated:YES completion:^{
-        [self uploadImage : image : filePath];
         
-       
     }];
 }
 
@@ -130,14 +138,14 @@
 - (void)uploadImage : (UIImage*) image : (NSString*)imagePath
 {
     [SVProgressHUD show];
-    
-   // [ConnectionManager callDeleteMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,UPLOAD_PHOTO] completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
     [ConnectionManager uploadimage:image Path:[NSString stringWithFormat:@"%@%@",BASE_URL,UPLOAD_PHOTO] imggName:imagePath completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
         
         [SVProgressHUD dismiss];
         
         if (succeeded) {
             [self.navigationController popViewControllerAnimated:YES];
+            [imagesArray removeObjectAtIndex:[imagesArray count] - 1];
+            [imagesArray addObject:[responseData objectForKey:@"imgName"]];
             [RKDropdownAlert title:@"INFORMATION" message:[responseData objectForKey:@"message"]];
         }
         else{

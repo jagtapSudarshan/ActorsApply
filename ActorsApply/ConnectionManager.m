@@ -7,7 +7,7 @@
 //
 
 #import "ConnectionManager.h"
-#import <AFNetworking.h>
+#import "AFNetworking.h"
 
 @implementation ConnectionManager
 
@@ -25,7 +25,14 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          completionBlock(YES,responseObject,nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         completionBlock(NO,error.localizedDescription,nil);
+        if(error.code == 404)
+        {
+           completionBlock(NO,nil,@"The username or password is not correct.");
+        }
+        else{
+        NSLog(@"ERROR::::%ld",(long)error.code);
+        completionBlock(NO,nil,error.localizedDescription);
+        }
     }];
 }
 
@@ -38,6 +45,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] forHTTPHeaderField:@"Authorization"];
+    
     [manager POST:path parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
         //completionBlock(YES,responseObject,nil);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -146,104 +154,55 @@
 
 +(void)uploadimage:(UIImage *)img Path:(NSString *)path imggName:(NSString*)imgName completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock
 {
-    NSURL *url=[NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    AFHTTPSessionManager*manager = [AFHTTPSessionManager manager];
+    [manager setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey]];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    // Create request.
-    NSMutableURLRequest *theRequest = [[NSMutableURLRequest alloc] init];
-    [theRequest setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-    [theRequest setHTTPShouldHandleCookies:NO];
-    [theRequest setTimeoutInterval:30];
-    [theRequest setHTTPMethod:@"POST"];
+	NSString * timestamp =  [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] * 1000];
+	[manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] forHTTPHeaderField:@"Authorization"];
     
-    NSString *boundary = @"---------------------------14737809831466499882746641449";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-    [theRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    // Add image data.
-    NSData *imageData = UIImageJPEGRepresentation(img, 1.0);
-    NSMutableData *body = [NSMutableData new];
-    
-    [body appendData:imageData];
-    
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-   
-    if (imageData)
-    {
-        [body appendData:[[NSString stringWithFormat:@"%@", @"Content-Disposition: form-data; name=\"userfile\""] dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    [body appendData:[@"Content-Type: image/jpeg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [theRequest setHTTPBody:body];
-    
-    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[body length]];
-    [theRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    
-    // Set URL
-    [theRequest setURL:url];
-   // NSURLConnection *connection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-   // [connection start];
-    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject];
-    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:theRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        //
-        if (data) {
-            NSHTTPURLResponse * httpResponse  = (NSHTTPURLResponse*)response;
-            NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            
-            NSInteger statusCode = httpResponse.statusCode;
-            if (statusCode == 200) {
-                //PERFORM YOUR OPERATIONS
-            }
-        }else if (error)
-        {
-            NSLog(@"Errorrrrrrr....");
-        }
+    [manager POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSData *imageData = UIImageJPEGRepresentation(img, 0.4);
+        [formData appendPartWithFileData:imageData name:@"userFiles[]" fileName:[NSString stringWithFormat:@"%@.png",timestamp] mimeType:@"image/png"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSMutableDictionary *dict=[responseObject mutableCopy];
+        [dict setValue:[NSString stringWithFormat:@"%@.jpeg",timestamp] forKey:@"imgName"];
+        completionBlock(YES,dict,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completionBlock(NO,nil,error.localizedDescription);
     }];
-    [dataTask resume];
-    
-//    AFHTTPSessionManager*manager = [AFHTTPSessionManager manager];
-//    [manager setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey]];
-//    [manager.requestSerializer setValue:@"application/uploadfile" forHTTPHeaderFild:@"Accept"];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//	NSString * timestamp =   [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] * 1000];
-//	//[manager.requestSerializer setValue:[NSString stringWithFormat:@"%@.png",timestamp]  forHTTPHeaderField:imgName];
-//	[manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] forHTTPHeaderField:@"Authorization"];
-//    NSDictionary *parameters = @{@"userfile":img};
-//    
-//    [manager POST:path parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSData *imageData = UIImageJPEGRepresentation(img, 0.4);
-//        //[formData appendPartWithFileData:imageData name:@"userfile" fileName:[NSString stringWithFormat:@"%@.png",timestamp] mimeType:@"image/png"];
-//        //[formData appendPartWithFormData:imageData name:@"userfile"];
-//        NSError *error;
-//        [formData appendPartWithFileURL:[NSURL URLWithString:imgName] name:@"userfile" error:&error];
-//
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSMutableDictionary *dict=[responseObject mutableCopy];
-//        [dict setValue:[NSString stringWithFormat:@"%@.png",timestamp] forKey:@"imgName"];
-//        completionBlock(YES,dict,nil);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        completionBlock(NO,nil,error.localizedDescription);
-//    }];
-//
-//    [manager POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSData *imageData = UIImageJPEGRepresentation(img, 0.4);
-//        
-//        [formData appendPartWithFileData:imageData name:@"userfile" fileName:[NSString stringWithFormat:@"%@.png",timestamp] mimeType:@"image/png"];
-//
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//        NSMutableDictionary *dict=[responseObject mutableCopy];
-//       [dict setValue:[NSString stringWithFormat:@"%@.png",timestamp] forKey:@"imgName"];
-//        completionBlock(YES,dict,nil);
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        completionBlock(NO,nil,error.localizedDescription);
-//    }];
 }
+
++(void)uploadVideo:(NSString *)path videoPath:(NSString*)videoPath completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock
+{
+    AFHTTPSessionManager*manager = [AFHTTPSessionManager manager];
+    [manager setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey]];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSURL *urlPath = [NSURL URLWithString:videoPath];
+    NSData *data = [NSData dataWithContentsOfURL:urlPath];
+    
+    NSString * timestamp =  [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970] * 1000];
+    [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] forHTTPHeaderField:@"Authorization"];
+    
+    [manager POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        if (data)
+        {
+            [formData appendPartWithFileData:data name:@"userFiles[]" fileName:[NSString stringWithFormat:@"%@.mov",timestamp] mimeType:@"video/quicktime"];
+        }
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSMutableDictionary *dict=[responseObject mutableCopy];
+        [dict setValue:[NSString stringWithFormat:@"%@.jpeg",timestamp] forKey:@"imgName"];
+        completionBlock(YES,dict,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completionBlock(NO,nil,error.localizedDescription);
+    }];
+}
+
 
 - (void)URLSession:(NSURLSession *)session didBecomeInvalidWithError:(nullable NSError *)error
 {
@@ -291,7 +250,7 @@
     
     [manager.requestSerializer setValue:auth forHTTPHeaderField:@"Authorization"];
     
-    [manager GET:urlstr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:[[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

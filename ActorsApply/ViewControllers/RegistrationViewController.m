@@ -11,6 +11,8 @@
 #import "RKDropdownAlert.h"
 #import "WebServiceConstants.h"
 #import "OTPViewController.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import "NavigationController.h"
 
 @interface RegistrationViewController ()
 {
@@ -20,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *pickeParentView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
 
 @end
 
@@ -46,7 +49,9 @@
   UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(pickerChanged:)];
   [toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceLeft, doneButton, nil]];
   [_pickeParentView addSubview:toolbar];
-  _datePicker.minimumDate = [NSDate date];
+    
+    _datePicker.datePickerMode=UIDatePickerModeDate;
+   _datePicker.maximumDate = [NSDate date];
 }
 
 - (void) setBorder : (UIView*) view{
@@ -55,10 +60,16 @@
     view.layer.borderColor = [UIColor darkGrayColor].CGColor;
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 250);
+}
+
 - (void)pickerChanged:(id)sender
 {
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+  [dateFormatter setDateFormat:@"dd-MM-yyyy"];
   NSString *convertedDateString = [dateFormatter stringFromDate:[_datePicker date]];
   NSLog(@"formatted date is %@",convertedDateString);
   self.dateofBirth.text = convertedDateString;
@@ -66,22 +77,13 @@
   _datePicker.hidden = NO;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)dateOfBirthAction:(id)sender {
+   [self.view endEditing:YES];
   _pickeParentView.hidden = NO;
-    
 }
 
 - (IBAction)roleAction:(UIButton*)sender {
@@ -143,7 +145,8 @@
                                @"123",@"otp",
                                userType,@"usertype",
                                nil];
-  
+
+    
   if(message.length == 0)
   {
       [self performSegueWithIdentifier:@"otp" sender:nil];

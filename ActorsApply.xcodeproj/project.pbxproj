@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0024EB939125A12D36B73131 /* libPods-ActorsApply.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD04FC8C21FB1043ADF0B53 /* libPods-ActorsApply.a */; };
+		0B15C18DE7B2BE2A838D7D34 /* libPods-ActorsApply.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DBD3D4B247FA7C2739EF6F /* libPods-ActorsApply.a */; };
+		1A0153F31DD740A50035325F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0153F21DD740A50035325F /* ImageIO.framework */; };
+		1A0153F51DD7411A0035325F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0153F41DD7411A0035325F /* CoreMedia.framework */; };
+		1A0153F71DD741710035325F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0153F61DD741710035325F /* CoreData.framework */; };
+		1A0153FA1DD86BBB0035325F /* loginUserData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A0153F91DD86BBA0035325F /* loginUserData.plist */; };
+		1A8978471DF9E5CA00895394 /* DefaultPic.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A8978461DF9E5CA00895394 /* DefaultPic.png */; };
+		1AB25A9D1DE1B66400073D28 /* UploadVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB25A9C1DE1B66400073D28 /* UploadVideoViewController.m */; };
 		1ADD6A9D1DBCFB2000717901 /* SubmissionRole.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD6A9C1DBCFB2000717901 /* SubmissionRole.m */; };
 		1AEBF75C1DBD3750002D06B9 /* ShortListedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEBF75B1DBD3750002D06B9 /* ShortListedViewController.m */; };
 		1AEBF75F1DBD4BED002D06B9 /* select.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AEBF75D1DBD4BED002D06B9 /* select.jpg */; };
@@ -127,7 +133,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0CD04FC8C21FB1043ADF0B53 /* libPods-ActorsApply.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ActorsApply.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0153F21DD740A50035325F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1A0153F41DD7411A0035325F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1A0153F61DD741710035325F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1A0153F81DD849AB0035325F /* ActorsApply.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ActorsApply.entitlements; sourceTree = "<group>"; };
+		1A0153F91DD86BBA0035325F /* loginUserData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loginUserData.plist; sourceTree = "<group>"; };
+		1A8978461DF9E5CA00895394 /* DefaultPic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultPic.png; sourceTree = "<group>"; };
+		1AB25A9B1DE1B66400073D28 /* UploadVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadVideoViewController.h; sourceTree = "<group>"; };
+		1AB25A9C1DE1B66400073D28 /* UploadVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadVideoViewController.m; sourceTree = "<group>"; };
 		1ADD6A9B1DBCFB2000717901 /* SubmissionRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmissionRole.h; sourceTree = "<group>"; };
 		1ADD6A9C1DBCFB2000717901 /* SubmissionRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionRole.m; sourceTree = "<group>"; };
 		1AEBF75A1DBD3750002D06B9 /* ShortListedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortListedViewController.h; sourceTree = "<group>"; };
@@ -327,6 +340,7 @@
 		6595CB501DA0193E008058BE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		6595CB561DA13325008058BE /* VerticalCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerticalCollectionViewCell.h; sourceTree = "<group>"; };
 		6595CB571DA13325008058BE /* VerticalCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalCollectionViewCell.m; sourceTree = "<group>"; };
+		94DBD3D4B247FA7C2739EF6F /* libPods-ActorsApply.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ActorsApply.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FE06F1A84013ADBE83FCE4 /* Pods-ActorsApply.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.release.xcconfig"; sourceTree = "<group>"; };
 		E5FB93F1947FA5893DA3C132 /* Pods-ActorsApply.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActorsApply.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActorsApply/Pods-ActorsApply.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,9 +350,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A0153F71DD741710035325F /* CoreData.framework in Frameworks */,
+				1A0153F51DD7411A0035325F /* CoreMedia.framework in Frameworks */,
+				1A0153F31DD740A50035325F /* ImageIO.framework in Frameworks */,
 				61EB64D31D8EA3C1008CE9FB /* AVFoundation.framework in Frameworks */,
 				61275BC81D84CA3300F90053 /* MediaPlayer.framework in Frameworks */,
-				0024EB939125A12D36B73131 /* libPods-ActorsApply.a in Frameworks */,
+				0B15C18DE7B2BE2A838D7D34 /* libPods-ActorsApply.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +365,12 @@
 		1D05088C7E5613CA7E44378B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A0153F61DD741710035325F /* CoreData.framework */,
+				1A0153F41DD7411A0035325F /* CoreMedia.framework */,
+				1A0153F21DD740A50035325F /* ImageIO.framework */,
 				61EB64D21D8EA3C1008CE9FB /* AVFoundation.framework */,
 				61275BC71D84CA3300F90053 /* MediaPlayer.framework */,
-				0CD04FC8C21FB1043ADF0B53 /* libPods-ActorsApply.a */,
+				94DBD3D4B247FA7C2739EF6F /* libPods-ActorsApply.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,6 +387,7 @@
 		611601171D981AA6004F33D8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1A8978461DF9E5CA00895394 /* DefaultPic.png */,
 				1AEBF75D1DBD4BED002D06B9 /* select.jpg */,
 				1AEBF75E1DBD4BED002D06B9 /* star.jpg */,
 				611BBA611D9B139100D9BF96 /* Asset 20.png */,
@@ -472,6 +493,7 @@
 		61892D741D7CB4D20095A0E1 /* ActorsApply */ = {
 			isa = PBXGroup;
 			children = (
+				1A0153F81DD849AB0035325F /* ActorsApply.entitlements */,
 				61A320081DB10089007B7969 /* Constant */,
 				611601171D981AA6004F33D8 /* Images */,
 				61275BB41D848AE900F90053 /* 3rd Party */,
@@ -488,6 +510,7 @@
 				61892D891D7CB4D20095A0E1 /* Info.plist */,
 				61892D811D7CB4D20095A0E1 /* ActorsApply.xcdatamodeld */,
 				61892D751D7CB4D20095A0E1 /* Supporting Files */,
+				1A0153F91DD86BBA0035325F /* loginUserData.plist */,
 			);
 			path = ActorsApply;
 			sourceTree = "<group>";
@@ -618,6 +641,8 @@
 				6194B3031DCE6DBC00C462BF /* SubmissionVO.m */,
 				6194B3051DCE714A00C462BF /* SubmissionListViewController.h */,
 				6194B3061DCE714A00C462BF /* SubmissionListViewController.m */,
+				1AB25A9B1DE1B66400073D28 /* UploadVideoViewController.h */,
+				1AB25A9C1DE1B66400073D28 /* UploadVideoViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -693,6 +718,11 @@
 					61892D711D7CB4D20095A0E1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = X9ER5A3D8X;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -731,6 +761,7 @@
 				6116011F1D981ACE004F33D8 /* Audition.png in Resources */,
 				611CF8101D99A0F400887D2E /* Asset 4.png in Resources */,
 				611601251D981ACE004F33D8 /* upgrade.png in Resources */,
+				1A0153FA1DD86BBB0035325F /* loginUserData.plist in Resources */,
 				611CF81F1D99A8A100887D2E /* Asset 17.png in Resources */,
 				611CF81A1D99A8A100887D2E /* Asset 12.png in Resources */,
 				611BBA661D9B139100D9BF96 /* Asset 21.png in Resources */,
@@ -752,6 +783,7 @@
 				61275BBE1D848B7E00F90053 /* SVProgressHUD.bundle in Resources */,
 				611CF80F1D99A0F400887D2E /* Asset 3.png in Resources */,
 				6595CB4E1D9FF696008058BE /* CustomView_iPhone.xib in Resources */,
+				1A8978471DF9E5CA00895394 /* DefaultPic.png in Resources */,
 				611BBA671D9B139100D9BF96 /* Asset 22.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,7 +833,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -883,6 +915,7 @@
 				617652A31D905EF900BB2A98 /* DropDownListView.m in Sources */,
 				6179461A1D7CE196003F66A8 /* MenuViewController.m in Sources */,
 				617652AA1D906C2100BB2A98 /* ApplicantTableViewCell.m in Sources */,
+				1AB25A9D1DE1B66400073D28 /* UploadVideoViewController.m in Sources */,
 				6143D7491D9D6CB000F15334 /* MFSideMenuContainerViewController.m in Sources */,
 				61010A721DCBDEB200E43534 /* UpdateImageViewController.m in Sources */,
 				6595CB511DA0193E008058BE /* SWRevealViewController.m in Sources */,
@@ -956,6 +989,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "c3c55c14-2600-481f-b65c-d6164dfc6842";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -994,6 +1028,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "c3c55c14-2600-481f-b65c-d6164dfc6842";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1005,14 +1040,19 @@
 			baseConfigurationReference = E5FB93F1947FA5893DA3C132 /* Pods-ActorsApply.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CODE_SIGN_ENTITLEMENTS = ActorsApply/ActorsApply.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Parmeet Singh Bhatia (X9ER5A3D8X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Parmeet Singh Bhatia (X9ER5A3D8X)";
+				DEVELOPMENT_TEAM = X9ER5A3D8X;
 				INFOPLIST_FILE = ActorsApply/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actorsapply;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c3c55c14-2600-481f-b65c-d6164dfc6842";
+				PROVISIONING_PROFILE = "be0f9a40-0a44-43e3-9281-3e6541b8d9d5";
+				PROVISIONING_PROFILE_SPECIFIER = "Actors apply";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1022,14 +1062,19 @@
 			baseConfigurationReference = D0FE06F1A84013ADBE83FCE4 /* Pods-ActorsApply.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CODE_SIGN_ENTITLEMENTS = ActorsApply/ActorsApply.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Parmeet Singh Bhatia (X9ER5A3D8X)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Parmeet Singh Bhatia (X9ER5A3D8X)";
+				DEVELOPMENT_TEAM = X9ER5A3D8X;
 				INFOPLIST_FILE = ActorsApply/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actorsapply;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c3c55c14-2600-481f-b65c-d6164dfc6842";
+				PROVISIONING_PROFILE = "be0f9a40-0a44-43e3-9281-3e6541b8d9d5";
+				PROVISIONING_PROFILE_SPECIFIER = "Actors apply";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

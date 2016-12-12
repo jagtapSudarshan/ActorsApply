@@ -59,7 +59,7 @@
                 audition.location = [auditionDict valueForKey:@"location"];
                 audition.maxAge = [auditionDict valueForKey:@"maxAge"];
                 audition.minAge = [auditionDict valueForKey:@"minAge"];
-                audition.dateModified = [auditionDict valueForKey:@"modified"];
+                
                 audition.name = [auditionDict valueForKey:@"name"];
                 audition.project_id = [auditionDict valueForKey:@"project_id"];
                 audition.status = [auditionDict valueForKey:@"status"];
@@ -69,11 +69,11 @@
                 
                 if([audition.role count] > 0)
                 {
+                   audition.dateModified = [[audition.role objectAtIndex:0] valueForKey:@"created"];
                    audition.gender = [[audition.role objectAtIndex:0] valueForKey:@"gender"];
                 }
                 
                 [auditionsList addObject:audition];
-                
             }
             
             [self.tableView reloadData];
@@ -90,7 +90,7 @@
 
 - (IBAction)showMenu:(id)sender {
     // Dismiss keyboard (optional)
-    //
+    
     [self.view endEditing:YES];
     [self.frostedViewController.view endEditing:YES];
     
@@ -119,7 +119,7 @@
     [format setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     NSDate *date = [format dateFromString:audition.dateModified];
-    [format setDateFormat:@"dd EEE yyyy"];
+    [format setDateFormat:@"dd MMM yyyy"];
     
     UILabel *nameLabel = [cell viewWithTag:1];
     nameLabel.text = [[NSString stringWithFormat:@"%@ (%lu ROLE)",audition.name,(unsigned long)audition.role.count] uppercaseString];

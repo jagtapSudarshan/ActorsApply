@@ -27,23 +27,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // Get about profile. (Prefill)
+    NSData *fetchUserData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userData"];
+    NSMutableDictionary *savedStock  = [NSKeyedUnarchiver unarchiveObjectWithData:fetchUserData];
     
-    //To reterive the data from the plist.
+    _fName.text = [savedStock objectForKey:@"firstName"];
+    _lName.text =  [savedStock objectForKey:@"lastName"];
+    _contactNumber.text =  [savedStock objectForKey:@"phone"];
+    _emailId.text =  [savedStock objectForKey:@"emailId"];
+    _country.text =  [savedStock objectForKey:@"country"];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"loginUserData.plist"];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    if ([fileManager fileExistsAtPath: path]) {
-        NSMutableDictionary *savedStock = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-        _fName.text = [savedStock objectForKey:@"firstName"];
-        _lName.text =  [savedStock objectForKey:@"lastName"];
-        _contactNumber.text =  [savedStock objectForKey:@"phone"];
-        _emailId.text =  [savedStock objectForKey:@"emailId"];
-        _country.text =  [savedStock objectForKey:@"country"];
-    }
 }
 
 - (void)didReceiveMemoryWarning {

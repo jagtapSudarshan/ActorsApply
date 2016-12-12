@@ -19,6 +19,7 @@
 {
     NSMutableArray *inboxArray;
 }
+
 @end
 
 @implementation InboxViewController

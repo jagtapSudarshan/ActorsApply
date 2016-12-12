@@ -29,9 +29,30 @@
     [super viewDidLoad];
     projectsData = [[NSMutableArray alloc] init];
     projectsData = _profileProjects;
+    
+    if(!projectsData)
+    {
+        NSData *fetchUserData = [[NSUserDefaults standardUserDefaults] objectForKey:@"userData"];
+        NSMutableDictionary *savedStock  = [NSKeyedUnarchiver unarchiveObjectWithData:fetchUserData];
+        projectsData = [savedStock valueForKey:@"projects"];
+    }
+    
     [_tableView reloadData];
     
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneClicked:)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+    role.inputAccessoryView = keyboardDoneButtonView;
+    
     // Do any additional setup after loading the view.
+}
+
+- (void)doneClicked:(id)sender
+{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,9 +76,23 @@
     
     NSDictionary *dict = [projectsData objectAtIndex:indexPath.row];
     UILabel *label = (UILabel*)[cell viewWithTag:1];
-    label.text = [dict valueForKey:@"name"];
+    
+    if(![[dict valueForKey:@"name"] isEqual:[NSNull null]])
+    {
+        label.text = [dict valueForKey:@"name"];
+    }
+    else{
+        label.text = @"";
+    }
     UILabel *subTitle = (UILabel*)[cell viewWithTag:2];
-    subTitle.text = [NSString stringWithFormat:@"as %@",[dict valueForKey:@"roll"]];
+    if(![[dict valueForKey:@"roll"] isEqual:[NSNull null]])
+    {
+        subTitle.text = [NSString stringWithFormat:@"as %@",[dict valueForKey:@"roll"]];
+    }
+    else
+    {
+       subTitle.text = @"";
+    }
     UIButton *deleteBtn = (UIButton*)[cell viewWithTag:3];
     [deleteBtn addTarget:self action:@selector(deleteProject:) forControlEvents:UIControlEventTouchUpInside];
     deleteBtn.tag = [[dict valueForKey:@"id"] integerValue];
@@ -118,21 +153,27 @@
     {
         [SVProgressHUD show];
         NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"id"];
-        NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:projectName.text,@"name",
+        NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              projectName.text,@"name",
                               role.text,@"roll",
                               description.text,@"desc",
-                              userId,@"id",nil];
+                              userId,@"user_id",
+                              nil];
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:0 error:NULL];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *da = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         
         NSMutableArray *requestData = [NSMutableArray new];
         [requestData addObject:data];
         
-        [ConnectionManager callPutProjectMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,UPDATE_PROJECTS] Data:data completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
+        [ConnectionManager callPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,UPDATE_PROJECTS] Data:data completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
             
             [SVProgressHUD dismiss];
             
             if (succeeded) {
                 [self.navigationController popViewControllerAnimated:YES];
-                
                 [RKDropdownAlert title:@"INFORMATION" message:[responseData objectForKey:@"message"]];
             }
             else{
@@ -151,9 +192,9 @@
 
 -(NSString*)validateProject : (NSString*) projectText : (NSString*) roleText
 {
-    if(projectText == nil)
+    if([projectText isEqualToString:@""])
         return @"Please enter project name.";
-    else if(projectText == nil)
+    else if([roleText isEqualToString:@""])
         return @"Please enter role.";
     
     return nil;

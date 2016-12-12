@@ -15,7 +15,7 @@
 #import "PhotosViewController.h"
 #import "VideosViewController.h"
 #import "ProfileViewController.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "RKDropdownAlert.h"
 #import "RootViewController.h"
 #import "SWRevealViewController.h"
@@ -64,17 +64,14 @@
     if([role isEqualToString:@"1"])
     {
         lineView.hidden = YES;
-        //[viewApplicantLabel sizeToFit];
-        //[postCastingLabel sizeToFit];
         NSLog(@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]);
-        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:nil];
-        // [profileImageView setImage:[UIImage imageNamed:@""]];
+        [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[NSUserDefaults standardUserDefaults] objectForKey:@"profileImage"]]] placeholderImage:[UIImage imageNamed:@"default_user"]];
         [postCostingBtn setBackgroundImage:[UIImage imageNamed:@"auditions"] forState:0];
         [viewApplicantBtn setBackgroundImage:[UIImage imageNamed:@"profile"] forState:0];
         postCastingLabel.text = @"AUDITIONS";
         viewApplicantLabel.text = @"PROFILE";
         roleLabel.text = @"ACTOR";
-        
+        profileImageView.contentMode = UIViewContentModeScaleAspectFit;
         [postCastingLabel setFont:[UIFont fontWithName:@"Helvetica-Regular" size:17]];
         [viewApplicantLabel setFont:[UIFont fontWithName:@"Helvetica-Regular" size:17]];
     }
@@ -82,9 +79,8 @@
         lineView.hidden = NO;
         [viewApplicantLabel sizeToFit];
         [postCastingLabel sizeToFit];
-        [profileImageView setImage:[UIImage imageNamed:@"logo"]];
+        [profileImageView setImage:[UIImage imageNamed:@"default_user"]];
         profileImageView.contentMode = UIViewContentModeScaleAspectFit;
-        profileImageView.contentMode = UIViewContentModeCenter;
         [postCostingBtn setBackgroundImage:[UIImage imageNamed:@"Asset 3"] forState:0];
         [viewApplicantBtn setBackgroundImage:[UIImage imageNamed:@"Asset 4"] forState:0];
         viewApplicantLabel.hidden = YES;
@@ -217,22 +213,10 @@
                         [profileMediaVideos addObject:[media valueForKey:@"asset"]];
                 }
             }
-            
-            //[self performSegueWithIdentifier:@"profile_segue" sender:self];
-            
-            //aboutVC = [self.storyboard instantiateViewControllerWithIdentifier:@"about_storyboard"];
-            
-           // [self.containerView addSubview:aboutVC.view];
-            
-            //projectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"project_storyboard"];
             projectVC.profileProjects = profileProjects;
-            
-           // photosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"photos_storyboard"];
             photosVC.profileImages = profileMediaImages;
-            
-          //  videosVC = [self.storyboard instantiateViewControllerWithIdentifier:@"videos_storyboard"];
             videosVC.profileVideos = profileMediaVideos;
-            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL, profileImageName]] placeholderImage:[UIImage imageNamed:@"logo"]];
+            [profileImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL, profileImageName]] placeholderImage:[UIImage imageNamed:@"default_user"]];
             
             if(_isFromMenu)
             {

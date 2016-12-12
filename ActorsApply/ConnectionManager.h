@@ -34,4 +34,6 @@
 
 +(void)callPutProjectMethod:(NSString *)path Data:(NSDictionary*)data completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock;
 
++(void)uploadVideo:(NSString *)path videoPath:(NSString*)videoPath completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock;
+
 @end

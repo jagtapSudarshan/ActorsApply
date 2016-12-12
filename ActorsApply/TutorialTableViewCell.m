@@ -7,7 +7,7 @@
 //
 
 #import "TutorialTableViewCell.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "WebServiceConstants.h"
 
 @implementation TutorialTableViewCell

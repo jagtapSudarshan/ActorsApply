@@ -69,11 +69,11 @@
     
     SubmissionVO *submissionVO = [submissionData objectAtIndex:indexPath.row];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd"];
+    [format setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     [format setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     NSDate *date = [format dateFromString:submissionVO.date];
-    [format setDateFormat:@"dd EEE yyyy"];
+    [format setDateFormat:@"dd MMM yyyy"];
     
     UILabel *nameLabel = [cell viewWithTag:2];
     nameLabel.numberOfLines = 0;
@@ -123,13 +123,18 @@
                     NSMutableDictionary *dic = [data objectAtIndex:cnt];
                     SubmissionVO *vo = [SubmissionVO new];
                     vo.name = [dic valueForKey:@"name"];
-                    vo.date = [dic valueForKey:@"castingDate"];
                     vo.location = [dic valueForKey:@"location"];
                     vo.director = [dic valueForKey:@"casting_director"];
                     vo.desc = [dic valueForKey:@"desc"];
-                    vo.type = [[[dic valueForKey:@"roles"] objectAtIndex:0] valueForKey:@"type"];
+                    vo.type = [dic valueForKey:@"type"];
                     vo.roles = [dic valueForKey:@"roles"];
                     vo.roleCount = [NSString stringWithFormat:@"%lu",(unsigned long)[vo.roles count]];
+                    
+                    if([vo.roles count] > 0)
+                    {
+                        vo.date = [[vo.roles objectAtIndex:0] valueForKey:@"created"];
+                    }
+                    
                     [submissionData addObject:vo];
                 }
                 [_tableView reloadData];

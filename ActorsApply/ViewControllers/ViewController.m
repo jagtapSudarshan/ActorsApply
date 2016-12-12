@@ -25,7 +25,8 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.emailView.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -35,11 +36,21 @@
     self.signupView.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.signupView.layer.borderWidth = 1.0f;
     
-//    _emailText.text = @"ankurbhatias@gmail.com";
-//    _passwordText.text = @"ankurabir2015";
+    //Actor
     
-//    _emailText.text = @"paritosh@biz4solutions.com";
-//    _passwordText.text = @"registration";
+    _emailText.text = @"ankurbhatias@gmail.com";
+    _passwordText.text = @"HiGPxCeo";
+    
+ //   _emailText.text = @"vidhi.lal51@gmail.com";
+ //   _passwordText.text = @"vidhi189";
+
+    //Casting
+    
+//    _emailText.text = @"jigna126@gmail.com";
+//    _passwordText.text = @"castingjigna";
+//    
+//    _emailText.text = @"apulakhia@gmail.com";
+//    _passwordText.text = @"haseena";
 
 //    _emailText.text = @"bharatjha35@gmail.com";
 //    _passwordText.text = @"bharat123";
@@ -82,36 +93,22 @@
             NSDictionary *userData = [[responseData valueForKey:@"data"] valueForKey:@"user"];
             
             [[NSUserDefaults standardUserDefaults] setObject:[responseData objectForKey:@"authorization"] forKey:@"authorization"];
-            
+            NSLog(@"[[NSUserDefaults standardUserDefaults]:::%@::::",[[NSUserDefaults standardUserDefaults] objectForKey:@"emailId"]);
             [[NSUserDefaults standardUserDefaults] setObject:[userData objectForKey:@"emailId"] forKey:@"emailId"];
             [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@ %@",[userData objectForKey:@"firstName"],[userData objectForKey:@"lastName"]]  forKey:@"Name"];
             [[NSUserDefaults standardUserDefaults] setObject:[userData objectForKey:@"id"] forKey:@"id"];
-            
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *path = [documentsDirectory stringByAppendingPathComponent:@"loginUserData.plist"];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            
-            NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-            
-            if ([fileManager fileExistsAtPath: path]) {
-                data = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
-            } else {
-                // If the file doesn’t exist, create an empty dictionary
-                data = [[NSMutableDictionary alloc] init];
-            }
-            
-            //To insert the data into the plist
+            NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
             [data setObject:[userData objectForKey:@"firstName"] forKey:@"firstName"];
             [data setObject:[userData objectForKey:@"lastName"] forKey:@"lastName"];
             [data setObject:[userData objectForKey:@"phone"] forKey:@"phone"];
             [data setObject:[userData objectForKey:@"emailId"] forKey:@"emailId"];
             [data setObject:[userData objectForKey:@"country"] forKey:@"country"];
-            
             NSArray *array = [[responseData valueForKey:@"data"] valueForKey:@"projects"];
             [data setObject:array forKey:@"projects"];
-            [data writeToFile: path atomically:YES];
-            
+
+            NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:data];
+            [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"userData"];
+ 
             if([[userData objectForKey:@"usertype"] integerValue] == 1)
             {
                 [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"role"];
@@ -144,6 +141,116 @@
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
+}
+
+- (IBAction)FBLOGIN:(id)sender {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login logOut];
+    login.loginBehavior = FBSDKLoginBehaviorSystemAccount;
+    
+    [login
+     logInWithReadPermissions: @[@"public_profile",@"user_birthday",@"user_photos",@"user_about_me"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
+     {
+         if (error)
+         {
+             // Process error
+             if(error.code == 308)
+             {
+                 [RKDropdownAlert title:@"INFORMATION" message:@"Unable to login Facebook"];
+                 return;
+             }
+             
+         } else if (result.isCancelled) {
+             
+             // Handle cancellations.
+         }
+         else
+         {
+             [self fetchUserInfo];
+         }
+     }];
+}
+
+-(void)fetchUserInfo
+{
+    if ([FBSDKAccessToken currentAccessToken]) {
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
+          
+                                           parameters:@{@"fields": @"picture.type(large), email,id,first_name,last_name, gender, birthday"}]
+         
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+             
+             if (!error)
+             {
+                 NSData *jsondata = [NSJSONSerialization dataWithJSONObject:result
+                                                                    options:kNilOptions
+                                                                      error:&error];
+                 NSDictionary* resultDict = [NSJSONSerialization JSONObjectWithData:jsondata
+                                                                            options:kNilOptions
+                                                                              error:&error];
+                 
+                 NSDictionary* requestDict=[[NSDictionary alloc] initWithObjectsAndKeys:
+                                           // @"FB", @"login_type",
+                                            [resultDict objectForKey:@"first_name"], @"first_name",
+                                            [resultDict objectForKey:@"last_name"], @"last_name",
+                                            [resultDict objectForKey:@"gender"],@"gender",
+                                            [resultDict objectForKey:@"id"],@"fb_id",
+                                            [[[resultDict objectForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"],@"profile_photo",
+                                            [resultDict objectForKey:@"birthday"],@"birthday",
+                                            [[FBSDKAccessToken currentAccessToken] tokenString],@"fb_token",
+                                            nil];
+                 
+                 [[NSUserDefaults standardUserDefaults] setValue:[resultDict objectForKey:@"id"] forKey:@"fbid"];
+                 
+                 [SVProgressHUD show];
+                 
+                 [ConnectionManager callLoginPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,LOGIN] Data:requestDict completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
+                     [SVProgressHUD dismiss];
+                     
+                     if (succeeded)
+                     {
+                         if(responseData != nil)
+                         {
+                             if([[responseData objectForKey:@"status"] isEqualToString:@"success"])
+                             {
+                                //[RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+                             }
+                             else
+                             {
+                                 [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+                             }
+                         }
+                         else{
+                             [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+                         }
+                     }
+                     else
+                     {
+                         
+                        [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+                     }
+                 }];
+             }
+             else
+             {
+                 [RKDropdownAlert title:@"INFORMATION" message:[error localizedDescription]];
+             }
+         }];
+    }
+    else
+    {
+         [SVProgressHUD dismiss];
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

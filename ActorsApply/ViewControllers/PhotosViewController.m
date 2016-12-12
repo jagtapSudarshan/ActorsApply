@@ -9,8 +9,7 @@
 #import "PhotosViewController.h"
 #import "ProfilePhotosCollectionViewCell.h"
 #import "ConnectionManager.h"
-#import <UIImage+AFNetworking.h>
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "WebServiceConstants.h"
 
 @interface PhotosViewController ()

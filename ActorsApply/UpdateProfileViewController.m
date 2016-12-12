@@ -9,6 +9,7 @@
 #import "UpdateProfileViewController.h"
 #import "UpdateProjectsViewController.h"
 #import "UpdateImageViewController.h"
+#import "UploadVideoViewController.h"
 
 @interface UpdateProfileViewController ()
 {
@@ -24,8 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //listArray = [[NSMutableArray alloc] initWithObjects:@"About",@"Projects",@"Photos",@"Videos", nil];
-    listArray = [[NSMutableArray alloc] initWithObjects:@"About", nil];
+    listArray = [[NSMutableArray alloc] initWithObjects:@"About",@"Projects",@"Photos",@"Videos", nil];
     [self.tableView reloadData];
 }
 
@@ -98,8 +98,8 @@
     }
     else if ([segue.identifier isEqualToString:@"navToVideos"])
     {
-        UpdateProjectsViewController *vc = segue.destinationViewController;
-        vc.profileImages = _profileMediaVideos;
+        UploadVideoViewController *vc = segue.destinationViewController;
+        vc.profileVideos = _profileMediaVideos;
     }
 }
 
