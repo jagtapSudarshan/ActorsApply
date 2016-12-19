@@ -36,4 +36,6 @@
 
 +(void)uploadVideo:(NSString *)path videoPath:(NSString*)videoPath completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock;
 
++(void)callFBLoginPostMethod:(NSString *)path Data:(NSDictionary*)dict   completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock;
+
 @end

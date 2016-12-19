@@ -35,4 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIView *referenceByView;
 @property (weak, nonatomic) IBOutlet UITextField *referenceBy;
 
+@property (assign) BOOL isFblogin;
+@property (strong,nonatomic) NSDictionary *fbData;
+
+
 @end

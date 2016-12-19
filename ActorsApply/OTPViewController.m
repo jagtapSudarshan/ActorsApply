@@ -24,7 +24,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
+    NSLog(@"data:::%@",_dict);
     [self getOTP];
 }
 
@@ -64,7 +64,14 @@
      {
          if(succeeded)
          {
-              [self performSegueWithIdentifier:@"login" sender:nil];
+              //[RKDropdownAlert title:@"INFORMATION" message:[responseData valueForKey:@"message"]];
+//             if(_isFromFB)
+//             {
+//                 [self performSegueWithIdentifier:@"navToHome" sender:nil];
+//             }
+//             else{
+                 [self performSegueWithIdentifier:@"login" sender:nil];
+           //  }
          }
          else{
              // login screen.

@@ -13,4 +13,7 @@
 
 @property(nonatomic,strong)NSMutableDictionary *dict;
 
+@property(assign)BOOL isFromFB;
+
+
 @end

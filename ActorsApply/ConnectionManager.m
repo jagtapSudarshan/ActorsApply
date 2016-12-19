@@ -36,6 +36,30 @@
     }];
 }
 
++(void)callFBLoginPostMethod:(NSString *)path Data:(NSDictionary*)dict   completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock
+{
+    AFHTTPSessionManager*manager = [AFHTTPSessionManager manager];
+    [manager setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:path parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
+        //completionBlock(YES,responseObject,nil);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        completionBlock(YES,responseObject,nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if(error.code == -1011)
+        {
+//            NSData *data = [UserInfo objectForKey:@"com.alamofire.serialization.response.error.data"];
+//            NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:lookServerResponseData options:kNilOptions error:&errorJson];
+            completionBlock(YES,nil,@"Request failed: not found (404)");
+        }
+        else{
+            NSLog(@"ERROR::::%ld",(long)error.code);
+            completionBlock(NO,nil,error.localizedDescription);
+        }
+    }];
+}
 
 +(void)callPostMethod:(NSString *)path Data:(NSDictionary*)dict completionBlock:(void (^)(BOOL succeeded, id  responseData ,NSString* errorMsg))completionBlock
 {
@@ -242,7 +266,9 @@
     [manager setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey]];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+   // manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+ 
     //manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     
     NSString *auth = [[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"];
@@ -250,7 +276,7 @@
     
     [manager.requestSerializer setValue:auth forHTTPHeaderField:@"Authorization"];
     
-    [manager GET:[[NSUserDefaults standardUserDefaults] objectForKey:@"authorization"] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [manager GET:urlstr parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

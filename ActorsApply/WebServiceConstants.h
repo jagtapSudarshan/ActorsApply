@@ -34,7 +34,7 @@
 #define GET_PROJECTS        @"user/actorProjects"    // Get
 
 #define UPDATE_USER_PROFILE  @"user/updateUser"
-
+#define FB_LOGIN             @"auth/fbLogin"
 #define INBOX_COMPOSE       @"inbox/compose"     // POST
 #define GETINBOX_SENT       @"inbox/getInbox/sent"
 #define UPLOAD_PHOTO        @"user/addPhoto"

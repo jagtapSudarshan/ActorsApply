@@ -40,6 +40,22 @@
     [self setBorder:_referenceByView];
     _role_male.selected = YES;
     userType = @"1";
+    
+    NSLog(@"DATA::%@",_fbData);
+    
+    if(_isFblogin)
+    {
+        _firstName.text = [_fbData valueForKey:@"first_name"];
+        _lastName.text = [_fbData valueForKey:@"last_name"];
+        if([[_fbData valueForKey:@"gender"] isEqualToString:@"male"])
+        {
+            _role_male.selected = YES;
+            _role_female.selected = NO;
+        }else{
+            _role_male.selected = NO;
+            _role_female.selected = YES;
+        }
+    }
   
   _pickeParentView.hidden = YES;
   
@@ -212,6 +228,7 @@
     {
         OTPViewController *vc = segue.destinationViewController;
         vc.dict = [requestData mutableCopy];
+        vc.isFromFB = _isFblogin;
     }
 }
 

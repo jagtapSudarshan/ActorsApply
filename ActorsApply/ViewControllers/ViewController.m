@@ -16,6 +16,7 @@
 #import "MFSideMenuContainerViewController.h"
 #import "HomeViewController.h"
 #import "NavigationController.h"
+#import "RegistrationViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailText;
@@ -41,23 +42,23 @@
     _emailText.text = @"ankurbhatias@gmail.com";
     _passwordText.text = @"HiGPxCeo";
     
- //   _emailText.text = @"vidhi.lal51@gmail.com";
- //   _passwordText.text = @"vidhi189";
-
+    //   _emailText.text = @"vidhi.lal51@gmail.com";
+    //   _passwordText.text = @"vidhi189";
+    
     //Casting
     
-//    _emailText.text = @"jigna126@gmail.com";
-//    _passwordText.text = @"castingjigna";
-//    
-//    _emailText.text = @"apulakhia@gmail.com";
-//    _passwordText.text = @"haseena";
-
-//    _emailText.text = @"bharatjha35@gmail.com";
-//    _passwordText.text = @"bharat123";
-  
-//  _emailText.text = @"gaurav.gauravs@gmail.com";
-//  _passwordText.text = @"password";
-  
+    //    _emailText.text = @"jigna126@gmail.com";
+    //    _passwordText.text = @"castingjigna";
+    //
+    //    _emailText.text = @"apulakhia@gmail.com";
+    //    _passwordText.text = @"haseena";
+    
+    //    _emailText.text = @"bharatjha35@gmail.com";
+    //    _passwordText.text = @"bharat123";
+    
+    //  _emailText.text = @"gaurav.gauravs@gmail.com";
+    //  _passwordText.text = @"password";
+    
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
@@ -105,16 +106,16 @@
             [data setObject:[userData objectForKey:@"country"] forKey:@"country"];
             NSArray *array = [[responseData valueForKey:@"data"] valueForKey:@"projects"];
             [data setObject:array forKey:@"projects"];
-
+            
             NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:data];
             [[NSUserDefaults standardUserDefaults] setObject:myData forKey:@"userData"];
- 
+            
             if([[userData objectForKey:@"usertype"] integerValue] == 1)
             {
                 [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"role"];
             }
             else{
-               [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"role"];
+                [[NSUserDefaults standardUserDefaults] setObject:@"2" forKey:@"role"];
             }
             
             NSArray *mediaFiles = [[responseData objectForKey:@"data"] objectForKey:@"media"];
@@ -192,44 +193,50 @@
                                                                               error:&error];
                  
                  NSDictionary* requestDict=[[NSDictionary alloc] initWithObjectsAndKeys:
-                                           // @"FB", @"login_type",
+                                            [[FBSDKAccessToken currentAccessToken] tokenString],@"token",
+                                            nil];
+                 
+                 __block NSDictionary* fbRequestDict=[[NSDictionary alloc] initWithObjectsAndKeys:
+                                            // @"FB", @"login_type",
                                             [resultDict objectForKey:@"first_name"], @"first_name",
                                             [resultDict objectForKey:@"last_name"], @"last_name",
                                             [resultDict objectForKey:@"gender"],@"gender",
                                             [resultDict objectForKey:@"id"],@"fb_id",
                                             [[[resultDict objectForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"],@"profile_photo",
                                             [resultDict objectForKey:@"birthday"],@"birthday",
-                                            [[FBSDKAccessToken currentAccessToken] tokenString],@"fb_token",
                                             nil];
                  
                  [[NSUserDefaults standardUserDefaults] setValue:[resultDict objectForKey:@"id"] forKey:@"fbid"];
                  
                  [SVProgressHUD show];
                  
-                 [ConnectionManager callLoginPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,LOGIN] Data:requestDict completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
+                 [ConnectionManager callFBLoginPostMethod:[NSString stringWithFormat:@"%@%@",BASE_URL,FB_LOGIN] Data:requestDict completionBlock:^(BOOL succeeded, id responseData, NSString *errorMsg) {
                      [SVProgressHUD dismiss];
                      
                      if (succeeded)
                      {
                          if(responseData != nil)
                          {
-                             if([[responseData objectForKey:@"status"] isEqualToString:@"success"])
+                            if([[responseData objectForKey:@"status"] isEqualToString:@"success"])
                              {
-                                //[RKDropdownAlert title:@"INFORMATION" message:errorMsg];
-                             }
-                             else
-                             {
-                                 [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+                                 [[NSUserDefaults standardUserDefaults] setObject:[responseData objectForKey:@"authorization"] forKey:@"authorization"];
+                                 [self performSegueWithIdentifier:@"navToReg" sender:fbRequestDict];
+                                // [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
                              }
                          }
                          else{
+                             if([errorMsg isEqualToString:@"Request failed: not found (404)"])
+                             {
+                                 [self performSegueWithIdentifier:@"navToReg" sender:fbRequestDict];
+                                 return;
+                             }
+                             
                              [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
                          }
                      }
                      else
                      {
-                         
-                        [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
+                         [RKDropdownAlert title:@"INFORMATION" message:errorMsg];
                      }
                  }];
              }
@@ -241,7 +248,7 @@
     }
     else
     {
-         [SVProgressHUD dismiss];
+        [SVProgressHUD dismiss];
     }
 }
 
@@ -251,6 +258,16 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"navToReg"])
+    {
+        RegistrationViewController *ctrl = segue.destinationViewController;
+        ctrl.isFblogin = YES;
+        ctrl.fbData = sender;
+    }
 }
 
 @end
