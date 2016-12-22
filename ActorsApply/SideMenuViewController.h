@@ -19,5 +19,5 @@
     __weak IBOutlet UIView *imageParentView;
     NSDictionary *userDetail;
 }
-@property (nonatomic,strong)HomeViewController *homeVc;
+@property (nonatomic,strong) UIViewController *homeVc;
 @end
